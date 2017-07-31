@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import datetime
 
+TOKEN = "yourfancytokengoeshere"
 
 bot = commands.Bot(command_prefix='s.', self_bot=True)
 
@@ -79,4 +80,4 @@ if __name__ == "__main__":
             exc = '{}: {}'.format(type(e).__name__, e)
             print('Failed to load extension {}\n{}'.format(extension, exc))
 
-bot.run("MzE5Mzk1NzgzODQ3ODM3Njk2.DF2Klg.zEgTAzHvjaXYaRgY5puSWTsTbDk", bot=False)
+bot.run(TOKEN, bot=False)
