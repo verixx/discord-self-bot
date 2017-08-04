@@ -114,6 +114,7 @@ class Info():
 
     @commands.command(pass_context=True)
     async def info(self, ctx):
+        """See bot information, uptime, servers etc."""
         uptime = (datetime.datetime.now() - self.bot.uptime)
         hours, rem = divmod(int(uptime.total_seconds()), 3600)
         minutes, seconds = divmod(rem, 60)
@@ -123,11 +124,11 @@ class Info():
         else:
             time_ = '%s hours, %s minutes, and %s seconds' % (hours, minutes, seconds)
         servers = len(self.bot.servers)
-        version = '0.1.0'
+        version = '0.1.1'
         library = 'discord.py'
         creator = 'verix#7220'
         discord_ = '[Support Server](https://discord.gg/c9NUu2W)'
-        github = 'Soon to come.'
+        github = '[/verixx/discord-self-bot](https://github.com/verixx/discord-self-bot)'
         time = ctx.message.timestamp
         emb = discord.Embed(colour=0x00FFFF)
         emb.set_author(name='selfbot-verix', icon_url=self.bot.user.avatar_url)
@@ -141,6 +142,19 @@ class Info():
         emb.set_footer(text="ID: {}".format(self.bot.user.id))
         emb.set_thumbnail(url='https://cdn.discordapp.com/avatars/319395783847837696/349677f658e864c0a5247a658df61eb1.webp?width=80&height=80')
         await self.bot.say(embed=emb)
+
+    @commands.command(pass_context=True)
+    async def help(self, ctx, *, cmd = None):
+        """Shows this message."""
+        author = ctx.message.author
+        pages = self.bot.formatter.format_help_for(ctx, self.bot)
+        for page in pages:
+            try:
+                await self.bot.say(embed=page)
+            except:
+                await self.bot.say('I need the embed links perm.')
+
+
 
 
 def setup(bot):
