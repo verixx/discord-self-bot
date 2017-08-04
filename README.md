@@ -13,20 +13,21 @@ discord.py
 requests
 ```
 ## Setup
-First navigate into the data folder and open `config.json`, edit it to put your token and prefix in.
-```
+First navigate into the data folder and open `config.json`, edit it to put your token and prefix in. And set `FIRST` to `false`
+```json
 {
+    "FIRST": false,
     "BOT": {
         "PREFIX": "s.",
         "TOKEN": "token_here"
     }
 }
 ```
-Open a terminal in the directory of the bots location and type
+Alternatively, you could open a terminal in the directory of the bots location and type
 ```
 $ python3 bot.py
 ```
-On first start the launcher will run and you will need to input data. After that the bot will launch without setup neccessary, there is an optional reset configuration option on launch.
+On first start the launcher will run and you will need to input data. After that the bot will launch without setup neccessary.
 
 ## Commands
 
