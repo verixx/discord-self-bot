@@ -7,10 +7,13 @@
 
 
 ## Requirements
-You need the following to run the bot:
+You need the following to run the bot: This can be done by `pip install -r /path/to/requirements.txt`
 ```py
 discord.py
 requests
+PythonGists
+bs4
+lxml
 ```
 ## Setup
 First navigate into the data folder and open `config.json`, edit it to put your token and prefix in. And set `FIRST` to `false`
