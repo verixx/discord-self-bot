@@ -3,7 +3,7 @@
 <img src='https://img.shields.io/badge/build-passing-brightgreen.svg'> [<img src="https://img.shields.io/badge/discord-py-orange.svg">](https://github.com/Rapptz/discord.py) [<img src='https://img.shields.io/badge/python-3.5-brightgreen.svg'>](https://python.org)
 
 
-[<img src="https://discordapp.com/api/guilds/338500407120756737/widget.png?style=banner2">](https://discord.gg/JVw6nhD) 
+[<img src="https://discordapp.com/api/guilds/338500407120756737/widget.png?style=banner2">](https://discord.gg/cRsYFDh) 
 
 
 ## Requirements
