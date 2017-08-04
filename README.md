@@ -15,7 +15,12 @@ requests
 ## Setup
 First navigate into the data folder and open `config.json`, edit it to put your token and prefix in.
 ```
-
+{
+    "BOT": {
+        "PREFIX": "s.",
+        "TOKEN": "token_here"
+    }
+}
 ```
 Open a terminal in the directory of the bots location and type
 ```
