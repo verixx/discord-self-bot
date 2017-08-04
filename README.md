@@ -13,7 +13,10 @@ discord.py
 requests
 ```
 ## Setup
-First navigate into the data folder and open `config.json`
+First navigate into the data folder and open `config.json`, edit it to put your token and prefix in.
+```
+
+```
 Open a terminal in the directory of the bots location and type
 ```
 $ python3 bot.py
@@ -24,12 +27,8 @@ On first start the launcher will run and you will need to input data. After that
 
 The default set of modules includes:
 * Moderation commands
-* Fun/Misc commands
 * Utility commands
-* Tagging of text
-* Tournament submission system
-* Clash Royale Stats commands
-* Brawl Stars Stats commands
+* Miscellaneous commands
 
 ## Support Me
 
