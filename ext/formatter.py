@@ -340,6 +340,7 @@ class EmbedHelp(HelpFormatter):
                     except:
                         pass
                     print('OVER HERE',em)
+                    
                     return [em]
 
 

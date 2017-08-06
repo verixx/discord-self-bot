@@ -147,6 +147,10 @@ class Info():
     async def help(self, ctx, *, cmd = None):
         """Shows this message."""
         author = ctx.message.author
+        # if cmd == None:
+        #     cmd_or_bot = self.bot
+        # else:
+        #     cmd_or_bot = cmd
         pages = self.bot.formatter.format_help_for(ctx, self.bot)
         for page in pages:
             try:
