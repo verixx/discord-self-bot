@@ -428,6 +428,52 @@ class Info():
         await p.paginate()
 
 
+    @commands.command(pass_context=True)
+    async def help3(self, ctx, *, cmd = None):
+        """Shows paginated help message."""
+        author = ctx.message.author
+        pages = self.bot.formatter.format_help_for(ctx, self.bot, 1)
+        testing = self.bot.get_channel('344184736324780032')
+        pages2 = []
+        n = 0
+        for page in pages:
+            # try:
+            # if(n!=0):
+                # page.set_author(name='', url='')
+            # if(n!=len(pages)-1):
+                # page.set_footer(text='')
+            # await self.bot.send_message(testing, embed=page)
+            # await asyncio.sleep(.1)
+            # messages = []
+            # async for m in self.bot.logs_from(testing, limit=2):
+            #     messages.append(m)
+            # message = messages[0]
+            message = page.to_dict()
+            pages2.append(message)
+            # except:
+            #     await self.bot.say('I need the embed links perm.')
+        line = []
+        for page2 in pages2:
+            em = page2
+
+            # print('hi3')
+            print('hi3')
+            for x in em['fields']:
+                line.append('**'+x['name']+'**') #append the cog heading
+                # print('hi3.1')
+                val = x['value']
+                # print('hi3.2')
+                val = val.split('\n')
+                # print('hi3.3')
+                line.extend(val)
+            # print('hi3.4')
+
+        p = Pages(self.bot, message=ctx.message, entries=line)
+        p.embed.set_author(name='Help - Verix-Dino Selfbot Commands', icon_url=self.bot.user.avatar_url)
+        p.embed.color = 0x00FFFF
+        await p.paginate()
+
+
         # p = Pages(self.bot, message=ctx.message, entries=pages)
         # p.embed.set_author(name='Help - Verix-Dino Selfbot Commands', icon_url=self.bot.user.avatar_url)
         # p.embed.color = 0x00FFFF
@@ -437,7 +483,7 @@ class Info():
 
 
     # @commands.command(pass_context=True)
-    # async def help3(self, ctx):
+    # async def help4(self, ctx):
     #     await self.bot.delete_message(ctx.message)
 
     #     msg = open('cogs/utils/help.txt').read().replace('\\u200b','\u200b').splitlines()
