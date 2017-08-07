@@ -9,7 +9,7 @@ def run_wizard():
     print('------------------------------------------')
     print('WELCOME TO THE VERIX-SELFBOT SETUP WIZARD!')
     print('------------------------------------------')
-    token = input('Enter your token:\n> ')
+    token = input('Enter your token:\n> ').strip("\"' ")
     print('------------------------------------------')
     prefix = input('Enter a prefix for your selfbot:\n> ')
     data = {
