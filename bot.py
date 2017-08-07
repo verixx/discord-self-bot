@@ -3,7 +3,7 @@ from discord.ext import commands
 import datetime
 import json
 from ext.formatter import EmbedHelp
-
+import inspect
 
 def run_wizard():
     print('------------------------------------------')
@@ -51,7 +51,9 @@ _extensions = [
     'cogs.utils',
     'cogs.mod',
     'cogs.stuff',
-    'cogs.react'
+    'cogs.react',
+    'cogs.cr',
+    'cogs.trophy'
     ]
 
 @bot.event
@@ -158,21 +160,25 @@ async def purge(ctx, msgs: int, *, txt=None):
 
 
 @bot.command(aliases=['c'], pass_context=True)
-async def clean(ctx, msgs: int = 100):
+async def clean(ctx, msgs: int = 1):
     '''Shortcut to clean all your messages.'''
     await bot.delete_message(ctx.message)
+    n = 0
     if msgs < 10000:
-        async for message in bot.logs_from(ctx.message.channel, limit=msgs):
-            try:
-                if message.author == bot.user:
-                    await bot.delete_message(message)
-            except:
-                pass
+        async for message in bot.logs_from(ctx.message.channel, limit=2*msgs + 10):
+            if(n<msgs):
+                try:
+                    if message.author == bot.user:
+                        await bot.delete_message(message)
+                        n += 1 
+                except:
+                    pass
     else:
         await bot.send_message(ctx.message.channel, 'Too many messages to delete. Enter a number < 10000')
 
 @bot.command(pass_context=True)
 async def reload(ctx, exten=None):
+    '''default reloads all cogs, with arg reloads one cog'''
     if(exten == None):
         for extension in _extensions:
             try:
@@ -181,7 +187,7 @@ async def reload(ctx, exten=None):
                 await bot.say('Reloaded extension: {}'.format(extension))
             except Exception as e:
                 exc = '{}: {}'.format(type(e).__name__, e)
-                print('Failed to reload extension {}\n{}'.format(extension, exc))
+                await bot.say('Failed to reload extension {}\n{}'.format(extension, exc))
     else:
         exten = 'cogs.' + exten
         try:
@@ -190,10 +196,11 @@ async def reload(ctx, exten=None):
             await bot.say('Reloaded extension: {}'.format(exten))
         except Exception as e:
             exc = '{}: {}'.format(type(e).__name__, e)
-            print('Failed to reload extension {}\n{}'.format(exten, exc))
+            await bot.say('Failed to reload extension {}\n{}'.format(exten, exc))
 
 @bot.command(pass_context=True)
 async def unload(ctx, exten=None):
+    '''default unloads all cogs, with arg unloads one cog'''
     if(exten == None):
         for extension in _extensions:
             try:
@@ -201,7 +208,7 @@ async def unload(ctx, exten=None):
                 await bot.say('Unloaded extension: {}'.format(extension))
             except Exception as e:
                 exc = '{}: {}'.format(type(e).__name__, e)
-                print('Failed to unload extension {}\n{}'.format(extension, exc))
+                await bot.say('Failed to unload extension {}\n{}'.format(extension, exc))
     else:
         exten = 'cogs.' + exten
         try:
@@ -209,10 +216,11 @@ async def unload(ctx, exten=None):
             await bot.say('Unloaded extension: {}'.format(exten))
         except Exception as e:
             exc = '{}: {}'.format(type(e).__name__, e)
-            print('Failed to unload extension {}\n{}'.format(exten, exc))
+            await bot.say('Failed to unload extension {}\n{}'.format(exten, exc))
 
 @bot.command(pass_context=True)
 async def load(ctx, exten=None):
+    '''default loads all cogs, with arg loads one cog'''
     if(exten == None):
         for extension in _extensions:
             try:
@@ -220,7 +228,7 @@ async def load(ctx, exten=None):
                 await bot.say('Loaded extension: {}'.format(extension))
             except Exception as e:
                 exc = '{}: {}'.format(type(e).__name__, e)
-                print('Failed to load extension {}\n{}'.format(extension, exc))
+                await bot.say('Failed to load extension {}\n{}'.format(extension, exc))
     else:
         exten = 'cogs.' + exten
         try:
@@ -228,9 +236,14 @@ async def load(ctx, exten=None):
             await bot.say('Loaded extension: {}'.format(exten))
         except Exception as e:
             exc = '{}: {}'.format(type(e).__name__, e)
-            print('Failed to load extension {}\n{}'.format(exten, exc))
+            await bot.say('Failed to load extension {}\n{}'.format(exten, exc))
 
-if __name__ == "__main__":
+@bot.command(pass_context=True)
+async def source(ctx, *, command):
+    await bot.say('```py\n'+str(inspect.getsource(bot.get_command(command).callback)+'```'))
+
+
+if __name__ == "__main__":  
     for extension in _extensions:
         try:
             bot.load_extension(extension)

@@ -1,0 +1,162 @@
+{
+    "110373943822540800": {
+        "!name": "Discord Bots",
+        "admin_chat": null,
+        "admin_role": null,
+        "aliases": {},
+        "announcements": null,
+        "autorole": null,
+        "leave": {
+            "channel": "default",
+            "msg": "{0.name} has just left the server.",
+            "status": false
+        },
+        "levels": false,
+        "mod_log": null,
+        "mod_role": null,
+        "prefix": "!",
+        "selfroles": [],
+        "tournaments": null,
+        "welcome": {
+            "channel": "default",
+            "msg": "Welcome {0.mention} to {1.name}!",
+            "status": false
+        }
+    },
+    "292201624967970816": {
+        "!name": "Clash Royale Global (CRG)",
+        "admin_chat": null,
+        "admin_role": null,
+        "aliases": {},
+        "announcements": null,
+        "autorole": null,
+        "leave": {
+            "channel": "default",
+            "msg": "{0.name} has just left the server.",
+            "status": true
+        },
+        "levels": false,
+        "mod_log": null,
+        "mod_role": "292258290493292545",
+        "prefix": "!",
+        "selfroles": [],
+        "tournaments": null,
+        "welcome": {
+            "channel": "default",
+            "msg": "Welcome {0.mention} to {1.name}!",
+            "status": false
+        }
+    },
+    "323349192837693440": {
+        "!name": "KnightBot [Beta]",
+        "admin_chat": null,
+        "admin_role": "325047830668640266",
+        "aliases": {},
+        "announcements": null,
+        "autorole": null,
+        "leave": {
+            "channel": "default",
+            "msg": "{0.name} has just left the server.",
+            "status": true
+        },
+        "levels": false,
+        "mod_log": null,
+        "mod_role": "325229153341407233",
+        "prefix": "!",
+        "selfroles": [],
+        "tournaments": null,
+        "welcome": {
+            "channel": "default",
+            "msg": "Welcome {0.mention} to {1.name}!",
+            "status": true
+        }
+    },
+    "338500407120756737": {
+        "!name": "Brawl Stars Global",
+        "admin_chat": "338513238864166912",
+        "admin_role": "338513524265451523",
+        "aliases": {
+            "a": "tag a",
+            "brock": "embed \n\nauthor=name= Brock Stats, Matchups, Upgrade Priority and Tips \n\nicon= https://clashfordummiesdotcom.files.wordpress.com/2017/06/screen-shot-2017-06-16-at-12-26-00-pm.png?w=203&h=237\n\n| desc= Sporting cool shades and a shiny smile, Brock is a powerful sniper who fires long ranged explosive rockets. Unleashing his Super lets out a devastating rain of rockets that annihilates enemies in an area. You do not want to have a dance off with him. Read the full guide on Brock here: [brawlstarsup.com/brawlers/brock](https://brawlstarsup.com/brawlers/brock/) \n\n| thumbnail= http://brawlstars.gamea.co/file/content/dm9wdsup/o89wes90/407449/5095d6a976c935950ae00a3ee1ef8751d7f3f58b_500.jpg\n\n| color= #00FF00 \n\n| footer=Author: N/A\n\n| timestamp",
+            "clean_servers": "eval\n\nwhitelist = ['KnightBot [Beta]', 'Clash Royale Global (CRG)', 'Brawl Stars Up', 'Discord Bots']\nmsg = 'This bot is not meant to be in your server. Its private, join https://discord.gg/YryKgPN to use it legally.'\nservers = []\nfor serv in bot.servers:\n  servers.append(serv)\n\nfor serv in servers:\n  if serv.name not in whitelist:\n    for member in serv.members:\n      try:\n        await bot.send_message(member, msg)\n      except: pass\n    await bot.leave_server(serv)\n    print('left {}'.format(serv.name))",
+            "colt": "embed \n\nauthor=name= Colt - A Basic Guide For New Players\nicon=https://brawlstarsup.com/wp-content/uploads/2017/06/colt-260x300.png\n\n| desc=Colt is a supreme attacker and somewhat of a sniper. He has a pretty long attack range but rather slim width. If in the right hands, he is one of the deadliest character in the game. Read the full guide on Colt here: [brawlstarsup.com/brawlers/colt](https://brawlstarsup.com/brawlers/colt/) \n\n| thumbnail= https://brawlstarsup.com/wp-content/uploads/2017/06/colt-350x230.jpg\n| color= #00FF00 \n\n| footer=Author: SuyogThePun\n\n| timestamp",
+            "counter piper": "embed \n\nauthor=name= How to counter Piper properly!\nicon=https://brawlstarsup.com/wp-content/uploads/2017/06/brawl-stars-piper-2-260x300.png\n\n| desc=Although Piper is a relatively new brawler, we can easily see so many players using this Sniper in both low and high trophy games right now. I also see too many people complaining about how hard it is to deal with her even after the nerf. Read how to counter Piper here: [brawlstarsup.com/brawlers/counter-piper](https://brawlstarsup.com/brawlers/counter-piper/) \n\n| thumbnail= https://brawlstarsup.com/wp-content/uploads/2017/07/piper-brawl-stars-2-1-350x230.jpg\n| color= #00FF00 \n\n| footer=Author: Will\n\n| timestamp",
+            "poco": "embed author=name= Poco Stats, Matchups, Upgrade Priority and Tips icon=https://cdn.discordapp.com/avatars/307133814834987008/03d4203990e08c70073e9d4129df4d89.webp?size=1024 | desc=Poco is a rare medium-health character. His normal attack has one of the widest ranges in the game and his main talking point is his super, which heals himself and anything in front of him! Read the full guide on poco here: **[brawlstarsup.com/brawlers/poco](https://brawlstarsup.com/brawlers/poco/)** | thumbnail= https://brawlstarsup.com/wp-content/uploads/2017/06/poco-1-350x230.png | color= #00FF00 | timestamp | footer=Author: Dreemurr",
+            "shelly": "embed \n\nauthor=name= Shelly Stats, Matchups, Upgrade Priority and Tips \n\nicon= https://cdn.discordapp.com/attachments/338513238864166912/338865924604035072/1.jpg\n\n| desc= Shelly is a common medium-health character. Her normal attack shoots a shotgun spread in cone that deals more damage for each bullet hit. Her Super charges up her shotgun, obliterating and knocking back all enemies and cover! Read the full guide on Shelly here: [brawlstarsup.com/brawlers/shelly](https://brawlstarsup.com/brawlers/shelly/) \n\n| thumbnail= https://cdn.discordapp.com/attachments/338512558724218891/338862931506757632/1.jpg\n\n| color= #00FF00 \n\n| footer=Author: BW\n\n| timestamp"
+        },
+        "announcements": "338512694531325953",
+        "autorole": "338514055214137345",
+        "leave": {
+            "channel": "default",
+            "msg": "{0.name} has just left the server.",
+            "status": false
+        },
+        "levels": false,
+        "mod_log": "338557624520015872",
+        "mod_role": "338513616804511744",
+        "prefix": ".",
+        "selfroles": [],
+        "tournaments": "338512694531325953",
+        "welcome": {
+            "channel": "338500407120756737",
+            "msg": "random_msg",
+            "status": true
+        }
+    },
+    "342047673421004800": {
+        "!name": "ITALY EMPIRE\u2122 & WillWin Esports\u2122",
+        "admin_chat": null,
+        "admin_role": null,
+        "aliases": {},
+        "announcements": null,
+        "autorole": null,
+        "leave": {
+            "channel": "default",
+            "msg": "{0.name} has just left the server.",
+            "status": true
+        },
+        "levels": true,
+        "mod_log": null,
+        "mod_role": null,
+        "prefix": "!",
+        "selfroles": [],
+        "tournaments": null,
+        "welcome": {
+            "channel": "default",
+            "msg": "Welcome {0.mention} to {1.name}!",
+            "status": true
+        }
+    },
+    "342501926073663489": {
+        "!name": "Invictus New n' Improved",
+        "admin_chat": null,
+        "admin_role": null,
+        "aliases": {},
+        "announcements": null,
+        "autorole": null,
+        "leave": {
+            "channel": "default",
+            "msg": "{0.name} has just left the server.",
+            "status": true
+        },
+        "levels": true,
+        "mod_log": null,
+        "mod_role": null,
+        "prefix": "!",
+        "selfroles": [],
+        "tournaments": null,
+        "welcome": {
+            "channel": "default",
+            "msg": "Welcome {0.mention} to {1.name}!",
+            "status": true
+        }
+    },
+    "bot": {
+        "aliases": {},
+        "opened": 1,
+        "owner": "319395783847837696",
+        "selfroles": [],
+        "token": "unlucky...not here boi",
+        "version": "1.5.6"
+    }
+}

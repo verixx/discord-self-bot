@@ -26,10 +26,9 @@ DEALINGS IN THE SOFTWARE.
 
 import itertools
 import inspect
-import discord
-from discord.ext.commands.core import GroupMixin, Command
-from discord.ext.commands.errors import CommandError
-from discord.ext.commands.formatter import HelpFormatter
+
+from .core import GroupMixin, Command
+from .errors import CommandError
 
 # help -> shows info of bot on top/bottom and lists subcommands
 # help command -> shows detailed info of command
@@ -122,7 +121,7 @@ class Paginator:
         fmt = '<Paginator prefix: {0.prefix} suffix: {0.suffix} max_size: {0.max_size} count: {0._count}>'
         return fmt.format(self)
 
-class EmbedHelp(HelpFormatter):
+class HelpFormatter:
     """The default base implementation that handles formatting of the help
     command.
 
@@ -224,7 +223,8 @@ class EmbedHelp(HelpFormatter):
 
     def get_ending_note(self):
         command_name = self.context.invoked_with
-        return ""
+        return "Type {0}{1} command for more info on a command.\n" \
+               "You can also type {0}{1} category for more info on a category.".format(self.clean_prefix, command_name)
 
     def filter_command_list(self):
         """Returns a filtered list of commands based on the two attributes
@@ -266,11 +266,11 @@ class EmbedHelp(HelpFormatter):
                 # skip aliases
                 continue
 
-            entry = '  .{0:<{width}}      {1}'.format(name, command.short_doc, width=max_width)
+            entry = '  .{0:<{width}} {1}'.format(name, command.short_doc, width=max_width)
             shortened = self.shorten(entry)
             self._paginator.add_line(shortened)
 
-    def format_help_for(self, context, command_or_bot, categs_per_page=1): # change this value if you want to edit how many categories in one page
+    def format_help_for(self, context, command_or_bot):
         """Formats the help page and handles the actual heavy lifting of how
         the help command looks like. To change the behaviour, override the
         :meth:`format` method.
@@ -287,14 +287,13 @@ class EmbedHelp(HelpFormatter):
         list
             A paginated output of the help command.
         """
-        print(categs_per_page)
         self.context = context
         self.command = command_or_bot
-        return self.format(context, categs_per_page)
+        return self.format()
 
-    def format(self, ctx, categs_per_page=1): # change this value if you want to edit how many categories in one page
+    def format(self):
         """Handles the actual behaviour involved with formatting.
-        
+
         To change the behaviour, this method should be overridden.
 
         Returns
@@ -302,7 +301,6 @@ class EmbedHelp(HelpFormatter):
         list
             A paginated output of the help command.
         """
-        print(categs_per_page)
         self._paginator = Paginator()
 
         # we need a padding of ~80 or so
@@ -325,25 +323,7 @@ class EmbedHelp(HelpFormatter):
             # end it here if it's just a regular command
             if not self.has_subcommands():
                 self._paginator.close_page()
-                for page in self._paginator.pages:
-                    msg = page.strip('```cs')
-
-                    msg = msg.strip().splitlines()
-                    for i, line in enumerate(msg): 
-                        if i == 0:
-                            x = line.strip().strip('.')
-                            msg[i] = '``' + x + '``'
-                        if not line:
-                            del msg[i]
-                    print(msg)
-                    em = discord.Embed(color=discord.Colour.orange(), title=msg[0])
-                    try:
-                        em.description = ''.join(msg[1:])
-                    except:
-                        pass
-                    print('OVER HERE',em)
-                    return [em]
-
+                return self._paginator.pages
 
         max_width = self.max_name_size
 
@@ -370,54 +350,4 @@ class EmbedHelp(HelpFormatter):
         self._paginator.add_line()
         ending_note = self.get_ending_note()
         self._paginator.add_line(ending_note)
-
-
-        # Formatting the pages into embeds
-
-        author = ctx.message.author
-        msg = ''
-        for page in self._paginator.pages:
-            page = page.strip('```cs')
-            msg += page+'\n'
-
-        msg = msg.strip().splitlines()
-
-        for i, line in enumerate(msg): 
-            if not line.strip().endswith(':'):
-                x = line.strip().strip('.')
-                x = ctx.prefix + x
-                msg[i] = '`' + x + '`'
-
-        categs = []
-
-        for i, e in enumerate(msg):
-            if e.endswith(':'):
-                categs.append(i)
-
-        embeds = []
-
-
-
-        for i in range(len(categs)):
-            if i % categs_per_page == 0: 
-                em = discord.Embed(color=0x00ffff)
-                em.set_author(name='Help - Commands',
-                              icon_url=author.avatar_url or author.default_avatar_url)
-                em.set_footer(text='{} commands'.format(len(msg)-len(categs)))
-
-            base = categs[i]
-            try:
-                end = categs[i+1]
-                p = msg[base:end]
-            except:
-                p = msg[base:]
-
-            try:
-                em.add_field(name=p[0], value='\n'.join(p[1:]))
-            except:
-                pass
-
-            if i % categs_per_page == 0:
-                embeds.append(em)
-
-        return embeds
+        return self._paginator.pages

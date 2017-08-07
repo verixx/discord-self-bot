@@ -484,6 +484,36 @@ class Utility:
                 msg = first_entry
 
             await self.bot.say(msg)
+    @commands.command(pass_context=True, aliases=['googlecalc', 'gcal', 'calc'])
+    async def gcalc(self, ctx,*, query):
+        """Searches google and gives you top result."""
+        await self.bot.type()
+        try:
+            card, entries = await self.get_google_entries(query)
+        except RuntimeError as e:
+            await self.bot.say(str(e))
+        else:
+            if card:
+                value = '\n'.join(entries[:3])
+                if value:
+                    if card.title != 'Calculator':
+                        card.add_field(name='Search Results', value=value, inline=False)
+                await self.bot.say(embed=card)
+                asyncio.sleep(2)
+                await self.bot.delete_message(ctx.message)
+                return 
+        await self.bot.say("Error: could not calculate expression")
+        await asyncio.sleep(2)
+        messages = []
+        async for m in self.bot.logs_from(ctx.message.channel, limit=2):
+            if m.author.id == ctx.message.author.id:
+                message = m
+                break
+        await self.bot.delete_message(ctx.message)
+        await self.bot.delete_message(message)
+
+        return
+
 
 def setup(bot):
 	bot.add_cog(Utility(bot))

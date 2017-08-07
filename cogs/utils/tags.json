@@ -1,0 +1,62 @@
+{
+  "KnightBot": [
+    "I am a bot and I have insulted <@328025087875874836> so he had made this tag for me.\nI wish I never did this to this great man , I wish I could re-do life , please write on my grave that I am eternally sorry to <@328025087875874836> and this is also my will. I Apologize HeroPlays \ud83d\ude16\ud83d\ude16\ud83d\ude16",
+    "328025087875874836"
+  ],
+  "deploy": [
+    "```\n$ heroku git:clone -a knightbot\n$ cd knightbot\n```\n```\n$ git add .\n$ git commit -am \"make it better\"\n$ git push heroku master\n```",
+    "319395783847837696"
+  ],
+  "embeds": [
+    "**Visualizer:** https://leovoel.github.io/embed-visualizer/ \nhttps://i.imgur.com/26z7tyJ.png",
+    "319395783847837696"
+  ],
+  "codeblock": [
+    "**How to write in Code Blocks:**\n`\n```mkd\n#hello\n``` `\n**Results in this:**\n```mkd\n#hello\n```",
+    "319395783847837696"
+  ],
+  "crg": [
+    "https://discord.gg/Wp33Ksa",
+    "319395783847837696"
+  ],
+  "clan": [
+    "https://discord.gg/K3JT3GC",
+    "319395783847837696"
+  ],
+  "Brawl": [
+    "https://discord.gg/dpBTgeP",
+    "272261745748344852"
+  ],
+  "git": [
+    "**The bot's GitHub page: **https://github.com/verixx/KnightBot",
+    "319395783847837696"
+  ],
+  "discr": [
+    "**discr** is **verix's** alt acc.",
+    "325012556940836864"
+  ],
+  "rules": [
+    "**SERVER RULES:**\n\n`1.`  No spamming, even just saying the same thing over and over again.\n`2.`  No advertising a server of your own.\n`3.`  Respect one another. We do not tolerate abuse.\n`4.`  If you have an issue with a user, let a Mod or Admin know.\n`5.`  If you have any issues or suggestions, contact us in the suggestions channel.\n\n*Failure to follow the rules will result in a punishment (mute/warn/kick/ban).*",
+    "319395783847837696"
+  ],
+  "basic bot": [
+    "**discord.py examples:**\n<https://github.com/Rapptz/discord.py/tree/master/examples>",
+    "319395783847837696"
+  ],
+  "ping": [
+    "```py\n@bot.command(pass_context=True)\nasync def ping(ctx):\n  await bot.say('Pong!')\n```",
+    "319395783847837696"
+  ],
+  "api": [
+    "https://discord.gg/discord-api",
+    "319395783847837696"
+  ],
+  "config": [
+    "https://i.imgur.com/v1lfhjE.gif",
+    "319395783847837696"
+  ],
+  "invite": [
+    "**Invite me to your server with this link:** <https://bot.discord.io/knightbot>\n\nType this command to get started:\n**```css\n.config set```**\n**Join my development server here:** https://discord.gg/6pjDhW9",
+    "319395783847837696"
+  ]
+}

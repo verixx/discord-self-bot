@@ -1,0 +1,4 @@
+
++ 30/07/2017
+- added a `give up` option for cogs.conn4
+- made cogs.conn4 `wfm` timeout 60 seconds

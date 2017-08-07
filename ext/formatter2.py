@@ -270,7 +270,7 @@ class EmbedHelp(HelpFormatter):
             shortened = self.shorten(entry)
             self._paginator.add_line(shortened)
 
-    def format_help_for(self, context, command_or_bot, categs_per_page=1): # change this value if you want to edit how many categories in one page
+    def format_help_for(self, context, command_or_bot):
         """Formats the help page and handles the actual heavy lifting of how
         the help command looks like. To change the behaviour, override the
         :meth:`format` method.
@@ -287,14 +287,13 @@ class EmbedHelp(HelpFormatter):
         list
             A paginated output of the help command.
         """
-        print(categs_per_page)
         self.context = context
         self.command = command_or_bot
-        return self.format(context, categs_per_page)
+        return self.format(context)
 
-    def format(self, ctx, categs_per_page=1): # change this value if you want to edit how many categories in one page
+    def format(self, ctx):
         """Handles the actual behaviour involved with formatting.
-        
+
         To change the behaviour, this method should be overridden.
 
         Returns
@@ -302,7 +301,6 @@ class EmbedHelp(HelpFormatter):
         list
             A paginated output of the help command.
         """
-        print(categs_per_page)
         self._paginator = Paginator()
 
         # we need a padding of ~80 or so
@@ -397,6 +395,7 @@ class EmbedHelp(HelpFormatter):
         embeds = []
 
 
+        categs_per_page = 1 # change this value if you want to edit how many categories in one page
 
         for i in range(len(categs)):
             if i % categs_per_page == 0: 

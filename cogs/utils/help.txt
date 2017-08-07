@@ -1,0 +1,71 @@
+**Info:**
+  .server              See information about the server.
+  .joined              Says when a member joined.
+  .userinfo            See information about a user or yourself.
+  .backup              Backup raw data for storage
+  .avatar              Returns ones avatar URL
+  .info                Returns information on the bot
+  .servers             Shows all servers bot is in
+**Misc:**
+  .say                 Say something as the bot.
+  .ping                Check response time.
+  .afk                 Set your status to AFK
+  .4row                Play the connect 4 game!
+  .embedsay            Embed something as the bot.
+  .virus               Inject a virus into someones system.
+  .invite              Returns the OAUTH invite linke
+  .self                Selfrole commands
+  .ball8               Let the 8ball decide your fate.
+  .add                 Add multiple numbers.
+  .poll                Shit poll command.
+  .quickpoll           Makes a poll quickly.
+  .rank                See your global chat rank
+  .leaderboard         See a simple leaderboard
+**Mod:**
+  .ban                 Ban someone from the server
+  .msg                 Mass DM (server owner only)
+  .softban             Ban and unban.
+  .role                Give a role or a list of roles to someone.
+  .warn                Warn someone in the server.
+  .unban               Unban someone using their user ID.
+  .purge               Delete a specified amount of messages.
+  .mute                Mute or Unmute someone.
+  .clean               Clean up bot messages and command calls.
+  .kick                Kick someone out of the server.
+**Utility:**
+  .embed [params]      Embed complex rich embeds as the bot.
+  .alias add           Add an alias
+  .alias del           Delete an alias
+  .eval [body]         Evaluate Python scripts (Owner Only)
+  .log entry           Make a log entry
+  .log show            Show the log
+  .log del             Delete an entry
+**Setup:**
+  .config set          Interactive config setup
+  .config enable       Enable features.
+  .config disable      Disable features.
+  .config show         Show basic server configuration
+  .config leave        Change the leave message
+  .config welcome      Change the welcome message
+  .config prefix       Change server prefix
+  .config admin        Change the admin_role
+  .config mod          Change the mod_role
+  .config autorole     Change the join role
+**Tags:**
+  .tags                Shows all the tags
+  .tag [name]          Tag related commands, store text
+  .tag make            Create a tag
+  .tag edit            Edit a tag
+  .tag del             Delete a tag
+**Clash Royale:**
+  .clan                See clan information
+  .save                Save an ingame tag to your discord profile.
+  .chests              See basic chest cycle
+  .deck                See someones deck.
+  .stats               See your in-game statistics
+  .cards               See clash royale cards
+**No Category:**
+  ._leave_server       Owner command to leave server
+  ._leave_all_servers_ Very Dangerous :)
+  .cog                 Reloads a module.
+  .help                Shows this message.

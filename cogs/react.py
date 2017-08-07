@@ -1,35 +1,33 @@
-# -*- coding: utf-8 -*-
+# # -*- coding: utf-8 -*-
 
-"""
-The MIT License (MIT)
+# """
+# The MIT License (MIT)
 
-Copyright (c) 2017 SML
+# Copyright (c) 2017 SML
 
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the "Software"),
-to deal in the Software without restriction, including without limitation
-the rights to use, copy, modify, merge, publish, distribute, sublicense,
-and/or sell copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following conditions:
+# Permission is hereby granted, free of charge, to any person obtaining a
+# copy of this software and associated documentation files (the "Software"),
+# to deal in the Software without restriction, including without limitation
+# the rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-DEALINGS IN THE SOFTWARE.
-"""
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.
+# """
 import time
 import os
 import itertools
 import discord
 from discord.ext import commands
-from discord.ext.commands import Context
-import cogs
 from random import choice
 import aiohttp
 from collections import Counter
@@ -107,23 +105,14 @@ class React:
         """Constructor."""
         self.bot = bot
 
-    # async def send_cmd_help(self,ctx):
-    #     if ctx.invoked_subcommand:
-    #         pages = self.bot.formatter.format_help_for(ctx, ctx.invoked_subcommand)
-    #         for page in pages:
-    #             await self.bot.send_message(ctx.message.channel, page)
-    #     else:
-    #         pages = self.bot.formatter.format_help_for(ctx, ctx.command)
-    #         for page in pages:
-    #             await self.bot.send_message(ctx.message.channel, page)
 
     @commands.command(pass_context=True)
     async def reactchan(self, ctx, chan, *args):
-        """Add reactions to a message by channel.
+        # """Add reactions to a message by channel.
         
-        Add reactions to a specific message id
-        [p]addreactchan general :uwot: :lolno: :smile: 
-        """
+        # Add reactions to a specific message id
+        # [p]addreactchan general :uwot: :lolno: :smile: 
+        # """
         server = ctx.message.server
         try:
             channel_id = channel_name_to_id[chan]
@@ -295,74 +284,74 @@ class React:
 
 
 
-    @commands.command(pass_context=True, no_pm=True)
-    async def react(self, ctx, *args):
-        """Add reactions to a message by message id.
+    # @commands.command(pass_context=True)
+    # async def react(self, ctx, *args):
+    #     """Add reactions to a message by message id.
         
-        Add reactions to a specific message id
-        [p]addreation 123456 :uwot: :lolno: :smile: 
+    #     Add reactions to a specific message id
+    #     [p]react 123456 :uwot: :lolno: :smile: 
         
-        Add reactions to the last message in channel
-        [p]addreation :uwot: :lolno: :smile:
-        """
-        server = ctx.message.server
-        channel = ctx.message.channel
+    #     Add reactions to the last message in channel
+    #     [p]react :uwot: :lolno: :smile:
+    #     """
+    #     server = ctx.message.server
+    #     channel = ctx.message.channel
 
-        if not len(args):
-            await send_cmd_help(ctx)
-            return
+    #     if not len(args):
+    #         await send_cmd_help(ctx)
+    #         return
 
-        has_message_id = args[0].isdigit()
+    #     has_message_id = args[0].isdigit()
 
-        emojis = args[1:] if has_message_id else args
-        message_id = args[0] if has_message_id else None
-        if has_message_id:
-            try:
-                message = await self.bot.get_message(channel, message_id)
-            except discord.NotFound:
-                await self.bot.say("Cannot find message with that id.")
-                return
-        else:
-            # use the 2nd last message because the last message would be the command
-            messages = []
-            async for m in self.bot.logs_from(channel, limit=2):
-                messages.append(m)
-            message = messages[1]
+    #     emojis = args[1:] if has_message_id else args
+    #     message_id = args[0] if has_message_id else None
+    #     if has_message_id:
+    #         try:
+    #             message = await self.bot.get_message(channel, message_id)
+    #         except discord.NotFound:
+    #             await self.bot.say("Cannot find message with that id.")
+    #             return
+    #     else:
+    #         # use the 2nd last message because the last message would be the command
+    #         messages = []
+    #         async for m in self.bot.logs_from(channel, limit=2):
+    #             messages.append(m)
+    #         message = messages[1]
 
-        useremojis = list(emojis)
-        new_emojis = []
+    #     useremojis = list(emojis)
+    #     new_emojis = []
         
-        for e in useremojis:
-            lastlist = new_emojis
-            for x in server.emojis:
-                ename = e[e.find(':') + 1 : e.rfind(':')]
-                # await self.bot.say("{} == {}".format(x.name, ename))
-                if(x.name == ename):
-                    new_emojis.append(x)
-            if(lastlist == new_emojis):
-                new_emojis.append(e)
+    #     for e in useremojis:
+    #         lastlist = new_emojis
+    #         for x in server.emojis:
+    #             ename = e[e.find(':') + 1 : e.rfind(':')]
+    #             # await self.bot.say("{} == {}".format(x.name, ename))
+    #             if(x.name == ename):
+    #                 new_emojis.append(x)
+    #         if(lastlist == new_emojis):
+    #             new_emojis.append(e)
 
-         # await self.bot.say(len(new_emojis[0]))
+    #      # await self.bot.say(len(new_emojis[0]))
 
-        # await self.bot.say(message.id)
-        # await self.bot.say('`{}`'.format(new_emojis))
-        # await self.bot.say(type(server.emojis[0]))
-        # await self.bot.add_reaction(message, server.emojis[0])
-        for emoji in new_emojis:
-            try:
-                await self.bot.add_reaction(message, emoji)
-            except discord.HTTPException:
-                # reaction add failed
-                pass
-            except discord.Forbidden:
-                await self.bot.say(
-                    "I don’t have permission to react to that message.")
-                break
-            except discord.InvalidArgument:
-                await self.bot.say("Invalid arguments for emojis")
-                break
+    #     # await self.bot.say(message.id)
+    #     # await self.bot.say('`{}`'.format(new_emojis))
+    #     # await self.bot.say(type(server.emojis[0]))
+    #     # await self.bot.add_reaction(message, server.emojis[0])
+    #     for emoji in new_emojis:
+    #         try:
+    #             await self.bot.add_reaction(message, emoji)
+    #         except discord.HTTPException:
+    #             # reaction add failed
+    #             pass
+    #         except discord.Forbidden:
+    #             await self.bot.say(
+    #                 "I don’t have permission to react to that message.")
+    #             break
+    #         except discord.InvalidArgument:
+    #             await self.bot.say("Invalid arguments for emojis")
+    #             break
 
-        await self.bot.delete_message(ctx.message)
+    #     await self.bot.delete_message(ctx.message)
 
 
 
@@ -436,7 +425,7 @@ class React:
 
         
     @commands.command(pass_context=True)
-    async def reactwordold(self, ctx, word):
+    async def reactword(self, ctx, word):
         '''react to previous message with any word given. because you can only react with each
         emoji once, if two or more of the same letter are given  it will ignore anything after
         the first of those letters.
@@ -474,15 +463,13 @@ class React:
 
 
     @commands.command(pass_context=True)
-    async def reactword(self, ctx, word):
-        '''react to previous message with any word given. because you can only react with each
-        emoji once, if two or more of the same letter are given  it will ignore anything after
-        the first of those letters.
+    async def reactwordnodupe(self, ctx, word):
+        '''because this is a selfbot it will not react with duplicate words
         syntax:
         [p]reactword hi
 
         if you do [p]reactword lolollollolol
-        it will onlt react with  two of each l and o emojis
+        it will onlt react with one of each l and o emojis
         '''
 
         word = map(lambda x:x.lower(),word)
@@ -554,7 +541,7 @@ class React:
 
     @commands.command(pass_context=True)
     async def example(self, ctx):
-        '''reacts previous message with d, a, m, n emojis'''
+        '''reacts previous message with e, x, a, m, p, l, and e emojis'''
         await ctx.invoke(self.reactword, 'example')
 
 
