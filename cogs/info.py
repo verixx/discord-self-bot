@@ -437,7 +437,7 @@ class Info():
         pages2 = []
         n = 0
         for page in pages:
-            # try:
+            try:
             # if(n!=0):
                 # page.set_author(name='', url='')
             # if(n!=len(pages)-1):
@@ -448,10 +448,10 @@ class Info():
             # async for m in self.bot.logs_from(testing, limit=2):
             #     messages.append(m)
             # message = messages[0]
-            message = page.to_dict()
-            pages2.append(message)
-            # except:
-            #     await self.bot.say('I need the embed links perm.')
+                message = page.to_dict()
+                pages2.append(message)
+            except:
+                await self.bot.say('I need the embed links perm.')
         line = []
         for page2 in pages2:
             em = page2
