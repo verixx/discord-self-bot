@@ -6,7 +6,7 @@
 [<img src="https://discordapp.com/api/guilds/338500407120756737/widget.png?style=banner2">](https://discord.gg/cRsYFDh) 
 
 
-## Requirements
+## [Installation](https://github.com/verixx/selfbot/wiki)
 You need the following to run the bot: This can be done by `pip install -r /path/to/requirements.txt`
 ```py
 discord.py
