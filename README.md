@@ -32,12 +32,16 @@ $ python3 bot.py
 ```
 On first start the launcher will run and you will need to input data. After that the bot will launch without setup neccessary.
 
-## Commands
+## Features
 
 The default set of modules includes:
 * Moderation commands
-* Utility commands
+* Global emoji commands
+* Complex embed commands
+* Custom formatted paginated help
 * Miscellaneous commands
+* Easy to make your own commands
+* Stateless selfbot (Saves no data) *This means that you can host it on heroku 24/7 for free*
 
 ## Support Me
 
