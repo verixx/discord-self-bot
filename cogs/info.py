@@ -162,7 +162,8 @@ class Pages:
             await asyncio.sleep(5)
 
         try:
-            await self.bot.delete_messages(to_delete)
+            for x in to_delete:
+                await self.bot.delete_message(x)
         except Exception:
             pass
 
@@ -595,7 +596,7 @@ class Info():
     @commands.command(pass_context=True)
     async def last(self, ctx):
         '''go to last page in s.help'''
-        await ctx.invoke(self.react, '◀')
+        await ctx.invoke(self.react, '⏩')
         
     @commands.command(pass_context=True)
     async def page(self, ctx):
