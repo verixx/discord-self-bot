@@ -10,7 +10,7 @@ import aiohttp
 terms=""
 definition_number=0
 
-class Kwug():
+class Random():
 
 	def __init__(self, bot):
 		self.bot = bot
@@ -67,4 +67,4 @@ class Kwug():
 		emb=discord.Embed(title="You Flipped A...", description=coin, color = discord.Color.gold())
 		await self.bot.say(embed=emb)
 def setup(bot):
-    bot.add_cog(Kwug(bot))
+    bot.add_cog(Random(bot))
