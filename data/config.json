@@ -1,7 +1,7 @@
 {
     "BOT": {
-        "TOKEN": "MjczMzgxMTY1MjI5MTQ2MTEy.C3CvJA.JvLq-fnVV4tIqs_oOc_Oi7bf-ys",
-        "PREFIX": "s."
+        "TOKEN": "enter_your_token",
+        "PREFIX": null
     },
     "FIRST": false
 }
