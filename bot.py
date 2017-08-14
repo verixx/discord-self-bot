@@ -3,6 +3,7 @@ from discord.ext import commands
 import datetime
 import json
 from ext.formatter import EmbedHelp
+import os
 
 
 def run_wizard():
