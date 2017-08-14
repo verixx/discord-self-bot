@@ -13,6 +13,8 @@ from contextlib import redirect_stdout
 import io
 import aiohttp
 from lxml import etree
+import json
+from yandex_translate import YandexTranslate
 
 class Utility:
     def __init__(self, bot):
@@ -490,6 +492,46 @@ class Utility:
         '''See the source code for any command.'''
         await self.bot.say('```py\n'+str(inspect.getsource(self.bot.get_command(command).callback)+'```'))
 
+    @commands.command(pass_context = True)
+    async def translate(self, ctx, languagefrom : str, languageto : str, *message : str):
+        '''Translates Messages'''
+        messagestr = ""
+        with open('cogs/config.json', 'r') as f:
+            api_key = json.load(f)['TRANSLATE']
+        translate = YandexTranslate(api_key)
+        for i in message:
+            messagestr += i
+            messagestr += " "
+        messagestr = messagestr[:-1]
+        languagefrom = languagefrom.lower()
+        languageto = languageto.lower()
+        global langdict
+        if languagefrom in langdict and languageto in langdict:
+            languagefrom = langdict.get(languagefrom)
+            languageto = langdict.get(languageto)
+            langdir = languagefrom + "-" + languageto
+            translated = translate.translate(messagestr, langdir)
+            translated = translated.get("text")
+            translatedtext = translated[0]
+            emb = discord.Embed(title="Translation:", description=translatedtext, color=discord.Color.red())
+            await self.bot.say("", embed=emb)
+        else:
+            await self.bot.say("That's not a supported language. To see all supported languages do `.translatelangs`.")
+
+    @commands.command()
+    async def translatelangs(self):
+        '''Lists All Supported Translating Languages'''
+        global langdict
+        langs = langdict.keys()
+        langstext = ""
+        for i in langs:
+            langstext += i
+            langstext += ", "
+        langstext = langstext[:-1]
+        langstext = langstext[:-1]
+        emb = discord.Embed(title="List of Supported Languages", description=langstext, color=discord.Color.green())
+        await self.bot.say("", embed=emb)
+        
 def setup(bot):
     bot.add_cog(Utility(bot))
 
