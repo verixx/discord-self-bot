@@ -3,8 +3,8 @@ from discord.ext import commands
 import datetime
 import json
 from ext.formatter import EmbedHelp
-import inspect
 import os
+
 
 def run_wizard():
     print('------------------------------------------')
@@ -13,21 +13,22 @@ def run_wizard():
     token = input('Enter your token:\n> ')
     print('------------------------------------------')
     prefix = input('Enter a prefix for your selfbot:\n> ')
+    print('------------------------------------------')
+    api_key = input('Enter your YandexTranslate API Key (Optional):\n>')
     data = {
         "BOT": {
             "TOKEN" : token,
-            "PREFIX" : prefix
+            "PREFIX" : prefix,
+            "TRANSLATE": api_key
             },
         "FIRST" : False
         }
-    with open('data/config.json','w') as f:
+    with open('cogs/config.json','w') as f:
         f.write(json.dumps(data, indent=4))
     print('------------------------------------------')
     print('Successfully saved your data!')
     print('------------------------------------------')
     
-
-
 if 'TOKEN' in os.environ:
     heroku = True
     TOKEN = os.environ['TOKEN']
@@ -69,8 +70,6 @@ async def on_ready():
           'User ID: {}\n'
           '------------------------------------------'
     	  .format(bot.user, bot.user.id))
-    if heroku:
-        print('Hosting on heroku.')
 
 
 
@@ -145,71 +144,46 @@ async def on_command_error(error, ctx):
 
 
 
-
-@bot.command(pass_context=True,name='reload')
-async def _reload(ctx,*, module : str):
-    """Reloads a module."""
-    channel = ctx.message.channel
-    module = 'cogs.'+module
-    try:
-        bot.unload_extension(module)
-        x = await bot.send_message(channel,'Successfully Unloaded.')
-        bot.load_extension(module)
-        x = await bot.edit_message(x,'Successfully Reloaded.')
-    except Exception as e:
-        x = await bot.edit_message(x,'\N{PISTOL}')
-        await bot.say('{}: {}'.format(type(e).__name__, e))
+@bot.command(aliases=['p'], pass_context=True)
+async def purge(ctx, msgs: int, *, txt=None):
+    '''Purge messages if you have the perms.'''
+    await bot.delete_message(ctx.message)
+    if msgs < 10000:
+        async for message in bot.logs_from(ctx.message.channel, limit=msgs):
+            try:
+                if txt:
+                    if txt.lower() in message.content.lower():
+                        await bot.delete_message(message)
+                else:
+                    await bot.delete_message(message)
+            except:
+                pass
     else:
-        x = await bot.edit_message(x,'Done. \N{OK HAND SIGN}')
+        await bot.send_message(ctx.message.channel, 'Too many messages to delete. Enter a number < 10000')
 
-@bot.command(pass_context=True)
-async def load(ctx, *, module):
-    '''Loads a module.'''
-    module = 'cogs.'+module
-    try:
-        bot.load_extension(module)
-        x = await bot.say('Successfully Loaded.')
-    except Exception as e:
-        x = await bot.edit_message(x,'\N{PISTOL}')
-        await bot.say('{}: {}'.format(type(e).__name__, e))
 
-@bot.command(pass_context=True)
-async def unload(ctx, *, module):
-    '''Unloads a module.'''
-    module = 'cogs.'+module
-    try:
-        bot.unload_extension(module)
-        x = await bot.say('Successfully Unloaded.')
-    except Exception as e:
-        x = await bot.edit_message(x,'\N{PISTOL}')
-        await bot.say('{}: {}'.format(type(e).__name__, e))
-
+@bot.command(aliases=['c'], pass_context=True)
+async def clean(ctx, msgs: int = 100):
+    '''Shortcut to clean all your messages.'''
+    await bot.delete_message(ctx.message)
+    if msgs < 10000:
+        async for message in bot.logs_from(ctx.message.channel, limit=msgs):
+            try:
+                if message.author == bot.user:
+                    await bot.delete_message(message)
+            except:
+                pass
+    else:
+        await bot.send_message(ctx.message.channel, 'Too many messages to delete. Enter a number < 10000')
 
 if __name__ == "__main__":
     for extension in _extensions:
         try:
             bot.load_extension(extension)
-            print('Loaded: {}'.format(extension))
+            print('Loaded extension: {}'.format(extension))
         except Exception as e:
             exc = '{}: {}'.format(type(e).__name__, e)
-            print('Error on load: {}\n{}'.format(extension, exc))
-
-try:   
+            print('Failed to load extension {}\n{}'.format(extension, exc))
     bot.run(TOKEN, bot=False)
-except Exception as e:
-    print('\n[ERROR]: \n{}\n'.format(e))
 
-    
-
-
-
-
-
-
-
-
-
-
-
-    
     
