@@ -13,18 +13,15 @@ def run_wizard():
     token = input('Enter your token:\n> ')
     print('------------------------------------------')
     prefix = input('Enter a prefix for your selfbot:\n> ')
+    print('------------------------------------------')
+    api_key = input('Enter your YandexTranslate API Key (Optional):\n>')
     data = {
         "BOT": {
             "TOKEN" : token,
-            "PREFIX" : prefix
+            "PREFIX" : prefix,
+            "TRANSLATE": api_key
             },
         "FIRST" : False
-        }
-    with open('data/config.json','w') as f:
-        f.write(json.dumps(data, indent=4))
-    api_key = input('Enter your YandexTranslate API Key:\n>')
-    data = {
-        "TRANSLATE" : api_key
         }
     with open('cogs/config.json','w') as f:
         f.write(json.dumps(data, indent=4))
