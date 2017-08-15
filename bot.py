@@ -222,13 +222,11 @@ def get_syntax_error(e):
         return '```py\n{0.__class__.__name__}: {0}\n```'.format(e)
     return '```py\n{0.text}{1:>{0.offset}}\n{2}: {0}```'.format(e, '^', type(e).__name__)
 
-async def to_code_block(ctx):
-    prefix = ctx.prefix
-    content = ctx.message.content.strip(ctx.prefix+'eval ')
-    if content.startswith('```') and content.endswith('```'):
-        content = '\n'.join(content.split('\n')[1:-1])
+async def to_code_block(ctx, body):
+    if body.startswith('```') and body.endswith('```'):
+        content = '\n'.join(body.split('\n')[1:-1])
     else:
-        content = content.strip('`')
+        content = body.strip('`')
     await bot.edit_message(ctx.message, '```py\n'+content+'```')
 
 @bot.command(pass_context=True, name='eval')
