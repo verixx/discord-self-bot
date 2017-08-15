@@ -252,7 +252,7 @@ async def _eval(ctx, *, body: str):
             ret = await func()
     except Exception as e:
         value = stdout.getvalue()
-        await bot.say('```py\n{}{}\n```'.format(value, traceback.format_exc()))
+        x = await bot.say('```py\n{}{}\n```'.format(value, traceback.format_exc()))
     else:
         value = stdout.getvalue()
         try:

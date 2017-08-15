@@ -41,6 +41,22 @@ class Utility:
         except:
             await self.bot.say('Message too long.')
 
+    @commands.command(pass_context=True)
+    async def charinfo(self, ctx, *, characters: str):
+        """Shows you information about a number of characters."""
+
+        if len(characters) > 15:
+            await self.bot.say('Too many characters ({}/15)'.format(len(characters)))
+            return
+
+        fmt = '`\\U{0:>08}`: {1} - {2} \N{EM DASH} <http://www.fileformat.info/info/unicode/char/{0}>'
+
+        def to_string(c):
+            digit = format(ord(c), 'x')
+            name = unicodedata.name(c, 'Name not found.')
+            return fmt.format(digit, name, c)
+
+        await self.bot.say('\n'.join(map(to_string, characters)))
 
     @commands.command(pass_context=True)
     async def quote(self, ctx, id : str, chan : discord.Channel=None):
