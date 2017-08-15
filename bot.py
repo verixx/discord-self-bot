@@ -271,7 +271,6 @@ async def _eval(ctx, *, body: str):
             if value:
                 await bot.say('```py\n%s\n```' % value)
         else:
-
             await bot.say('```py\n%s%s\n```' % (value, ret))
 
 
