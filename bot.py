@@ -13,7 +13,7 @@ import traceback
 
 def run_wizard():
     print('------------------------------------------')
-    print('WELCOME TO THE VERIX-SELFBOT SETUP WIZARD!')
+    print('WELCOME TO THE VERIXX-SELFBOT SETUP WIZARD!')
     print('------------------------------------------')
     token = input('Enter your token:\n> ')
     print('------------------------------------------')
