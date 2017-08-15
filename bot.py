@@ -281,6 +281,11 @@ async def _eval(ctx, *, body: str):
                     await bot.add_reaction(x, '\U0001f535')
                 except:
                     pass
+            else:
+                try:
+                    await bot.add_reaction(ctx.message, '\U0001f535')
+                except:
+                    pass
         else:
             try:
                 x = await bot.say('```py\n%s%s\n```' % (value, ret))
