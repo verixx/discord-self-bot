@@ -224,7 +224,7 @@ def get_syntax_error(e):
 
 async def to_code_block(ctx):
     prefix = ctx.prefix
-    content = ctx.message.content.strip(ctx.prefix+'eval```py')
+    content = ctx.message.content.strip(ctx.prefix+'eval```py ')
     await bot.edit_message(ctx.message, '```py\n'+content+'```')
 
 @bot.command(pass_context=True, name='eval')
@@ -258,9 +258,9 @@ async def _eval(ctx, *, body: str):
             ret = await func()
     except Exception as e:
         value = stdout.getvalue()
-        await bot.say('```py\n{}{}\n```'.format(value, traceback.format_exc()))
+        x = await bot.say('```py\n{}{}\n```'.format(value, traceback.format_exc()))
         try:
-            await bot.add_reaction(ctx.message, '\U0001f534')
+            await bot.add_reaction(x, '\U0001f534')
         except:
             pass
     else:
@@ -275,9 +275,17 @@ async def _eval(ctx, *, body: str):
             
         if ret is None:
             if value:
-                await bot.say('```py\n%s\n```' % value)
+                x = await bot.say('```py\n%s\n```' % value)
+                try:
+                    await bot.add_reaction(x, '\U0001f535')
+                except:
+                    pass
         else:
-            await bot.say('```py\n%s%s\n```' % (value, ret))
+            x = await bot.say('```py\n%s%s\n```' % (value, ret))
+            try:
+                await bot.add_reaction(x, '\U0001f535')
+            except:
+                pass
 
 @bot.command(pass_context=True,name='reload')
 async def _reload(ctx,*, module : str):
