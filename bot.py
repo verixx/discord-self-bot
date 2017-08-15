@@ -224,7 +224,7 @@ def get_syntax_error(e):
 
 async def to_code_block(ctx):
     prefix = ctx.prefix
-    content = ctx.message.content.strip(ctx.prefix+'eval')
+    content = ctx.message.content.strip(ctx.prefix+'eval ')
     if content.startswith('```') and content.endswith('```'):
         content = '\n'.join(content.split('\n')[1:-1])
     else:
@@ -275,13 +275,19 @@ async def _eval(ctx, *, body: str):
             
         if ret is None:
             if value:
-                x = await bot.say('```py\n%s\n```' % value)
+                try:
+                    x = await bot.say('```py\n%s\n```' % value)
+                except:
+                    x = await bot.say('```py\nExecuted. Result was too long.```')
                 try:
                     await bot.add_reaction(x, '\U0001f535')
                 except:
                     pass
         else:
-            x = await bot.say('```py\n%s%s\n```' % (value, ret))
+            try:
+                x = await bot.say('```py\n%s%s\n```' % (value, ret))
+            except:
+                x = await bot.say('```py\nExecuted. Result was too long.```')
             try:
                 await bot.add_reaction(x, '\U0001f535')
             except:
