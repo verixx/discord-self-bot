@@ -1,5 +1,5 @@
 {
-    "FIRST": false,
+    "FIRST": true,
     "BOT": {
         "TOKEN": "your_token_here",
         "PREFIX": "s."
