@@ -11,6 +11,7 @@ import inspect
 import aiohttp
 from lxml import etree
 
+
 class Utility:
     def __init__(self, bot):
         self.bot = bot
