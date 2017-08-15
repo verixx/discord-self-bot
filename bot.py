@@ -222,9 +222,15 @@ def get_syntax_error(e):
         return '```py\n{0.__class__.__name__}: {0}\n```'.format(e)
     return '```py\n{0.text}{1:>{0.offset}}\n{2}: {0}```'.format(e, '^', type(e).__name__)
 
+async def to_code_block(ctx):
+    prefix = ctx.prefix
+    content = ctx.message.content.strip(ctx.prefix+'eval```py')
+    await bot.edit_message(ctx.message, '```py\n'+content+'```')
+
 @bot.command(pass_context=True, name='eval')
 async def _eval(ctx, *, body: str):
     '''Run python scripts on discord!'''
+    await to_code_block(ctx)
     env = {
         'bot': bot,
         'ctx': ctx,
