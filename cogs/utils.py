@@ -10,7 +10,7 @@ from urllib.request import Request, urlopen
 import inspect
 import aiohttp
 from lxml import etree
-
+from mtranslate import translate
 
 class Utility:
     def __init__(self, bot):
@@ -43,6 +43,12 @@ class Utility:
         except:
             await self.bot.say('Message too long.')
 
+    @commands.command(pass_context=True, aliases=['t'])		
+    async def translate(self, ctx, lang, *, text):
+        """Translate text!"""		
+        result = translate(text, lang)		
+        await self.bot.say('```{}```'.format(result))	
+        
     @commands.command(pass_context=True)
     async def charinfo(self, ctx, *, characters: str):
         """Shows you information about a number of characters."""
