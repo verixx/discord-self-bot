@@ -278,7 +278,7 @@ async def _eval(ctx, *, body: str):
                 try:
                     x = await bot.say('```py\n%s\n```' % value)
                 except:
-                    x = await bot.say('```py\nExecuted. Result was too long.```')
+                    x = await bot.say('```py\n\'Result was too long.\'```')
                 try:
                     await bot.add_reaction(x, '\U0001f535')
                 except:
@@ -287,7 +287,7 @@ async def _eval(ctx, *, body: str):
             try:
                 x = await bot.say('```py\n%s%s\n```' % (value, ret))
             except:
-                x = await bot.say('```py\nExecuted. Result was too long.```')
+                x = await bot.say('```py\n\'Result was too long.\'```')
             try:
                 await bot.add_reaction(x, '\U0001f535')
             except:
