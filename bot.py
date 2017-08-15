@@ -258,9 +258,9 @@ async def _eval(ctx, *, body: str):
             ret = await func()
     except Exception as e:
         value = stdout.getvalue()
-        x = await bot.say('```py\n{}{}\n```'.format(value, traceback.format_exc()))
+        await bot.say('```py\n{}{}\n```'.format(value, traceback.format_exc()))
         try:
-            await bot.add_reaction(x, '\U0001f534')
+            await bot.add_reaction(ctx.message, '\U0001f534')
         except:
             pass
     else:
