@@ -232,7 +232,7 @@ async def to_code_block(ctx, body):
 @bot.command(pass_context=True, name='eval')
 async def _eval(ctx, *, body: str):
     '''Run python scripts on discord!'''
-    await to_code_block(ctx)
+    await to_code_block(ctx, body)
     env = {
         'bot': bot,
         'ctx': ctx,
