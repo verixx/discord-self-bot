@@ -224,7 +224,11 @@ def get_syntax_error(e):
 
 async def to_code_block(ctx):
     prefix = ctx.prefix
-    content = ctx.message.content.strip(ctx.prefix+'eval```py ')
+    content = ctx.message.content.strip(ctx.prefix+'eval')
+    if content.startswith('```') and content.endswith('```'):
+        content = '```py\n'+'\n'.join(content.split('\n')[1:-1])+'```'
+    else:
+        content = '```py\n'+content.strip('`')+'```'
     await bot.edit_message(ctx.message, '```py\n'+content+'```')
 
 @bot.command(pass_context=True, name='eval')
@@ -265,10 +269,6 @@ async def _eval(ctx, *, body: str):
             pass
     else:
         value = stdout.getvalue()
-        try:
-            await bot.add_reaction(ctx.message, '\U0001f535')
-        except:
-            pass
         
         if TOKEN in value:
             value = value.replace(TOKEN,"[EXPUNGED]")
