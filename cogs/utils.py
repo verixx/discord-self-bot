@@ -11,6 +11,7 @@ import inspect
 import aiohttp
 from lxml import etree
 from mtranslate import translate
+import random
 
 class Utility:
     def __init__(self, bot):
@@ -449,6 +450,18 @@ class Utility:
     async def source(self, ctx, *, command):
         '''See the source code for any command.'''
         await self.bot.say('```py\n'+str(inspect.getsource(self.bot.get_command(command).callback)+'```'))
+
+    @commands.command()
+    async def coinflip(self):
+        '''Flips a coin'''
+        randnum = random.randint(0,1)
+        if randnum == 0:
+            coin = 'Head'
+        else:
+            coin = 'Tail'
+        emb = discord.Embed(color=discord.Color.gold(), title="You Flipped A...", description = coin)
+        await self.bot.say('', embed = emb)
+        
 
 def setup(bot):
     bot.add_cog(Utility(bot))
