@@ -1,7 +1,7 @@
 {
-    "FIRST": false,
     "BOT": {
         "TOKEN": "your_token_here",
         "PREFIX": "s."
-    }
+    },
+    "FIRST": true
 }
