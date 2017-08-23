@@ -12,7 +12,6 @@ import aiohttp
 
 class Misc():
 
-
     def __init__(self, bot):
         self.bot = bot
         self.ball = ['It is certain', 'It is decidedly so', 'Without a doubt', 'Yes definitely', 'You may rely on it',
