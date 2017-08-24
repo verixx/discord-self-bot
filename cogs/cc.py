@@ -19,7 +19,7 @@ class cog:
 
   @commands.command(pass_context=True)
   async def echohelp(self):
-    em = discord.Embed(title="Echo Help",description="HI", color=0x00FFFF)
+    em = discord.Embed(title="Echo Help",description="Visit https://echo.xtclabs.net/ to learn about the basic things Echo can do \n Visit https://ars.xtclabs.net/ to learn about the ever-evolving ARS. \n Visit https://github.com/proxikal/Echo to see Echo 1.0 Documentation!", color=0x00FFFF)
     await self.bot.say(embed=em)
     
 def setup(bot):
