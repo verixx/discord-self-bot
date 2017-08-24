@@ -63,10 +63,10 @@ class Misc():
             await self.bot.say('Not so fast cheeky boi xdd')
         elif '@here' in message:
             await self.bot.say('Ayy lmao, it doesnt work.')
-        else:       
+        else:
             await self.bot.say(message)
 
-            
+
     @commands.command()
     async def add(self,*args):
         '''Add multiple numbers.'''
@@ -77,7 +77,7 @@ class Misc():
             await self.bot.say(ans)
         except:
             await self.bot.say('Enter numbers only.')
-            
+
     @commands.command(pass_context=True, aliases=['color'])
     async def colour(self, ctx, color : str):
         """Show a colour"""
@@ -112,53 +112,44 @@ class Misc():
     async def virus(self,ctx,user: discord.Member=None,*,hack=None):
         """Inject a virus into someones system."""
         name = ctx.message.author
+        bar = ["[▓▓▓▓▓▓▓                ] -","[▓▓▓▓▓▓▓▓▓▓▓▓           ] \\","[▓▓▓▓▓▓▓▓▓▓▓▓▓▓         ] |","[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓      ] /","[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓   ] -","[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] \\","Injecting virus.   |","Injecting virus... -","Injecting virus....\\"]
         if not hack:
             hack = 'discord'
         else:
             hack = hack.replace(' ','_')
         channel = ctx.message.channel
         x = await self.bot.send_message(channel, '``[▓▓▓                    ] / {}-virus.exe Packing files.``'.format(hack))
-        await asyncio.sleep(1.5)
-        x = await self.bot.edit_message(x,'``[▓▓▓▓▓▓▓                ] - {}-virus.exe Packing files..``'.format(hack))
-        await asyncio.sleep(0.3)
-        x = await self.bot.edit_message(x,'``[▓▓▓▓▓▓▓▓▓▓▓▓           ] \ {}-virus.exe Packing files...``'.format(hack))
-        await asyncio.sleep(1.2)
-        x = await self.bot.edit_message(x,'``[▓▓▓▓▓▓▓▓▓▓▓▓▓▓         ] | {}-virus.exe Initializing code.``'.format(hack))
+        for count in range(6):
+            await asyncio.sleep(1.5)
+            await self.bot.edit_message(x,'``{} {}-virus.exe Packing files..``'.format(bar[count], hack))
         await asyncio.sleep(1)
-        x = await self.bot.edit_message(x,'``[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓      ] / {}-virus.exe Initializing code..``'.format(hack))
-        await asyncio.sleep(1.5)
-        x = await self.bot.edit_message(x,'``[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓   ] - {}-virus.exe Finishing.``'.format(hack))
-        await asyncio.sleep(1)
-        x = await self.bot.edit_message(x,'``[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] \ {}-virus.exe Finishing..``'.format(hack))
-        await asyncio.sleep(1)
-        x = await self.bot.edit_message(x,'``Successfully downloaded {}-virus.exe``'.format(hack))
+        await self.bot.edit_message(x,'``Successfully downloaded {}-virus.exe``'.format(hack))
         await asyncio.sleep(2)
-        x = await self.bot.edit_message(x,'``Injecting virus.   |``')
-        await asyncio.sleep(0.5)
-        x = await self.bot.edit_message(x,'``Injecting virus..  /``')
-        await asyncio.sleep(0.5)
-        x = await self.bot.edit_message(x,'``Injecting virus... -``')
-        await asyncio.sleep(0.5)
-        x = await self.bot.edit_message(x,'``Injecting virus....\``')
+        for count in range(6,8):
+            await self.bot.edit_message(x,'``{}``'.format(bar[count]))
+            await asyncio.sleep(0.5)
         await self.bot.delete_message(x)
         await self.bot.delete_message(ctx.message)
-        
+        text = '**Alert!**\n``You may have been hacked. {}-virus.exe has been found in your system\'s operating system.\nYour data may have been compromised. Please re-install your OS immediately.``'
         if user:
-            await self.bot.say('`{}-virus.exe` successfully injected into **{}**\'s system.'.format(hack,user.name))
-            await self.bot.send_message(user,'**Alert!**\n``You may have been hacked. {}-virus.exe has been found in your system\'s operating system.\nYour data may have been compromised. Please re-install your OS immediately.``'.format(hack))
+            if user == ctx.author:
+                await self.bot.say('**{}** has hacked himself ¯\_(ツ)_/¯.'.format(name.name))
+            else:
+                await self.bot.say('`{}-virus.exe` successfully injected into **{}**\'s system.'.format(hack,user.name))
+                await self.bot.send_message(user, text.format(hack))
         else:
             await self.bot.say('**{}** has hacked himself ¯\_(ツ)_/¯.'.format(name.name))
-            await self.bot.send_message(name,'**Alert!**\n``You may have been hacked. {}-virus.exe has been found in your system\'s operating system.\nYour data may have been compromised. Please re-install your OS immediately.``'.format(hack))
-     
+
+
 #--------------------------------------------------------------------------------------
 #--------------------------------------------------------------------------------------
 
-        
+
     @commands.command(pass_context=True, aliases=['8ball'])
     async def ball8(self, ctx, *, msg : str):
         """Let the 8ball decide your fate."""
         answer = random.randint(0, 19)
-        
+
         if answer < 10:
             color = 0x008000
         elif 10 <= answer < 15:
@@ -256,7 +247,7 @@ class Misc():
         except ValueError:
             definition_number = 0
         if definition_number not in range(0, 11):
-            pos = 0                
+            pos = 0
         search_terms = "+".join(search_terms)
         url = "http://api.urbandictionary.com/v0/define?term=" + search_terms
         async with aiohttp.get(url) as r:
@@ -287,8 +278,6 @@ class Misc():
             await asyncio.sleep(0.2)
         await self.bot.say("", embed=discord.Embed(color=discord.Color.red(), title="Your love...", description="You love {} a whopping {}%!".format(person, random.randint(0, 100))))
         await self.bot.delete_message(ctx.message)
-
-
 
 def setup(bot):
     bot.add_cog(Misc(bot))
