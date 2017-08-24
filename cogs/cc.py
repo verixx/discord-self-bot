@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class cc:
+class JRCogs:
   def __init__(self, bot):
     self.bot = bot
 
@@ -19,4 +19,4 @@ class cc:
     await self.bot.say(embed=em)
     
 def setup(bot):
-  bot.add_cog(cc(bot))
+  bot.add_cog(JRCogs(bot))
