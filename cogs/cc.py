@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class fourjr:
+class cog:
   def __init__(self, bot):
     self.bot = bot
 
@@ -23,4 +23,4 @@ class fourjr:
     await self.bot.say(embed=em)
     
 def setup(bot):
-  bot.add_cog(fourjr(bot))
+  bot.add_cog(cog(bot))
