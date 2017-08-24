@@ -281,24 +281,10 @@ class Misc():
     @commands.command(pass_context=True)
     async def love(self, ctx, *, person : str):
         '''Loves a person'''
-        await self.bot.edit_message(ctx.message, "`Calculating Love |`")
-        time.sleep(.2)
-        await self.bot.edit_message(ctx.message, "`Calculating Love /`")
-        time.sleep(.2)
-        await self.bot.edit_message(ctx.message, "`Calculating Love -`")
-        time.sleep(.2)
-        await self.bot.edit_message(ctx.message, "`Calculating Love \`")
-        time.sleep(.2)
-        await self.bot.edit_message(ctx.message, "`Calculating Love |`")
-        time.sleep(.2)
-        await self.bot.edit_message(ctx.message, "`Calculating Love /`")
-        time.sleep(.2)
-        await self.bot.edit_message(ctx.message, "`Calculating Love -`")
-        time.sleep(.2)
-        await self.bot.edit_message(ctx.message, "`Calculating Love \`")
-        time.sleep(.2)
-        await self.bot.edit_message(ctx.message, "`Calculating Love |`")
-        time.sleep(.2)
+        spinner = ["|","/","-","\\","|","/","-","\\","|"]
+        for count in range(9):
+            await self.bot.edit_message(ctx.message, "`Calculating Love {}`".format(spinner[count]))
+            await asyncio.sleep(0.2)
         await self.bot.say("", embed=discord.Embed(color=discord.Color.red(), title="Your love...", description="You love {} a whopping {}%!".format(person, random.randint(0, 100))))
         await self.bot.delete_message(ctx.message)
 
