@@ -12,6 +12,10 @@ class JRCogs:
   @commands.command()
   async def hi(self):
     await self.bot.say('hello')
+    
+  @commands.command(pass_context=True)
+  async def test(self, ctx, arg1, arg2, *, therest):
+    await bot.say('1: {}, 2:{}, The rest: {}'.format(arg1, arg2, therest))
 
   @commands.command(pass_context=True)
   async def jrembed(self, ctx, *, text):
