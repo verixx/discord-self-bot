@@ -6,7 +6,7 @@ class cc:
     self.bot = bot
 
   @commands.command()
-  async def echo-help(self):
+  async def echohelp(self):
     await self.bot.say('hi')
     
   @commands.command()
