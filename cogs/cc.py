@@ -23,7 +23,7 @@ class cog:
     await self.bot.say(embed=em)
     
   @commands.command(pass_context=True)
-  async def help(self):
+  async def help2(self):
     em = discord.Embed(author="4JR",image="https://discordapp.com/api/v6/users/180314310298304512/avatars/eb45214491b879d0db62a8165148a311.jpg",title="Help",description="Some Cool Text!", color=0x00FFFF)
     await self.bot.say(embed=em)
     
