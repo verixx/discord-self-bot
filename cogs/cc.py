@@ -7,7 +7,7 @@ class YourCog:
 
   @commands.command()
   async def test(self):
-    await bot.say('hello')
+    await self.bot.say('hello')
 
 def setup(bot):
   bot.add_cog(YourCog(bot))
