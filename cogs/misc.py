@@ -47,15 +47,6 @@ class Misc():
         else:
             await self.bot.say('Usage: `.embedsay [message]`')
 
-
-    @commands.command(pass_context=True)
-    async def spam(self, ctx, times : int, *, text):
-        await self.bot.delete_message(ctx.message)
-        for i in range(times):
-            await self.bot.say(text)
-
-
-
     @commands.command()
     async def say(self,*, message: str):
         '''Say something as the bot.'''
