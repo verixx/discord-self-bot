@@ -9,6 +9,7 @@ import json
 import requests
 import os
 import aiohttp
+import time
 
 class Misc():
 
@@ -277,8 +278,31 @@ class Misc():
         else:
             await self.bot.say("Your search terms gave no results.")
 
+    @commands.command(pass_context=True)
+    async def love(self, ctx, *, person : str):
+        '''Loves a person'''
+        await self.bot.edit_message(ctx.message, "`Calculating Love |`")
+        time.sleep(.2)
+        await self.bot.edit_message(ctx.message, "`Calculating Love /`")
+        time.sleep(.2)
+        await self.bot.edit_message(ctx.message, "`Calculating Love -`")
+        time.sleep(.2)
+        await self.bot.edit_message(ctx.message, "`Calculating Love \`")
+        time.sleep(.2)
+        await self.bot.edit_message(ctx.message, "`Calculating Love |`")
+        time.sleep(.2)
+        await self.bot.edit_message(ctx.message, "`Calculating Love /`")
+        time.sleep(.2)
+        await self.bot.edit_message(ctx.message, "`Calculating Love -`")
+        time.sleep(.2)
+        await self.bot.edit_message(ctx.message, "`Calculating Love \`")
+        time.sleep(.2)
+        await self.bot.edit_message(ctx.message, "`Calculating Love |`")
+        time.sleep(.2)
+        await self.bot.say("", embed=discord.Embed(color=discord.Color.red(), title="Your love...", description="You love {} a whopping {}%!".format(person, random.randint(0, 100))))
+        await self.bot.delete_message(ctx.message)
 
-    
-    
+
+
 def setup(bot):
     bot.add_cog(Misc(bot))
