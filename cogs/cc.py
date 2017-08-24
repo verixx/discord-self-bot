@@ -20,8 +20,7 @@ class cog:
   @commands.command(pass_context=True)
   async def echohelp(self):
     em = discord.Embed(title="Echo Help",description="Visit https://echo.xtclabs.net/ to learn about the basic things Echo can do \nVisit https://ars.xtclabs.net/ to learn about the ever-evolving ARS. \nVisit https://github.com/proxikal/Echo to see Echo 1.0 Documentation!", color=0x00FFFF)
-    em.set_icon(url="https://discordapp.com/api/v6/users/180314310298304512/avatars/eb45214491b879d0db62a8165148a311.jpg")
-    em.set_author(name = "4JR")
+    em.set_author(name = "4JR", icon_url = "https://discordapp.com/api/v6/users/180314310298304512/avatars/eb45214491b879d0db62a8165148a311.jpg")
     await self.bot.say(embed=em)
     
 def setup(bot):
