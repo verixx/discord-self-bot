@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class Custom Commands:
+class CustomCommands:
   def __init__(self, bot):
     self.bot = bot
 
@@ -12,6 +12,11 @@ class Custom Commands:
   @commands.command()
   async def hi(self):
     await self.bot.say('hello')
+
+  @commands.command(pass_context=True)
+  async def embed(self, ctx, *, text):
+    em = discord.Embed(description=text, color=0x00FFFF)
+    await self.bot.say(embed=em)
     
 def setup(bot):
-  bot.add_cog(Custom Commands(bot))
+  bot.add_cog(CustomCommands(bot))
