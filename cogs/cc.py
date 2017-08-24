@@ -1,11 +1,13 @@
 import discord
 from discord.ext import commands
-import datetime
-import time
-import random
-import asyncio
-import json
 
-@commands.command(pass_context=True)
-async def test(self, ctx): 
-  await bot.say('hello')
+class YourCog:
+  def __init__(self, bot):
+    self.bot = bot
+
+  @commands.command()
+  async def test(self):
+    await bot.say('hello')
+
+def setup(bot):
+  bot.add_cog(YourCog(bot))
