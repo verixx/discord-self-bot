@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class 4JR:
+class fourjr:
   def __init__(self, bot):
     self.bot = bot
 
@@ -23,4 +23,4 @@ class 4JR:
     await self.bot.say(embed=em)
     
 def setup(bot):
-  bot.add_cog(4JR(bot))
+  bot.add_cog(fourjr(bot))
