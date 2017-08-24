@@ -6,15 +6,15 @@ class JRCogs:
     self.bot = bot
 
   @commands.command()
-  async def echohelp(self):
-    await self.bot.say('hi')
+  async def echo(self, *, text):
+    await self.bot.say(text)
     
   @commands.command()
   async def hi(self):
     await self.bot.say('hello')
 
   @commands.command(pass_context=True)
-  async def embed(self, ctx, *, text):
+  async def jrembed(self, ctx, *, text):
     em = discord.Embed(description=text, color=0x00FFFF)
     await self.bot.say(embed=em)
     
