@@ -18,8 +18,8 @@ class cog:
     await self.bot.say('1: {}, 2:{}, The rest: {}'.format(arg1, arg2, therest))
 
   @commands.command(pass_context=True)
-  async def jrembed(self, ctx, *, text):
-    em = discord.Embed(description=text, color=0x00FFFF)
+  async def echohelp(self):
+    em = discord.Embed(title="Echo Help",description="HI", color=0x00FFFF)
     await self.bot.say(embed=em)
     
 def setup(bot):
