@@ -58,13 +58,11 @@ bot = commands.Bot(command_prefix=get_pre, self_bot=True, formatter=EmbedHelp())
 bot.remove_command('help')
 
 _extensions = [
-
     'cogs.misc',
     'cogs.info',
     'cogs.utils',
     'cogs.mod',
     'cogs.cc'
-
     ]
 
 @bot.event
@@ -296,7 +294,6 @@ async def _eval(ctx, *, body: str):
                 await bot.add_reaction(x, '\U0001f535')
             except:
                 pass
-
 @bot.command(pass_context=True,name='reload')
 async def _reload(ctx,*, module : str):
     """Reloads a module."""
