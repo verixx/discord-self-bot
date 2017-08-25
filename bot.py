@@ -71,8 +71,7 @@ _extensions = [
 async def on_ready():
     bot.uptime = datetime.datetime.now()
     print('------------------------------------------\n'
-    	  'Self-Bot Ready\n'
-    	  'Author: verix#7220\n'
+    	  'Self-Bot Ready!\n'
     	  '------------------------------------------\n'
     	  'Username: {}\n'
           'User ID: {}\n'
@@ -89,7 +88,7 @@ async def ping(ctx):
     await (await bot.ws.ping())
     now = datetime.datetime.now()
     ping = now - msgtime
-    pong = discord.Embed(title='Pong! Response Time:',
+    pong = discord.Embed(title='Pong!',
     					 description=str(ping.microseconds / 1000.0) + ' ms',
                          color=0x00ffff)
 
@@ -112,7 +111,7 @@ async def shutdown(ctx):
 async def _set(Type,*,message=None):
     """Change your discord game/stream!"""
     if Type.lower() == 'stream':
-        await bot.change_presence(game=discord.Game(name=message,type=1,url='https://www.twitch.tv/a'),status='online')
+        await bot.change_presence(game=discord.Game(name=message,type=1,url='https://www.google.com.sg'),status='online')
         await bot.say('Set presence to. `Streaming {}`'.format(message))
     elif Type.lower() == 'game':
         await bot.change_presence(game=discord.Game(name=message))
@@ -121,7 +120,7 @@ async def _set(Type,*,message=None):
         await bot.change_presence(game=None)
         await bot.say('Cleared Presence')
     else:
-        await bot.say('Usage: `.presence [game/stream] [message]`')
+        await bot.say('Usage: `.presence [game/stream/clear] [message]`')
 
 async def send_cmd_help(ctx):
     if ctx.invoked_subcommand:
