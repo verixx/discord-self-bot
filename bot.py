@@ -76,8 +76,8 @@ async def on_ready():
           '------------------------------------------'
     	  .format(bot.user, bot.user.id))
     channel = 350630855342817292
-    await bot.send_message(channel, "Bot is up!")
-
+    msg = ("Bot is up!")
+    await bot.send_message(channel, msg)
 
 
 @bot.command(pass_context=True)
