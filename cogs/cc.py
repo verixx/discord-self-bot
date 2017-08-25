@@ -7,6 +7,7 @@ class cog:
 
   @commands.command()
   async def echo(self, *, text):
+  """Repeat after me!"""
     await self.bot.say(text)
     
   @commands.command()
