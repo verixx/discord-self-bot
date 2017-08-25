@@ -75,7 +75,8 @@ async def on_ready():
           'User ID: {}\n'
           '------------------------------------------'
     	  .format(bot.user, bot.user.id))
-    await bot.send_message(350630855342817292, "Bot is up!")
+    channel = 350630855342817292
+    await bot.send_message(channel, "Bot is up!")
 
 
 
