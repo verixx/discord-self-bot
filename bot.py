@@ -75,7 +75,7 @@ async def on_ready():
           'User ID: {}\n'
           '------------------------------------------'
     	  .format(bot.user, bot.user.id))
-
+    await bot.send_message(350630855342817292, "Bot is up!")
 
 
 
@@ -103,7 +103,7 @@ async def restart(ctx):
 async def _set(Type,*,message=None):
     """Change your discord game/stream!"""
     if Type.lower() == 'stream':
-        await bot.change_presence(game=discord.Game(name=message,type=1,url='https://www.twitch.tv/{}'),status='online')
+        await bot.change_presence(game=discord.Game(name=message,type=1,url='https://www.twitch.tv/{}').format(message),status='online')
         await bot.say('Set presence to. `Streaming {}`'.format(message))
     elif Type.lower() == 'game':
         await bot.change_presence(game=discord.Game(name=message))
