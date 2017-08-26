@@ -47,16 +47,6 @@ class Misc():
         else:
             await self.bot.say('Usage: `.embedsay [message]`')
 
-    @commands.command()
-    async def say(self,*, message: str):
-        '''Say something as the bot.'''
-        if '@everyone' in message:
-            await self.bot.say('Not so fast cheeky boi xdd')
-        elif '@here' in message:
-            await self.bot.say('Ayy lmao, it doesnt work.')
-        else:
-            await self.bot.say(message)
-
 
     @commands.command()
     async def add(self,*args):
