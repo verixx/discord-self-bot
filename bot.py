@@ -297,6 +297,14 @@ async def _eval(ctx, *, body: str):
             except:
                 pass
 
+@bot.command(pass_context=True)
+async def say(ctx, *, message: str):
+    '''Say something as the bot.'''
+    if '{}say'.format(ctx.prefix) in message:
+        await bot.say("Don't ya dare spam.")
+    else:
+        await bot.say(message)
+
 @bot.command(pass_context=True,name='reload')
 async def _reload(ctx,*, module : str):
     """Reloads a module."""
