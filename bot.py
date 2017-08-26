@@ -297,6 +297,28 @@ async def _eval(ctx, *, body: str):
             except:
                 pass
 
+@bot.command()
+async def say(*, message: str):
+    '''Say something as the bot.'''
+    if 'PREFIX' in os.environ:
+        prefix = os.environ['PREFIX']    
+    else:
+        with open('data/config.json') as f:
+            config = json.load(f)
+        try:
+            prefix = config["BOT"]['PREFIX']
+        except:
+            prefix = 's.'
+    if '@everyone' in message:
+        await bot.say('Not so fast cheeky boi xdd')
+    elif '@here' in message:
+        await bot.say('Ayy lmao, it doesnt work.')
+    elif '{}say'.format(prefix) in message:
+        await bot.say("Don't ya dare spam.")
+    else:
+        await bot.say(message)
+        print('{}say'.format(prefix))
+
 @bot.command(pass_context=True,name='reload')
 async def _reload(ctx,*, module : str):
     """Reloads a module."""
