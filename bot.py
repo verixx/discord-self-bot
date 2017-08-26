@@ -297,19 +297,10 @@ async def _eval(ctx, *, body: str):
             except:
                 pass
 
-@bot.command()
-async def say(*, message: str):
+@bot.command(pass_context=True)
+async def say(ctx, *, message: str):
     '''Say something as the bot.'''
-    if 'PREFIX' in os.environ:
-        prefix = os.environ['PREFIX']    
-    else:
-        with open('data/config.json') as f:
-            config = json.load(f)
-        try:
-            prefix = config["BOT"]['PREFIX']
-        except:
-            prefix = 's.'
-    if '{}say'.format(prefix) in message:
+    if '{}say'.format(ctx.prefix) in message:
         await bot.say("Don't ya dare spam.")
     else:
         await bot.say(message)
