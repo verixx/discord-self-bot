@@ -317,7 +317,6 @@ async def say(*, message: str):
         await bot.say("Don't ya dare spam.")
     else:
         await bot.say(message)
-        print('{}say'.format(prefix))
 
 @bot.command(pass_context=True,name='reload')
 async def _reload(ctx,*, module : str):
