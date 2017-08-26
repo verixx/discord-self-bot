@@ -309,11 +309,7 @@ async def say(*, message: str):
             prefix = config["BOT"]['PREFIX']
         except:
             prefix = 's.'
-    if '@everyone' in message:
-        await bot.say('Not so fast cheeky boi xdd')
-    elif '@here' in message:
-        await bot.say('Ayy lmao, it doesnt work.')
-    elif '{}say'.format(prefix) in message:
+    if '{}say'.format(prefix) in message:
         await bot.say("Don't ya dare spam.")
     else:
         await bot.say(message)
