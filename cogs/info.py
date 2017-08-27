@@ -164,7 +164,7 @@ class Info():
         servers = len(self.bot.servers)
         version = '0.1.1'
         library = 'discord.py'
-        creator = 'verix#7220'
+        creator = 'verixx#7220'
         discord_ = '[Support Server](https://discord.gg/wkPy3sb)'
         github = '[/verixx/selfbot](https://github.com/verixx/selfbot)'
         time = ctx.message.timestamp
