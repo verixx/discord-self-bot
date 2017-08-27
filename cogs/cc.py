@@ -11,7 +11,7 @@ class cog:
     await self.bot.say(text)
     
   @commands.command()
-  async def hi(self):
+  async def die(self):
     await self.bot.say('hello')
     
   @commands.command(pass_context=True)
@@ -23,6 +23,12 @@ class cog:
     em = discord.Embed(title="Echo Help",description="Visit https://echo.xtclabs.net/ to learn about the basic things Echo can do \nVisit https://ars.xtclabs.net/ to learn about the ever-evolving ARS. \nVisit https://github.com/proxikal/Echo to see Echo 1.0 Documentation!", color=0x00FFFF)
     em.set_author(name = "4JR", icon_url = "https://discordapp.com/api/v6/users/180314310298304512/avatars/eb45214491b879d0db62a8165148a311.jpg")
     await self.bot.say(embed=em)
+    
+  async def on_message(self, message):
+    if message.author != self.bot.user:
+    return
+  if message.content.startswith('hi'):
+    await self.bot.add_reaction(message, '👌')
     
 def setup(bot):
   bot.add_cog(cog(bot))
