@@ -232,16 +232,16 @@ class Utility:
 
     @commands.group(pass_context=True, aliases=['t'], invoke_without_command=True)		
     async def translate(self, ctx, lang, *, text):
-        """Translate text! Do `.translate get langs` to get available languages!"""
+        """Translate text! Do .translate langs to get available languages!"""
         if lang in codes:
             return await self.bot.say('```{}```'.format(translate(text, lang)))
-        lang = codes.get(lang.lower().title())
+        lang = dict(zip(codes.values(),codes.keys())).get(lang.lower().title())
         if lang:  
             await self.bot.say('```{}```'.format(translate(text, lang)))
         else:
             await self.bot.say('```That is not an available language.```')
             
-    @translate.command(pass_context=True, name='get langs')
+    @translate.command(pass_context=True, name='langs')
     async def _get(self, ctx):
         em = discord.Embed(color=discord.Color.blue(), 
                            title='Available Languages', 
