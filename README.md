@@ -43,7 +43,7 @@ The default set of modules includes:
 * Custom formatted paginated help
 * Miscellaneous commands
 * Easy to make your own commands
-* Stateless selfbot (Saves no data) *This means that you can host it on heroku 24/7 for free*
+* Stateless selfbot (Saves no data) *This means that you can [host it on heroku](https://github.com/verixx/selfbot/wiki/Heroku) 24/7 for free*
 
 ## Contributors
 
