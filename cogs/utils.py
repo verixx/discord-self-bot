@@ -232,7 +232,7 @@ class Utility:
 
     @commands.command(pass_context=True, aliases=['t'])		
     async def translate(self, ctx, lang, *, text):
-        """Translate text! Do `.translate get langs` to get available languages!"""
+        """Translate text! Do `jr translate get langs` to get available languages!"""
         global codes
         langs = ""
         if lang == "get" and text == "langs":
