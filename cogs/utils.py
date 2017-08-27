@@ -232,30 +232,30 @@ class Utility:
 
     @commands.command(pass_context=True, aliases=['t'])		
     async def translate(self, ctx, lang, *, text):
-          """Translate text! Do `.translate get langs` to get available languages!"""
- +        global codes
- +        langs = ""
- +        if lang == "get" and text == "langs":
- +            for i in codes.values():
- +                langs += i
- +                langs += ", "
- +            em = discord.Embed(color = discord.Color.blue(), title="Available Languages", description=langs[:-3])
- +            await self.bot.say(embed=em)
- +            return
- +        if lang in codes:
- +            result = translate(text, lang)
- +            await self.bot.say('```{}```'.format(result))
- +            return
- +        lang = lang.lower().title()
- +        if lang in codes.values():
- +            for i in codes:
- +                if codes.get(i) == lang:
- +                    lang = i
- +                    break
- +            result = translate(text, lang)  
- +            await self.bot.say('```{}```'.format(result))
- +        else:
- +            await self.bot.say('```That is not an available language.```')	
+        """Translate text! Do `.translate get langs` to get available languages!"""
+        global codes
+        langs = ""
+        if lang == "get" and text == "langs":
+            for i in codes.values():
+                langs += i
+                langs += ", "
+            em = discord.Embed(color = discord.Color.blue(), title="Available Languages", description=langs[:-3])
+            await self.bot.say(embed=em)
+            return
+        if lang in codes:
+            result = translate(text, lang)
+            await self.bot.say('```{}```'.format(result))
+            return
+        lang = lang.lower().title()
+        if lang in codes.values():
+            for i in codes:
+                 if codes.get(i) == lang:
+                    lang = i
+                    break
+            result = translate(text, lang)  
+            await self.bot.say('```{}```'.format(result))
+        else:
+            await self.bot.say('```That is not an available language.```')	
         
     @commands.command(pass_context=True)
     async def charinfo(self, ctx, *, characters: str):
