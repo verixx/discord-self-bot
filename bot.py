@@ -111,7 +111,7 @@ async def shutdown(ctx):
 async def _set(Type,*,message=None):
     """Change your discord game/stream!"""
     if Type.lower() == 'stream':
-        await bot.change_presence(game=discord.Game(name=message,type=1,url='https://www.twitch.tv/a'),status='online')
+        await bot.change_presence(game=discord.Game(name=message,type=1,url='https://www.twitch.tv/{}'.format(message)),status='online')
         await bot.say('Set presence to. `Streaming {}`'.format(message))
     elif Type.lower() == 'game':
         await bot.change_presence(game=discord.Game(name=message))
@@ -120,7 +120,7 @@ async def _set(Type,*,message=None):
         await bot.change_presence(game=None)
         await bot.say('Cleared Presence')
     else:
-        await bot.say('Usage: `.presence [game/stream] [message]`')
+        await bot.say('Usage: `.presence [game/stream/clear] [message]`')
 
 async def send_cmd_help(ctx):
     if ctx.invoked_subcommand:
@@ -199,15 +199,10 @@ async def coglist(ctx):
     if not unloaded:
         unloaded = ["None"]
 
-    msg = ("+ Loaded\n"
-           "{}\n\n"
-           "- Unloaded\n"
-           "{}"
-           "".format(", ".join(sorted(loaded)),
-                     ", ".join(sorted(unloaded)))
-           )
-    for page in pagify(msg, [" "], shorten_by=16):
-        await bot.say(box(page.lstrip(" "), lang="diff"))
+    em1 = discord.Embed(color=discord.Color.green(), title="+ Loaded", description=", ".join(sorted(loaded)))
+    em2 = discord.Embed(color=discord.Color.red(), title="- Unloaded", description=", ".join(sorted(unloaded)))
+    await bot.say(embed=em1)
+    await bot.say(embed=em2)
 
 def cleanup_code( content):
     """Automatically removes code blocks from the code."""
