@@ -119,7 +119,7 @@ class Moderation:
 
     @commands.command(aliases=['c'], pass_context=True)
     async def clean(self, ctx, msgs: int = 100):
-        '''Shortcust to clean all your messages.'''
+        '''Shortcut to clean all your messages.'''
         await self.bot.delete_message(ctx.message)
         if msgs < 10000:
             async for message in self.bot.logs_from(ctx.message.channel, limit=msgs):
