@@ -199,15 +199,10 @@ async def coglist(ctx):
     if not unloaded:
         unloaded = ["None"]
 
-    msg = ("+ Loaded\n"
-           "{}\n\n"
-           "- Unloaded\n"
-           "{}"
-           "".format(", ".join(sorted(loaded)),
-                     ", ".join(sorted(unloaded)))
-           )
-    for page in pagify(msg, [" "], shorten_by=16):
-        await bot.say(box(page.lstrip(" "), lang="diff"))
+    em1 = discord.Embed(color=discord.Color.green(), title="+ Loaded", description=", ".join(sorted(loaded)))
+    em2 = discord.Embed(color=discord.Color.red(), title="- Unloaded", description=", ".join(sorted(unloaded)))
+    await bot.say(embed=em1)
+    await bot.say(embed=em2)
 
 def cleanup_code( content):
     """Automatically removes code blocks from the code."""
