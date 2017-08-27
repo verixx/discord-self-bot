@@ -7,12 +7,8 @@ import asyncio
 import json
 
 class Info():
-
-
     def __init__(self, bot):
         self.bot = bot
-         
-
 
     @commands.command(pass_context=True,aliases=['s','serverinfo','si'], no_pm=True)
     async def server(self, ctx):
@@ -192,9 +188,6 @@ class Info():
                 await self.bot.say(embed=page)
             except:
                 await self.bot.say('I need the embed links perm.')
-
-
-
-
+                
 def setup(bot):
     bot.add_cog(Info(bot))
