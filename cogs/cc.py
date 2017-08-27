@@ -26,9 +26,9 @@ class cog:
     
   async def on_message(self, message):
     if message.author != self.bot.user:
-    return
-  if message.content.startswith('hi'):
-    await self.bot.add_reaction(message, '👌')
+      return
+    if message.content.startswith('hi'):
+      await self.bot.add_reaction(message, '👌')
     
 def setup(bot):
   bot.add_cog(cog(bot))
