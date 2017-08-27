@@ -77,9 +77,6 @@ async def on_ready():
     	  .format(bot.user, bot.user.id))
 
 
-
-
-@bot.command(pass_context=True)
 @bot.command(pass_context=True)
 async def ping(ctx):
     """Pong! Check your response time."""
