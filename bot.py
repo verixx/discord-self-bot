@@ -111,7 +111,7 @@ async def shutdown(ctx):
 async def _set(Type,*,message=None):
     """Change your discord game/stream!"""
     if Type.lower() == 'stream':
-        await bot.change_presence(game=discord.Game(name=message,type=1,url='https://www.twitch.tv/a'),status='online')
+        await bot.change_presence(game=discord.Game(name=message,type=1,url='https://www.twitch.tv/{}'.format(message)),status='online')
         await bot.say('Set presence to. `Streaming {}`'.format(message))
     elif Type.lower() == 'game':
         await bot.change_presence(game=discord.Game(name=message))
@@ -120,7 +120,7 @@ async def _set(Type,*,message=None):
         await bot.change_presence(game=None)
         await bot.say('Cleared Presence')
     else:
-        await bot.say('Usage: `.presence [game/stream] [message]`')
+        await bot.say('Usage: `.presence [game/stream/clear] [message]`')
 
 async def send_cmd_help(ctx):
     if ctx.invoked_subcommand:
