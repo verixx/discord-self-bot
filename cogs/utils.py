@@ -230,32 +230,24 @@ class Utility:
         except:
             await self.bot.say('Message too long.')
 
-    @commands.command(pass_context=True, aliases=['t'])		
+    @commands.command(pass_context=True, aliases=['t'], invoke_without_command=True)		
     async def translate(self, ctx, lang, *, text):
         """Translate text! Do `.translate get langs` to get available languages!"""
-        global codes
-        langs = ""
-        if lang == "get" and text == "langs":
-            for i in codes.values():
-                langs += i
-                langs += ", "
-            em = discord.Embed(color = discord.Color.blue(), title="Available Languages", description=langs[:-3])
-            await self.bot.say(embed=em)
-            return
         if lang in codes:
-            result = translate(text, lang)
-            await self.bot.say('```{}```'.format(result))
-            return
-        lang = lang.lower().title()
-        if lang in codes.values():
-            for i in codes:
-                if codes.get(i) == lang:
-                    lang = i
-                    break
-            result = translate(text, lang)  
-            await self.bot.say('```{}```'.format(result))
+            return await self.bot.say('```{}```'.format(translate(text, lang)))
+        lang = codes.get(lang.lower().title())
+        if lang:  
+            await self.bot.say('```{}```'.format(translate(text, lang)))
         else:
             await self.bot.say('```That is not an available language.```')
+            
+    @translate.command(pass_context=True, name='get langs')
+    async def _get(self, ctx):
+        em = discord.Embed(color=discord.Color.blue(), 
+                           title='Available Languages', 
+                           description=', '.join(codes.values()))
+        await self.bot.say(embed=em)
+        
         
     @commands.command(pass_context=True)
     async def charinfo(self, ctx, *, characters: str):
