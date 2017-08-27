@@ -58,23 +58,27 @@ bot = commands.Bot(command_prefix=get_pre, self_bot=True, formatter=EmbedHelp())
 bot.remove_command('help')
 
 _extensions = [
+
     'cogs.misc',
     'cogs.info',
     'cogs.utils',
     'cogs.mod',
-    'cogs.cc'
+	'cogs.cc'
+
     ]
 
 @bot.event
 async def on_ready():
     bot.uptime = datetime.datetime.now()
     print('------------------------------------------\n'
-          'Self-Bot Ready!\n'
+    	  'Self-Bot Ready\n'
     	  '------------------------------------------\n'
     	  'Username: {}\n'
           'User ID: {}\n'
           '------------------------------------------'
     	  .format(bot.user, bot.user.id))
+
+
 
 
 @bot.command(pass_context=True)
@@ -90,13 +94,12 @@ async def ping(ctx):
 
     await bot.say(embed=pong)
 
-
 @bot.command(pass_context=True)
-async def restart(ctx):
+async def shutdown(ctx):
     """Restarts the selfbot."""
-    await bot.say("Restarting...")
-    await bot.logout()
-    
+    if response.content == "YES":
+        await bot.say("Restarting...")
+        await bot.logout()
     
 @bot.command(name='presence')
 async def _set(Type,*,message=None):
@@ -287,6 +290,15 @@ async def _eval(ctx, *, body: str):
                 await bot.add_reaction(x, '\U0001f535')
             except:
                 pass
+
+@bot.command(pass_context=True)
+async def say(ctx, *, message: str):
+    '''Say something as the bot.'''
+    if '{}say'.format(ctx.prefix) in message:
+        await bot.say("Don't ya dare spam.")
+    else:
+        await bot.say(message)
+
 @bot.command(pass_context=True,name='reload')
 async def _reload(ctx,*, module : str):
     """Reloads a module."""
