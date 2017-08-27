@@ -65,9 +65,6 @@ _extensions = [
     'cogs.cc'
     ]
 
-async def on_ready():
-    await bot.send_message(350630855342817292, "hi")
-
 @bot.event
 async def on_ready():
     bot.uptime = datetime.datetime.now()
