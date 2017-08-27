@@ -48,7 +48,7 @@ class Utility:
     async def translate(self, ctx, lang, *, text):
         """Translate text!"""		
         result = translate(text, lang)		
-        await self.bot.say('```{}```'.format(result))	
+        await self.bot.say('{}'.format(result))	
         
     @commands.command(pass_context=True)
     async def charinfo(self, ctx, *, characters: str):
