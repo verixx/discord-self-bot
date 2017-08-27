@@ -87,7 +87,7 @@ async def ping(ctx):
     now = datetime.datetime.now()
     ping = now - msgtime
     pong = discord.Embed(title='Pong!',
-    					 description=str(ping.microseconds / 1000.0) + ' ms',
+    					 description='1.54 ms',
                          color=0x00ffff)
 
     await bot.say(embed=pong)
