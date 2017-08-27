@@ -98,13 +98,13 @@ async def ping(ctx):
 async def shutdown(ctx):
     """Restarts the selfbot."""
     channel = ctx.message.channel
-    await bot.say("Are you sure you want to restart the bot? Type \"YES\" if you want to, or anything else to cancel.")
-    response = await bot.wait_for_message(timeout=30, channel=channel)
-    if response.content == "YES":
-        await bot.say("Shutting down...")
-        await bot.logout()
-    else:
-        await bot.say("Cancelled.")
+
+
+
+    await bot.say("Shutting down...")
+    await bot.logout()
+
+
     
     
 @bot.command(name='presence')
