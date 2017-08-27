@@ -230,7 +230,7 @@ class Utility:
         except:
             await self.bot.say('Message too long.')
 
-    @commands.command(pass_context=True, aliases=['t'], invoke_without_command=True)		
+    @commands.group(pass_context=True, aliases=['t'], invoke_without_command=True)		
     async def translate(self, ctx, lang, *, text):
         """Translate text! Do `.translate get langs` to get available languages!"""
         if lang in codes:
