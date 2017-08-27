@@ -31,7 +31,6 @@ def run_wizard():
     print('Successfully saved your data!')
     print('------------------------------------------')
 
-
 if 'TOKEN' in os.environ:
     heroku = True
     TOKEN = os.environ['TOKEN']
@@ -78,9 +77,6 @@ async def on_ready():
           '------------------------------------------'
     	  .format(bot.user, bot.user.id))
 
-
-
-
 @bot.command(pass_context=True)
 async def ping(ctx):
     """Pong! Check your response time."""
@@ -91,21 +87,14 @@ async def ping(ctx):
     pong = discord.Embed(title='Pong! Response Time:',
     					 description=str(ping.microseconds / 1000.0) + ' ms',
                          color=0x00ffff)
-
     await bot.say(embed=pong)
 
 @bot.command(pass_context=True)
 async def shutdown(ctx):
     """Restarts the selfbot."""
     channel = ctx.message.channel
-
-
-
     await bot.say("Shutting down...")
     await bot.logout()
-
-
-    
     
 @bot.command(name='presence')
 async def _set(Type,*,message=None):
@@ -181,8 +170,6 @@ async def coglist(ctx):
                 to_send = in_text[:closest_delim]
             yield to_send
             in_text = in_text[closest_delim:]
-
-
         yield in_text
 
     def box(text, lang=""):
