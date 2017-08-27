@@ -68,7 +68,8 @@ _extensions = [
 @bot.event
 async def on_ready():
     bot.uptime = datetime.datetime.now()
-    print('Self-Bot Ready!\n'
+    print('------------------------------------------\n'
+          'Self-Bot Ready!\n'
     	  '------------------------------------------\n'
     	  'Username: {}\n'
           'User ID: {}\n'
