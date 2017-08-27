@@ -80,13 +80,19 @@ async def on_ready():
 
 
 @bot.command(pass_context=True)
+@bot.command(pass_context=True)
 async def ping(ctx):
     """Pong! Check your response time."""
+    msgtime = ctx.message.timestamp.now()
+    await (await bot.ws.ping())
+    now = datetime.datetime.now()
+    ping = now - msgtime
     pong = discord.Embed(title='Pong!',
-    					 description='1.54 ms',
+    					 description=str(ping.microseconds / 1000.0) + ' ms',
                          color=0x00ffff)
 
     await bot.say(embed=pong)
+
 
 @bot.command(pass_context=True)
 async def restart(ctx):
