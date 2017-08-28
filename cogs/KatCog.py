@@ -24,7 +24,7 @@ class KatCog:
     if 'testing' in message:
       await self.bot.say(embed=em)
     if 'list' in message:
-      await self.bot.say(embed=list)
+     await self.bot.say(embed=list)
     
   @commands.command(pass_context = True)
   async def slap(self,ctx, *, person: str):
