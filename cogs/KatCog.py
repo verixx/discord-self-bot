@@ -16,10 +16,10 @@ class KatCog:
     await self.bot.say(message)
 
   @commands.command(pass_context = True)
-  async def meme(self, ctx, *, meme : str=None):
+  async def meme(self, ctx, *, message : str=None):
     '''Post certain memes'''
     em=discord.Embed(colour=discord.Colour(value=int(("#%06x" % random.randint(8, 0xFFFFFF)),16)), description=meme)
-    if 'testing' in meme:
+    if 'testing' in message:
       em.set_image(url="https://images-ext-1.discordapp.net/external/I2njA8Ftmb2rA34vLWK__QVBgH8v4qCh-ZNfIBZ9PUA/%3Fsize%3D2048/https/cdn.discordapp.com/avatars/300396755193954306/a73725eaa41bf59a73d283f35b280781.png?width=96&height=96") # An avatar link to demonstrate
 
     await self.bot.say(embed=em)
