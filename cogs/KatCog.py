@@ -21,8 +21,7 @@ class KatCog:
     doge=discord.Embed(color=0xed, description='Doge')
     list=discord.Embed(title='Memes:', description='Doge\nFeelsBadMan', color=0xed)
     doge.set_image(url="http://i0.kym-cdn.com/entries/icons/mobile/000/013/564/doge.jpg")
-    pepe=discord.Embed(color=0xed, description='FeelsBadMan'
-    pepe.set_image(url="https://ih0.redbubble.net/image.88041583.8786/st%2Csmall%2C215x235-pad%2C210x230%2Cf8f8f8.lite-1.jpg")
+    pepe=discord.Embed(color=0xed, description='FeelsBadMan')
     if 'doge' in message:
       await self.bot.say(embed=doge)
     if 'list' in message:
