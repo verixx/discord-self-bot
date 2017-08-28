@@ -269,6 +269,15 @@ class Utility2:
         return
 
 
+    @commands.command(pass_context=True)
+    async def copyembed(self, ctx):
+        channel = ctx.message.channel
+        messages = []
+        async for m in self.bot.logs_from(channel, limit=2):
+            messages.append(m)
+        message = messages[1]
+        await self.bot.say('```'+str(message.embeds[0])+'```')
+
 
     @commands.command(pass_context=True)
     async def edit(self, ctx, *msg):
