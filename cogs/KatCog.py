@@ -18,13 +18,17 @@ class KatCog:
   @commands.command(pass_context = True)
   async def meme(self, ctx, *, message : str=None):
     '''Post certain memes'''
-    doge=discord.Embed(color=0xed, description='meme')
+    doge=discord.Embed(color=0xed, description='Doge')
     list=discord.Embed(title='Memes:', description='Doge\nFeelsBadMan', color=0xed)
     doge.set_image(url="http://i0.kym-cdn.com/entries/icons/mobile/000/013/564/doge.jpg")
+    pepe=discord.Embed(color=0xed, description='FeelsBadMan'
+    pepe.set_name(url="https://m.imgur.com/gallery/aSVjtu7")
     if 'doge' in message:
       await self.bot.say(embed=doge)
     if 'list' in message:
       await self.bot.say(embed=list)
+    if 'FeelsBadMan' in message:
+      await self.bot.say(embed=pepe)
     
   @commands.command(pass_context = True)
   async def slap(self,ctx, *, person: str):
