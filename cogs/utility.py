@@ -12,6 +12,11 @@ import aiohttp
 from lxml import etree
 from mtranslate import translate
 import random
+from urllib.parse import parse_qs, quote_plus
+import traceback
+import textwrap
+from contextlib import redirect_stdout
+import io
 
 codes = {'ab': 'Abkhaz',
     'aa': 'Afar',

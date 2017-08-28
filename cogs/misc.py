@@ -9,7 +9,6 @@ import json
 import requests
 import os
 import aiohttp
-import time
 
 class Misc():
 

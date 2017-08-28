@@ -116,16 +116,20 @@ class Moderation:
         else:
             await self.bot.send_message(ctx.message.channel, 'Too many messages to delete. Enter a number < 10000')
 
-
+            
     @commands.command(aliases=['c'], pass_context=True)
-    async def clean(self, ctx, msgs: int = 100):
+    async def clean(self, ctx, msgs: int = 1):
         '''Shortcut to clean all your messages.'''
         await self.bot.delete_message(ctx.message)
+        n = 0 
         if msgs < 10000:
-            async for message in self.bot.logs_from(ctx.message.channel, limit=msgs):
+            async for message in self.bot.logs_from(ctx.message.channel, limit=2*msgs+10):
                 try:
                     if message.author == self.bot.user:
+                        if(n>=msgs):
+                            return
                         await self.bot.delete_message(message)
+                        n += 1
                 except:
                     pass
         else:
