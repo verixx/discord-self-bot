@@ -63,7 +63,8 @@ _extensions = [
     'cogs.info',
     'cogs.utils',
     'cogs.mod',
-	'cogs.cc'
+    'cogs.cc',
+    'cogs.ascii'
 
     ]
 
@@ -305,7 +306,7 @@ async def _reload(ctx,*, module : str):
     channel = ctx.message.channel
     module = 'cogs.'+module
     try:
-        bot.unload_extension(module)
+        bot.unload_s(module)
         x = await bot.send_message(channel,'Successfully Unloaded.')
         bot.load_extension(module)
         x = await bot.edit_message(x,'Successfully Reloaded.')
