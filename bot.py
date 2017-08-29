@@ -63,8 +63,7 @@ _extensions = [
     'cogs.info',
     'cogs.utils',
     'cogs.mod',
-    'cogs.cc',
-    'cogs.ascii'
+    'cogs.cc'
 
     ]
 
