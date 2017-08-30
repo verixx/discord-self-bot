@@ -321,7 +321,7 @@ class EmbedHelp(HelpFormatter):
             cog = tup[1].cog_name
             # we insert the zero width space there to give it approximate
             # last place sorting position.
-            return cog + ':' if cog is not None else '\u200bBot Related:'
+            return cog + ':' if cog is not None else 'Default:'
 
         if self.is_bot():
             data = sorted(self.filter_command_list(), key=category)
