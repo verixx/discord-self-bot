@@ -232,7 +232,7 @@ class Utility:
 
     @commands.group(pass_context=True, aliases=['t'], invoke_without_command=True)		
     async def translate(self, ctx, lang, *, text):
-        """Translate text! Do .translate langs to get available languages!"""
+        """Translate text! """
         if lang in codes:
             return await self.bot.say('```{}```'.format(translate(text, lang)))
         lang = dict(zip(codes.values(),codes.keys())).get(lang.lower().title())
