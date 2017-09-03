@@ -132,25 +132,28 @@ class Moderation:
             await self.bot.send_message(ctx.message.channel, 'Too many messages to delete. Enter a number < 10000')
 
     @commands.command(pass_context=True)
-    async def addrole(self, ctx, member: discord.Member, *rolename: str):
+    async def addrole(self, ctx, member: discord.Member, *, rolename: str):
         '''Add a role to someone else.'''
-        role = discord.utils.get(ctx.message.server.roles, name=" ".join(rolename))
+        role = discord.utils.find(lambda m: rolename.lower() in m.lower(), ctx.message.server.roles)
+        if not role:
+            return await self.bot.say('That role does not exist.')
         try:
             await self.bot.add_roles(member, role)
-            await self.bot.say("Done.")
+            await self.bot.say("Added: `{}`".format(role.name))
         except:
-            await self.bot.say("Either I do not have the perms or that role doesn't exist.")
+            await self.bot.say("I dont have the perms to add that role.")
 
     @commands.command(pass_context=True)
-    async def removerole(self, ctx, member: discord.Member, *rolename: str):
+    async def removerole(self, ctx, member: discord.Member, *, rolename: str):
         '''Remove a role from someone else.'''
-        " ".join(rolename)
+        role = discord.utils.find(lambda m: rolename.lower() in m.lower(), ctx.message.server.roles)
+        if not role:
+            return await self.bot.say('That role does not exist.')
         try:
-            role = discord.utils.get(ctx.message.server.roles, name=" ".join(rolename))
             await self.bot.remove_roles(member, role)
-            await self.bot.say("Done.")
+            await self.bot.say("Removed: `{}`".format(role.name))
         except:
-            await self.bot.say("Either I do not have the perms or that role doesn't exist.")
+            await self.bot.say("I dont have the perms to add that role.")
 
 
 def setup(bot):
