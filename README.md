@@ -1,6 +1,8 @@
 <div align="center">
-        <p> <img src="https://i.imgur.com/5bDMtFz.png" /></p>
+        
+	<p> <img src="https://i.imgur.com/5bDMtFz.png" /> </p>
         <p><i><b>Moderation, fun, utility and much more!</b></i></p>
+	
 	
 	<p> 
 		<a href="https://discord.gg/pmQSbAd"><img src="https://discordapp.com/api/guilds/345787308282478592/widget.png?style=banner2" alt="" /></a>
