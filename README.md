@@ -1,8 +1,6 @@
-# selfbot.py
-
-#### *Moderation, fun, utility and much more!*
 <div align="center">
-        <p><b> Hi there </b></p>
+        <title>selfbot.py</title>
+        <p><i><b>Moderation, fun, utility and much more!</b></i></p>
 	<p> 
 		<a href="https://discord.gg/pmQSbAd"><img src="https://discordapp.com/api/guilds/345787308282478592/widget.png?style=banner2" alt="" /></a>
 	</p>
