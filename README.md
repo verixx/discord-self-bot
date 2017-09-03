@@ -38,7 +38,7 @@ First navigate into the data folder and open `config.json`, edit it to put your 
 ```
 Alternatively, you could open a terminal in the directory of the bots location and type
 ```
-$ python3 bot.py
+$ python3 selfbot.py
 ```
 On first start the launcher will run and you will need to input data. After that the bot will launch without setup neccessary.
 
