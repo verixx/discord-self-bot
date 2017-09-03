@@ -63,3 +63,9 @@ These are the [default commands](https://github.com/verixx/selfbot/wiki/Default-
 > [@umbresp](https://github.com/umbresp)
 
 > [@fourjr](https://github.com/fourjr)
+
+## Acknowledgements
+
+> Eval command by [Rapptz](https://github.com/Rapptz) from R.Danny
+
+> Embed command by [Appu](https://github.com/appu1232)
