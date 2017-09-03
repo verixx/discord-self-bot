@@ -660,6 +660,22 @@ class Utility:
             coin = 'Tail'
         emb = discord.Embed(color=discord.Color.gold(), title="You Flipped A...", description = coin)
         await self.bot.say('', embed = emb)
+
+    @commands.command(pass_context=True)
+    async def channels(self, ctx):
+        """Return all channels"""
+        text = []
+        voice = []
+        for channel in ctx.message.server.channels:
+            if channel.type == discord.ChannelType.voice:
+                voice.append(channel.name)
+        for channel in ctx.message.server.channels:
+            if channel.type == discord.ChannelType.text:
+                text.append('#'+channel.name)
+        em1 = discord.Embed(title="Text Channels", description="\n".join(text), color=discord.Color.green())
+        em2 = discord.Embed(title="Voice Channels", description="\n".join(voice), color=discord.Color.orange())
+        await self.bot.say(embed=em1)
+        await self.bot.say(embed=em2)
         
 
 def setup(bot):
