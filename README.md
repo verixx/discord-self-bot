@@ -1,7 +1,6 @@
 # selfbot.py
 <div align="center">
-        
-	<p> <img src="https://i.imgur.com/5bDMtFz.png" /> </p>
+        <p> <img src="https://i.imgur.com/5bDMtFz.png"/> </p>
         <p><i><b>Moderation, fun, utility and much more!</b></i></p>
 	
 	
