@@ -1,5 +1,6 @@
 <div align="center">
         <p><i><b>Moderation, fun, utility and much more!</b></i></p>
+	<p> <img src="https://i.imgur.com/We1dLY2.png" /></p>
 	<p> 
 		<a href="https://discord.gg/pmQSbAd"><img src="https://discordapp.com/api/guilds/345787308282478592/widget.png?style=banner2" alt="" /></a>
 	</p>
