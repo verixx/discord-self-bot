@@ -40,14 +40,14 @@ On first start the launcher will run and you will need to input data. After that
 
 ## Features
 
-The default set of modules includes:
 * Moderation commands
 * Global emoji commands
 * Complex embed commands
 * Custom formatted paginated help
 * Miscellaneous commands
 * Easy to make your own commands
-* Stateless selfbot (Saves no data) *This means that you can [host it on heroku](https://github.com/verixx/selfbot/wiki/Heroku) 24/7 for free*  
+
+This is a `stateless selfbot` (Saves no data) *This means that you can [host it on heroku](https://github.com/verixx/selfbot/wiki/Heroku) 24/7 for free*  
 
 These are the [default commands](https://github.com/verixx/selfbot/wiki/Default-Commands)
 ## Contributors
