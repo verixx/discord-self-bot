@@ -130,7 +130,27 @@ class Moderation:
                     pass
         else:
             await self.bot.send_message(ctx.message.channel, 'Too many messages to delete. Enter a number < 10000')
-        
+
+    @commands.command(pass_context=True)
+    async def addrole(self, ctx, member: discord.Member, *rolename: str):
+        '''Add a role to someone else.'''
+        role = discord.utils.get(ctx.message.server.roles, name=" ".join(rolename))
+        try:
+            await self.bot.add_roles(member, role)
+            await self.bot.say("Done.")
+        except:
+            await self.bot.say("Either I do not have the perms or that role doesn't exist.")
+
+    @commands.command(pass_context=True)
+    async def removerole(self, ctx, member: discord.Member, *rolename: str):
+        '''Remove a role from someone else.'''
+        " ".join(rolename)
+        try:
+            role = discord.utils.get(ctx.message.server.roles, name=" ".join(rolename))
+            await self.bot.remove_roles(member, role)
+            await self.bot.say("Done.")
+        except:
+            await self.bot.say("Either I do not have the perms or that role doesn't exist.")
 
 
 def setup(bot):
