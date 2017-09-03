@@ -134,7 +134,7 @@ class Moderation:
     @commands.command(pass_context=True)
     async def addrole(self, ctx, member: discord.Member, *, rolename: str):
         '''Add a role to someone else.'''
-        role = discord.utils.find(lambda m: rolename.lower() in m.lower(), ctx.message.server.roles)
+        role = discord.utils.find(lambda m: rolename.lower() in m.name.lower(), ctx.message.server.roles)
         if not role:
             return await self.bot.say('That role does not exist.')
         try:
@@ -146,7 +146,7 @@ class Moderation:
     @commands.command(pass_context=True)
     async def removerole(self, ctx, member: discord.Member, *, rolename: str):
         '''Remove a role from someone else.'''
-        role = discord.utils.find(lambda m: rolename.lower() in m.lower(), ctx.message.server.roles)
+        role = discord.utils.find(lambda m: rolename.lower() in m.name.lower(), ctx.message.server.roles)
         if not role:
             return await self.bot.say('That role does not exist.')
         try:
