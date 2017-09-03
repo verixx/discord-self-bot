@@ -134,7 +134,7 @@ class Moderation:
     @commands.command(pass_context=True)
     async def addrole(self, ctx, member: discord.Member, *, rolename: str):
         '''Add a role to someone else.'''
-        role = discord.utils.find(lambda m: rolename.lower() in m.name.lower(), ctx.message.server.roles)
+        role = discord.utils.find(lambda m: rolename.lower() in m.lower(), ctx.message.server.roles)
         if not role:
             return await self.bot.say('That role does not exist.')
         try:
@@ -146,7 +146,7 @@ class Moderation:
     @commands.command(pass_context=True)
     async def removerole(self, ctx, member: discord.Member, *, rolename: str):
         '''Remove a role from someone else.'''
-        role = discord.utils.find(lambda m: rolename.lower() in m.name.lower(), ctx.message.server.roles)
+        role = discord.utils.find(lambda m: rolename.lower() in m.lower(), ctx.message.server.roles)
         if not role:
             return await self.bot.say('That role does not exist.')
         try:
@@ -154,6 +154,22 @@ class Moderation:
             await self.bot.say("Removed: `{}`".format(role.name))
         except:
             await self.bot.say("I dont have the perms to add that role.")
+            
+       
+    @commands.command(no_pm = True, pass_context = True)
+    async def mute(self, ctx, member: discord.Member):
+       '''Mute a member'''
+       server_roles = [role for role in ctx.message.server.roles if not role.is_everyone]
+       muted = discord.utils.get(server_roles, name='Muted')
+       if not discord.utils.get(member.roles, name='Mod'):
+             if not discord.utils.get(member.roles, name='Muted'):
+                 try:
+                     await self.bot.add_roles(member,muted)
+                     await self.bot.say('{0.mention} has been muted.'.format(member))
+                     await self.bot.delete_message(ctx.message)
+                 except discord.Forbidden:
+                     await self.bot.say('You dont have the perms for that. Get rekt.')
+                     await self.bot.delete_message(ctx.message)     
 
 
 def setup(bot):
