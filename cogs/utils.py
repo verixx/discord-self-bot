@@ -666,11 +666,10 @@ class Utility:
         """Return all channels"""
         text = []
         voice = []
-        for channel in ctx.message.server.channels:
+        for channel in sorted(ctx.message.server.channels, key=lambda c: c.position):
             if channel.type == discord.ChannelType.voice:
                 voice.append(channel.name)
-        for channel in ctx.message.server.channels:
-            if channel.type == discord.ChannelType.text:
+            else:
                 text.append('#'+channel.name)
         em1 = discord.Embed(title="Text Channels", description="\n".join(text), color=discord.Color.green())
         em2 = discord.Embed(title="Voice Channels", description="\n".join(voice), color=discord.Color.orange())
