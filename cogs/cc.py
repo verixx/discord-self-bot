@@ -24,11 +24,23 @@ class cog:
     em.set_author(name = "4JR", icon_url = "https://discordapp.com/api/v6/users/180314310298304512/avatars/eb45214491b879d0db62a8165148a311.jpg")
     await self.bot.say(embed=em)
     
-  async def on_message(self, message):
-    if message.author != self.bot.user:
-      return
-    if message.content.startswith('hi'):
-      await self.bot.add_reaction(message, '👌')
+  @commands.command() 
+  async def status(self, *, text):
+    if text == 'online':
+       await bot.change_presence(status=discord.Status.online, afk=True)
+    if text == 'idle':
+       await bot.change_presence(status=discord.Status.idle, afk=True)
+    if text == 'dnd':
+       await bot.change_presence(status=discord.Status.dnd, afk=True)
+    if text == 'invisible':
+       await bot.change_presence(status=discord.Status.invisible, afk=True)
+ 
+    
+  #async def on_message(self, message):
+    #if message.author != self.bot.user:
+      #return
+    #if message.content.startswith('hi'):
+      #await self.bot.add_reaction(message, '👌')
     
 def setup(bot):
   bot.add_cog(cog(bot))
