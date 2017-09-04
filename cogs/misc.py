@@ -152,7 +152,7 @@ class Misc():
         """
         Embed or copy a custom emoji (from any server). 
         Usage: 
-        `emoji :smug:` [Will display the smug emoji as an image] **or**
+        `emoji :smug:` [Will display the smug emoji as an image] **or** 
         `emoji copy :smug:` [Will add the emoji as a custom emote for the server]
         """
         copy_emote_bool = False
