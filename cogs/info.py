@@ -97,29 +97,15 @@ class Info():
     async def userinfo(self,ctx, user: discord.Member = None):
         '''See information about a user or yourself.'''
         server = ctx.message.server
-        if user:
-            pass
-        else:
-            user = ctx.message.author
-        avi = user.avatar_url
-        if avi:
-            pass
-        else:
-            avi = user.default_avatar_url
+        user = user or ctx.message.author
+        avi = user.avatar_url or user.default_avatar_url
         roles = sorted(user.roles, key=lambda c: c.position)
         roles = roles[::-1]
         for role in roles:
             if str(role.color) != "#000000":
                 color = int(str(role.color)[1:], 16)
                 break
-        rolenames = []
-        if roles:
-            for role in roles:
-                if role.name != "@everyone":
-                     rolenames.append(role.name)
-            roles = ", ".join(rolenames)
-        else:
-            roles = 'None'
+        rolenames = ', '.join(filterd(lambda r: r.name != '@everyone', user.roles)) or 'None'
         time = ctx.message.timestamp
         desc = '{0} is chilling in {1} mode.'.format(user.name,user.status)
         member_number = sorted(server.members,key=lambda m: m.joined_at).index(user) + 1
