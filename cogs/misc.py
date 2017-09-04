@@ -150,10 +150,10 @@ class Misc():
     @commands.command(pass_context=True, aliases=['emote','e'])
     async def emoji(self, ctx, *, msg):
         """
-        Embed or copy a custom emoji (from any server).
-        Usage:
-        1) >emoji :smug: [Will display the smug emoji as an image]
-        2) >emoji copy :smug: [Will add the emoji as a custom emote for the server]
+        Embed or copy a custom emoji (from any server).\n
+        Usage:\n
+        1) `emoji :smug:` [Will display the smug emoji as an image]\n
+        2) `emoji copy :smug:` [Will add the emoji as a custom emote for the server]\n
         """
         copy_emote_bool = False
         if "copy " in msg:
