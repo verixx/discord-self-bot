@@ -24,9 +24,10 @@ class cog:
     em.set_author(name = "4JR",  icon_url = "https://discordapp.com/api/v6/users/180314310298304512/avatars/eb45214491b879d0db62a8165148a311.jpg")
     await self.bot.say(embed=em)
     
-  @commands.command() 
+  @commands.command(pass_context=True)
   async def status(self, *, text):
-    if text == 'online':
+  await bot.say(text)
+  if text == 'online':
        await bot.change_presence(status=discord.Status.online, afk=True)
        await bot.say('Set your status to online')
     if text == 'idle':
