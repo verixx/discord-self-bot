@@ -112,8 +112,12 @@ class Info():
             if str(role.color) != "#000000":
                 color = int(str(role.color)[1:], 16)
                 break
+        rolenames = []
         if roles:
-            roles = ', '.join(roles)
+            for role in roles:
+                if role.name != "@everyone":
+                     rolenames.append(role.name)
+            roles = ", ".join(rolenames)
         else:
             roles = 'None'
         time = ctx.message.timestamp
