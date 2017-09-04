@@ -26,19 +26,19 @@ class cog:
     
   @commands.command(pass_context=True)
   async def status(self, *, text):
-  await bot.say(text)
-  if text == 'online':
-       await bot.change_presence(status=discord.Status.online, afk=True)
-       await bot.say('Set your status to online')
-    if text == 'idle':
-       await bot.change_presence(status=discord.Status.idle, afk=True)
-       await bot.say('Set your status to idle')
-    if text == 'dnd':
-       await bot.change_presence(status=discord.Status.dnd, afk=True)
-       await bot.say('Set your status to DND')
-    if text == 'invis':
-       await bot.change_presence(status=discord.Status.invisible, afk=True)
-       await bot.say('Set your status to invisible')
+    await bot.say(text)
+    if text == 'online':
+         await bot.change_presence(status=discord.Status.online, afk=True)
+         await bot.say('Set your status to online')
+      if text == 'idle':
+         await bot.change_presence(status=discord.Status.idle, afk=True)
+         await bot.say('Set your status to idle')
+      if text == 'dnd':
+         await bot.change_presence(status=discord.Status.dnd, afk=True)
+         await bot.say('Set your status to DND')
+      if text == 'invis':
+         await bot.change_presence(status=discord.Status.invisible, afk=True)
+         await bot.say('Set your status to invisible')
 
     
 
