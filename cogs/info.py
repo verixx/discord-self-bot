@@ -114,7 +114,13 @@ class Info():
         time = ctx.message.timestamp
         desc = '{0} is chilling in {1} mode.'.format(user.name,user.status)
         member_number = sorted(server.members,key=lambda m: m.joined_at).index(user) + 1
-        em = discord.Embed(colour=0x00fffff,description = desc,timestamp=time)
+        roles_b = sorted(user.roles, key=lambda c: c.position)
+        roles_b = roles_b[::-1]
+        for role in roles_b:
+            if str(role.color) != "#000000":
+                color = int(str(role.color)[1:], 16)
+                break
+        em = discord.Embed(colour=color,description = desc,timestamp=time)
         em.add_field(name='Nick', value=user.nick, inline=True)
         em.add_field(name='Member No.',value=str(member_number),inline = True)
         em.add_field(name='Account Created', value=user.created_at.__format__('%A, %d. %B %Y'))
