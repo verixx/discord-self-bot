@@ -10,6 +10,7 @@ import requests
 import os
 import aiohttp
 import time
+from pyfiglet import figlet_format
 
 class Misc():
 
@@ -259,6 +260,30 @@ class Misc():
             await asyncio.sleep(0.2)
         await self.bot.say("", embed=discord.Embed(color=discord.Color.red(), title="Your love...", description="You love {} a whopping {}%!".format(person, random.randint(0, 100))))
         await self.bot.delete_message(ctx.message)
+
+    @commands.command(pass_context=True)
+    async def ascii(self, ctx, *, text):
+        """Turn regular text into ASCII Art!"""
+        def box(message):
+            rtn_msg = "```\n{}\n```".format(message)
+            return rtn_msg
+        msg = str(figlet_format(text, font='big'))
+        if msg[0] == " ":
+            msg = "." + msg[1:]
+        error = figlet_format('Try a shorter message',
+                              font='big')
+        if len(msg) > 500:
+            await self.bot.say(box(error))
+        else:
+            await self.bot.say(box(msg))
+            
+    @commands.command(pass_context = True)
+    async def slap(self,ctx, *, person: str):
+        name = ctx.message.author
+        embed=discord.Embed(color=0xed, title="{} has slapped {}".format(name.name, person))
+        embed.set_image(url="https://i.ytimg.com/vi/7AXB8nGq5jc/maxresdefault.jpg")
+        await self.bot.say(embed=embed)
+        await self.bot.delete_message(ctx.message) 
 
 def setup(bot):
     bot.add_cog(Misc(bot))

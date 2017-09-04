@@ -7,12 +7,8 @@ import asyncio
 import json
 
 class Info():
-
-
     def __init__(self, bot):
         self.bot = bot
-         
-
 
     @commands.command(pass_context=True,aliases=['s','serverinfo','si'], no_pm=True)
     async def server(self, ctx):
@@ -164,7 +160,7 @@ class Info():
         servers = len(self.bot.servers)
         version = '0.1.1'
         library = 'discord.py'
-        creator = 'verixx#7220'
+        creator = 'verix#7220'
         discord_ = '[Support Server](https://discord.gg/wkPy3sb)'
         github = '[/verixx/selfbot](https://github.com/verixx/selfbot)'
         time = ctx.message.timestamp
@@ -178,7 +174,7 @@ class Info():
         emb.add_field(name='Discord',value=discord_)
         emb.add_field(name='Uptime',value=time_)
         emb.set_footer(text="ID: {}".format(self.bot.user.id))
-        emb.set_thumbnail(url='https://discordapp.com/api/v6/users/180314310298304512/avatars/eb45214491b879d0db62a8165148a311.jpg?width=80&height=80')
+        emb.set_thumbnail(url='https://cdn.discordapp.com/avatars/319395783847837696/349677f658e864c0a5247a658df61eb1.webp?width=80&height=80')
         await self.bot.say(embed=emb)
 
     @commands.command(pass_context=True)
@@ -192,9 +188,6 @@ class Info():
                 await self.bot.say(embed=page)
             except:
                 await self.bot.say('I need the embed links perm.')
-
-
-
-
+                
 def setup(bot):
     bot.add_cog(Info(bot))
