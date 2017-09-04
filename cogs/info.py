@@ -97,24 +97,19 @@ class Info():
     async def userinfo(self,ctx, user: discord.Member = None):
         '''See information about a user or yourself.'''
         server = ctx.message.server
-        if user:
-            pass
-        else:
-            user = ctx.message.author
-        avi = user.avatar_url
-        if avi:
-            pass
-        else:
-            avi = user.default_avatar_url
-        roles = sorted([x.name for x in user.roles if x.name != "@everyone"])
-        if roles:
-            roles = ', '.join(roles)
-        else:
-            roles = 'None'
+        user = user or ctx.message.author
+        avi = user.avatar_url or user.default_avatar_url
+        roles = sorted(user.roles, key=lambda c: c.position)
+        roles = roles[::-1]
+        for role in roles:
+            if str(role.color) != "#000000":
+                color = int(str(role.color)[1:], 16)
+                break
+        rolenames = ', '.join(filterd(lambda r: r.name != '@everyone', user.roles)) or 'None'
         time = ctx.message.timestamp
         desc = '{0} is chilling in {1} mode.'.format(user.name,user.status)
         member_number = sorted(server.members,key=lambda m: m.joined_at).index(user) + 1
-        em = discord.Embed(colour=0x00fffff,description = desc,timestamp=time)
+        em = discord.Embed(colour=color,description = desc,timestamp=time)
         em.add_field(name='Nick', value=user.nick, inline=True)
         em.add_field(name='Member No.',value=str(member_number),inline = True)
         em.add_field(name='Account Created', value=user.created_at.__format__('%A, %d. %B %Y'))
