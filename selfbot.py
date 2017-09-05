@@ -76,6 +76,8 @@ async def on_ready():
           'User ID: {}\n'
           '------------------------------------------'
     	  .format(bot.user, bot.user.id))
+    await bot.change_presence(status=discord.Status.invisible, afk=True)
+ 
 
 @bot.command(pass_context=True)
 async def ping(ctx):
