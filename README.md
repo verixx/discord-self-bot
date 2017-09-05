@@ -51,7 +51,7 @@ On first start the launcher will run and you will need to input data. After that
 * Miscellaneous commands
 * Easy to make your own commands
 
-If you want to request features, create an issue on this repo.
+If you want to request features, [create an issue](https://github.com/verixx/selfbot/issues) on this repo.
 
 
 This is a `stateless selfbot` (Saves no data) *This means that you can [host it on heroku](https://github.com/verixx/selfbot/wiki/Heroku) 24/7 for free*  
