@@ -51,6 +51,9 @@ On first start the launcher will run and you will need to input data. After that
 * Miscellaneous commands
 * Easy to make your own commands
 
+
+
+
 This is a `stateless selfbot` (Saves no data) *This means that you can [host it on heroku](https://github.com/verixx/selfbot/wiki/Heroku) 24/7 for free*  
 
 These are the [default commands](https://github.com/verixx/selfbot/wiki/Default-Commands)

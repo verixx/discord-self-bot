@@ -155,17 +155,6 @@ class Moderation:
         except:
             await self.bot.say("I dont have the perms to add that role.")
 
-      
-    @commands.command(pass_context = True)
-    async def warn(self, ctx, user: discord.Member=None, reason=None):
-        '''Warn a member'''
-        warning = 'You have been warned in **{}** by **{}** for: **{}**'
-        server = ctx.message.server
-        author = ctx.message.author
-        await self.bot.say('**{}** has been warned'.format(user))
-        await self.bot.send_message(user, warning.format(server, author, reason))
-        await self.bot.delete_message(ctx.message)       
-
 
 def setup(bot):
         bot.add_cog(Moderation(bot))

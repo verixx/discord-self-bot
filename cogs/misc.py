@@ -279,7 +279,7 @@ class Misc():
             
     @commands.command(pass_context = True)
     async def slap(self,ctx, *, person: str):
-        """Slaps another user."""
+
         name = ctx.message.author
         embed=discord.Embed(color=0xed, title="{} has slapped {}".format(name.name, person))
         embed.set_image(url="https://i.ytimg.com/vi/7AXB8nGq5jc/maxresdefault.jpg")
