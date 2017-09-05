@@ -105,11 +105,13 @@ class Info():
             if str(role.color) != "#000000":
                 color = int(str(role.color)[1:], 16)
                 break
+
         rolenamelist = []
         for role in roles:
             if role.name != "@everyone":
                 rolenamelist.append(role.name)
         rolenames = ', '.join(rolenamelist) or 'None'
+
         time = ctx.message.timestamp
         desc = '{0} is chilling in {1} mode.'.format(user.name,user.status)
         member_number = sorted(server.members,key=lambda m: m.joined_at).index(user) + 1
