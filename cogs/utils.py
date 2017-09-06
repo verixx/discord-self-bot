@@ -675,6 +675,11 @@ class Utility:
         em2 = discord.Embed(title="Voice Channels", description="\n".join(voice), color=discord.Color.orange())
         await self.bot.say(embed=em1)
         await self.bot.say(embed=em2)
+
+    @commands.command(pass_context=True)
+    async def serverlogo(self, ctx):
+    	'''Get the server logo'''
+    	await self.bot.say("**{}'s Server Logo**\n{}".format(ctx.message.server.name, ctx.message.server.icon_url))
         
 
 def setup(bot):
