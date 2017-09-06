@@ -12,12 +12,12 @@ import textwrap
 import traceback
 
 def run_wizard():
-    print('------------------------------------------')
-    print('WELCOME TO THE VERIXX-SELFBOT SETUP WIZARD!')
-    print('------------------------------------------')
-    token = input('Enter your token:\n> ')
-    print('------------------------------------------')
-    prefix = input('Enter a prefix for your selfbot:\n> ')
+    print("------------------------------------------")
+    print("WELCOME TO THE VERIXX-SELFBOT SETUP WIZARD!")
+    print("------------------------------------------")
+    token = input("Enter your token:\n> ")
+    print("------------------------------------------")
+    prefix = input("Enter a prefix for your selfbot:\n> ")
     data = {
         "BOT": {
             "TOKEN" : token,
@@ -25,58 +25,59 @@ def run_wizard():
             },
         "FIRST" : False
         }
-    with open('data/config.json','w') as f:
+    with open("data/config.json","w") as f:
         f.write(json.dumps(data, indent=4))
-    print('------------------------------------------')
-    print('Successfully saved your data!')
-    print('------------------------------------------')
+    print("------------------------------------------")
+    print("Successfully saved your data!")
+    print("------------------------------------------")
 
-if 'TOKEN' in os.environ:
+if "TOKEN" in os.environ:
     heroku = True
-    TOKEN = os.environ['TOKEN']
+    TOKEN = os.environ["TOKEN"]
 else:
     heroku = False
-    with open('data/config.json') as f:
-        if json.load(f)['FIRST']:
+    with open("data/config.json") as f:
+        if json.load(f)["FIRST"]:
             run_wizard()
-    with open('data/config.json') as f:  
+    with open("data/config.json") as f:  
         TOKEN = json.load(f)["BOT"]['TOKEN']
 
 async def get_pre(bot, message):
-    if 'PREFIX' in os.environ:
-        return os.environ['PREFIX']
-        
-    with open('data/config.json') as f:
-        config = json.load(f)
-    try:
-        return config["BOT"]['PREFIX']
-    except:
-        return 's.'
+    if "PREFIX" in os.environ:
+        return os.environ["PREFIX"]
+    
+    else: 
+        with open("data/config.json") as f:
+            config = json.load(f)
+        try:
+            return config["BOT"]["PREFIX"]
+        except:
+            return "s."
 
 bot = commands.Bot(command_prefix=get_pre, self_bot=True, formatter=EmbedHelp())
-bot.remove_command('help')
+bot.remove_command("help")
 
 _extensions = [
 
-    'cogs.misc',
-    'cogs.info',
-    'cogs.utils',
-    'cogs.mod'
+    "cogs.misc",
+    "cogs.info",
+    "cogs.utils",
+    "cogs.mod"
 
     ]
 
 @bot.event
 async def on_ready():
     bot.uptime = datetime.datetime.now()
-    print('------------------------------------------\n'
-    	  'Self-Bot Ready\n'
-    	  'Author: verix#7220\n'
-    	  '------------------------------------------\n'
-    	  'Username: {}\n'
-          'User ID: {}\n'
-          '------------------------------------------'
+    print("------------------------------------------\n"
+    	  "Self-Bot Ready\n"
+    	  "Author: verix#7220\n"
+    	  "------------------------------------------\n"
+    	  "Username: {}\n"
+          "User ID: {}\n"
+          "------------------------------------------"
     	  .format(bot.user, bot.user.id))
-    await bot.change_presence(status=discord.Status.invisible, afk=True)
+    await bot.change_presence(status=discord.Status.online, afk=True)
  
 
 @bot.command(pass_context=True)
@@ -86,24 +87,17 @@ async def ping(ctx):
     await (await bot.ws.ping())
     now = datetime.datetime.now()
     ping = now - msgtime
-    pong = discord.Embed(title='Pong! Response Time:',
-    					 description=str(ping.microseconds / 1000.0) + ' ms',
+    pong = discord.Embed(title="Pong! Response Time:",
+    					 description=str(ping.microseconds / 1000.0) + " ms",
                          color=0x00ffff)
     await bot.say(embed=pong)
-
-@bot.command(pass_context=True)
-async def shutdown(ctx):
-    """Restarts the selfbot."""
-    channel = ctx.message.channel
-    await bot.say("Shutting down...")
-    await bot.logout()
     
-@bot.command(name='presence')
+@bot.command(name="presence")
 async def _set(Type,*,message=None):
     """Change your discord game/stream!"""
-    if Type.lower() == 'stream':
-        await bot.change_presence(game=discord.Game(name=message,type=1,url='https://www.twitch.tv/{}'.format(message)),status='online')
-        await bot.say('Set presence to. `Streaming {}`'.format(message))
+    if Type.lower() == "stream":
+        await bot.change_presence(game=discord.Game(name=message,type=1,url="https://www.twitch.tv/{}".format(message)),status="online")
+        await bot.say("Set presence to. `Streaming {}`".format(message))
     elif Type.lower() == 'game':
         await bot.change_presence(game=discord.Game(name=message))
         await bot.say('Set presence to `Playing {}`'.format(message))
