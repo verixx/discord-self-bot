@@ -679,7 +679,10 @@ class Utility:
     @commands.command(pass_context=True)
     async def serverlogo(self, ctx):
     	'''Get the server logo'''
-    	await self.bot.say("**{}'s Server Logo**\n{}".format(ctx.message.server.name, ctx.message.server.icon_url))
+        em = discord.Embed(color=random.randint(0,0xFFFFFF))
+        em.set_image(url=ctx.message.server.icon_url)
+        em.set_author(name=ctx.message.server.name, url=ctx.message.server.icon_url)
+    	await self.bot.say(embed=em)
         
 
 def setup(bot):
