@@ -25,8 +25,25 @@ lxml
 Pillow
 mtranslate
 ```
+
+## [Normal Installation](https://github.com/verixx/selfbot/wiki)
+You need the following to run the bot: (currently) 
+```py
+discord.py[rewrite]
+lxml
+mtranslate
+colorthief
+```
+Do `pip install -r path/to/requirements.txt` to install the requirements.
 ## Setup
-First navigate into the data folder and open `config.json`, edit it to put your token and prefix in. And set `FIRST` to `false`
+
+Open a terminal in the directory of the bots location and type
+```
+$ python3 selfbot.py
+```
+On first start the launcher will run and you will need to input data. After that the bot will launch without setup neccessary.
+
+If you need to edit your token or prefix, navigate into the data folder and open `config.json` and change the values.
 ```json
 {
     "FIRST": false,
@@ -36,11 +53,6 @@ First navigate into the data folder and open `config.json`, edit it to put your 
     }
 }
 ```
-Alternatively, you could open a terminal in the directory of the bots location and type
-```
-$ python3 selfbot.py
-```
-On first start the launcher will run and you will need to input data. After that the bot will launch without setup neccessary.
 
 ## Features
 
