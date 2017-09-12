@@ -26,17 +26,6 @@ Pillow
 mtranslate
 ```
 
-## [Normal Installation](https://github.com/verixx/selfbot/wiki)
-You need the following to run the bot: (currently) 
-```py
-discord.py[rewrite]
-lxml
-mtranslate
-colorthief
-```
-Do `pip install -r path/to/requirements.txt` to install the requirements.
-## Setup
-
 Open a terminal in the directory of the bots location and type
 ```
 $ python3 selfbot.py
