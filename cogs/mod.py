@@ -43,7 +43,7 @@ class Mod:
             emb = discord.Embed(title='Kick')
             emb.color = await ctx.get_dominant_color(member.avatar_url)
             emb.set_thumbnail(url=member.avatar_url)
-            await self.bot.delete_message(ctx.message)
+            await ctx.message.delete()
             try:
                 emb.description = "{} was just kicked.".format(member)
                 await self.bot.kick(member)
