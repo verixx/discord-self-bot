@@ -66,33 +66,34 @@ class Information:
         await ctx.send(embed=data)
 
     @commands.command(aliases=['ui'])
-    @commands.guild_only()
     async def userinfo(self, ctx, *, member : commands.MemberConverter=None):
         '''Get information about a member of a server'''
-        server = ctx.guild
         user = member or ctx.message.author
         avi = user.avatar_url
-        roles = sorted(user.roles, key=lambda c: c.position)
-
-        for role in roles:
-            if str(role.color) != "#000000":
-                color = int(str(role.color)[1:], 16)
-
-        rolenames = ', '.join([r.name for r in roles]) or 'None'
         time = ctx.message.created_at
         desc = '{0} is chilling in {1} mode.'.format(user.name, user.status)
-        member_number = sorted(server.members, key=lambda m: m.joined_at).index(user) + 1
-
         em = discord.Embed(colour=color, description=desc, timestamp=time)
+	
+	if ctx.guild:
+            server = ctx.guild
+            roles = sorted(user.roles, key=lambda c: c.position)
+            for role in roles:
+                if str(role.color) != "#000000":
+                    color = int(str(role.color)[1:], 16)
+	    rolenames = ', '.join([r.name for r in roles]) or 'None'
+	    member_number = sorted(server.members, key=lambda m: m.joined_at).index(user) + 1
+            em.add_field(name='Member No.',value=str(member_number),inline = True)
+	    em.add_field(name='Join Date', value=user.joined_at.__format__('%A, %d. %B %Y'))
+            em.add_field(name='Roles', value=rolenames, inline=True)
+	    em.set_author(name=user, icon_url=server.icon_url)
+	
+	else:
+            em.set_author(name=user, icon_url=avi)
+            
         em.add_field(name='Nick', value=user.nick, inline=True)
-        em.add_field(name='Member No.',value=str(member_number),inline = True)
         em.add_field(name='Account Created', value=user.created_at.__format__('%A, %d. %B %Y'))
-        em.add_field(name='Join Date', value=user.joined_at.__format__('%A, %d. %B %Y'))
-        em.add_field(name='Roles', value=rolenames, inline=True)
         em.set_footer(text='User ID: '+str(user.id))
         em.set_thumbnail(url=avi)
-        em.set_author(name=user, icon_url=server.icon_url)
-
         await ctx.send(embed=em)
 
     @commands.command(aliases=['bot', 'info'])
