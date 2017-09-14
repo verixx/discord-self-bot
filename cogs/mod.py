@@ -41,16 +41,16 @@ class Information:
     @commands.command()
     async def kick(self, ctx, member : commands.MemberConverter):
             '''Kick someone from the server.'''
+            emb = discord.Embed(title='Kick')
+            emb.color = await ctx.get_dominant_color(member.avatar_url)
+            emb.set_thumbnail(member.avatar_url)
+            await self.bot.delete_message(ctx.message)
             try:
-                emb = discord.Embed(color=0x00FFFF, description='{} was kicked.'.format(member), title='Kick')
-                emb.set_thumbnail(member.avatar_url)
+                emb.description = "{} was just kicked.".format(member)
                 await self.bot.kick(member)
-                await self.bot.send(embed=emb)
-                await self.bot.delete_message(ctx.message)
             except:
-                await self.bot.send(discord.Embed(color=0x00FFFF, description='You do not have permissions to kick users.', title='Kick'))
-                await asyncio.sleep(5)
-                await self.bot.delete_message(ctx.message)
+                emb.description = "You do not have the permissions to kick users."
+            await self.bot.send(embed=emb)
 
 
 def setup(bot):
