@@ -27,14 +27,13 @@ from discord.ext import commands
 from urllib.parse import urlparse
 import datetime
 import asyncio
-import psutil
 import random
 import pip
 import os
 import io
 
 
-class Information:
+class Mod:
     def __init__(self, bot):
         self.bot = bot
 
@@ -54,4 +53,4 @@ class Information:
 
 
 def setup(bot):
-	bot.add_cog(Information(bot))
+	bot.add_cog(Mod(bot))
