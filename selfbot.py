@@ -247,7 +247,6 @@ class Selfbot(commands.Bot):
             embed.color = await ctx.get_dominant_color(ctx.author.avatar_url)
             await destination.send(embed=embed)
 
-
 if __name__ == '__main__':
     Selfbot.init()
 
