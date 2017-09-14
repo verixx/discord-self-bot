@@ -39,17 +39,32 @@ class Mod:
 
     @commands.command()
     async def kick(self, ctx, member : commands.MemberConverter):
-            '''Kick someone from the server.'''
-            emb = discord.Embed(title='Kick')
-            emb.color = await ctx.get_dominant_color(member.avatar_url)
-            emb.set_thumbnail(url=member.avatar_url)
-            await ctx.message.delete()
-            try:
-                emb.description = "{} was just kicked.".format(member)
-                await ctx.guild.kick(member)
-            except Exception as e:
-                emb.description = "You do not have the permissions to kick users."
-            await ctx.send(embed=emb)
+        '''Kick someone from the server.'''
+        emb = discord.Embed(title='Kick')
+        emb.color = await ctx.get_dominant_color(member.avatar_url)
+        emb.set_thumbnail(url=member.avatar_url)
+        await ctx.message.delete()
+        try:
+            emb.description = "{} was just kicked.".format(member)
+            await ctx.guild.kick(member)
+        except:
+            emb.description = "You do not have the permissions to kick users."
+        await ctx.send(embed=emb)
+
+    @commands.command()
+    async def ban(self, ctx, member : commands.MemberConverter):
+        '''Ban someone from the server.'''
+        emb = discord.Embed(title='Ban')
+        emb.color = await ctx.get_dominant_color(member.avatar_url)
+        emb.set_thumbnail(url=member.avatar_url)
+        await ctx.message.delete()
+        try:
+            emb.description = "{} was just banned.".format(member)
+            await ctx.guild.ban(member)
+        except:
+            emb.description = "You do not have the permissions to kick users."
+        await ctx.send(embed=emb)
+
 
 
 def setup(bot):
