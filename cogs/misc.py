@@ -28,9 +28,9 @@ from ext.utility import parse_equation
 from ext.colours import ColorNames
 from sympy import solve
 from PIL import Image
+import emoji
 import asyncio
 import random
-import emoji
 import copy
 import io
 
@@ -132,16 +132,17 @@ class Misc:
         em.add_field(name='Result', value=f'```py\n{result}```')
         await ctx.send(embed=em)
 
-    @commands.group(invoke_without_command=True)
-    async def emote(self, ctx, *, emoji : commands.EmojiConverter):
+    @commands.group(invoke_without_command=True, aliases=['emote', 'e'])
+    async def emoji(self, ctx, *, emoji : commands.EmojiConverter):
         '''Use emojis without nitro!'''
         await ctx.message.delete()
-        async with ctx.session.get(emoji.url) as resp:
+        shrink_url = "https://process.filestackapi.com/AhTgLagciQByzXpFGRI0Az/resize=width:50/{}".format(emoji.url)
+        async with ctx.session.get(shrink_url) as resp:
             image = await resp.read()
         with io.BytesIO(image) as file:
             await ctx.send(file=discord.File(file, 'emoji.png'))
 
-    @emote.command()
+    @emoji.command()
     async def copy(self, ctx, *, emoji : commands.EmojiConverter):
         '''Copy an emoji from another server to your own'''
         em = discord.Embed(color=discord.Color.green(), title=f'Added Emote: {emoji.name}')

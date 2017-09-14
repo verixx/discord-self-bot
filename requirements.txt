@@ -3,3 +3,5 @@ lxml
 mtranslate
 colorthief
 sympy
+psutil
+emoji
