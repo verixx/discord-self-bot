@@ -49,7 +49,7 @@ class Mod:
                 await self.bot.kick(member)
             except:
                 emb.description = "You do not have the permissions to kick users."
-            await self.bot.send(embed=emb)
+            await ctx.send(embed=emb)
 
 
 def setup(bot):
