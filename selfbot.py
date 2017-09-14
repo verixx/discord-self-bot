@@ -113,12 +113,12 @@ class Selfbot(commands.Bot):
         if not hasattr(self, 'uptime'):
             self.uptime = datetime.datetime.utcnow()
         print('---------------')
-        print('selfbot.py connected!')
+        print('Selfbot.py connected!')
         print('---------------')
-        print('author: verixx#7220')
+        print('Author: verixx#7220')
         print('---------------')
-        print('logged in as: {}'.format(self.user))
-        print('user id: {}'.format(self.user.id))
+        print('Logged in as: {}'.format(self.user))
+        print('User id: {}'.format(self.user.id))
         print('---------------')
 
     async def on_command(self, ctx):
@@ -184,7 +184,7 @@ class Selfbot(commands.Bot):
 
 
 if __name__ == '__main__':
-    Selfbot.init("mfa.g4iaiyrv1mUNh_c8S3nrMAyH4Z-xilSu3L2ZsADnP0fv0eQyJ44Xyo70qF6y2o5ymNMqFlG6oF8INkDs_0fY")
+    Selfbot.init(token)
 
 
 
