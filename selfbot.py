@@ -125,12 +125,12 @@ class Selfbot(commands.Bot):
         if not hasattr(self, 'uptime'):
             self.uptime = datetime.datetime.utcnow()
         print('---------------')
-        print('selfbot.py connected!')
+        print('Selfbot.py connected!')
         print('---------------')
-        print('author: verixx#7220')
+        print('Author: verixx#7220')
         print('---------------')
-        print('logged in as: {}'.format(self.user))
-        print('user id: {}'.format(self.user.id))
+        print('Logged in as: {}'.format(self.user))
+        print('User id: {}'.format(self.user.id))
         print('---------------')
 
     async def on_command(self, ctx):
@@ -246,8 +246,6 @@ class Selfbot(commands.Bot):
         for embed in pages:
             embed.color = await ctx.get_dominant_color(ctx.author.avatar_url)
             await destination.send(embed=embed)
-
-
 
 if __name__ == '__main__':
     Selfbot.init()

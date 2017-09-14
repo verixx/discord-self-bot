@@ -78,7 +78,7 @@ class Information:
             if str(role.color) != "#000000":
                 color = int(str(role.color)[1:], 16)
 
-        rolenames = ', '.join([r.name for r in roles]) or 'None'
+        rolenames = ', '.join([r.name for r in roles if r != "@everyone"]) or 'None'
         time = ctx.message.created_at
         desc = '{0} is chilling in {1} mode.'.format(user.name, user.status)
         member_number = sorted(server.members, key=lambda m: m.joined_at).index(user) + 1
@@ -149,4 +149,4 @@ class Information:
 
 
 def setup(bot):
-	bot.add_cog(Information(bot))
+    bot.add_cog(Information(bot))
