@@ -184,7 +184,7 @@ class Selfbot(commands.Bot):
 
 
 if __name__ == '__main__':
-    Selfbot.init(token)
+    Selfbot.init()
 
 
 
