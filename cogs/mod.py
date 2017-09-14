@@ -62,7 +62,7 @@ class Mod:
             emb.description = "{} was just banned.".format(member)
             await ctx.guild.ban(member)
         except:
-            emb.description = "You do not have the permissions to kick users."
+            emb.description = "You do not have the permissions to ban users."
         await ctx.send(embed=emb)
 
 
