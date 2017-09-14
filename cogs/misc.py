@@ -30,7 +30,6 @@ from sympy import solve
 from PIL import Image
 import asyncio
 import random
-import emoji
 import copy
 import io
 
