@@ -46,7 +46,7 @@ class Mod:
             await ctx.message.delete()
             try:
                 emb.description = "{} was just kicked.".format(member)
-                await self.bot.kick(member)
+                await ctx.kick(member)
             except:
                 emb.description = "You do not have the permissions to kick users."
             await ctx.send(embed=emb)
