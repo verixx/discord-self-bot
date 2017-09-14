@@ -47,7 +47,8 @@ class Mod:
             try:
                 emb.description = "{} was just kicked.".format(member)
                 await ctx.kick(member)
-            except:
+            except Exception as e:
+                print(e)
                 emb.description = "You do not have the permissions to kick users."
             await ctx.send(embed=emb)
 
