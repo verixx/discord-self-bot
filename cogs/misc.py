@@ -136,7 +136,7 @@ class Misc:
     async def emoji(self, ctx, *, emoji : commands.EmojiConverter):
         '''Use emojis without nitro!'''
         await ctx.message.delete()
-        shrink_url = "https://process.filestackapi.com/AhTgLagciQByzXpFGRI0Az/resize=width:25/{}".format(emoji.url)
+        shrink_url = "https://process.filestackapi.com/AhTgLagciQByzXpFGRI0Az/resize=width:50/{}".format(emoji.url)
         async with ctx.session.get(shrink_url) as resp:
             image = await resp.read()
         with io.BytesIO(image) as file:
