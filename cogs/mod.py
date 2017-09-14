@@ -40,10 +40,10 @@ class Mod:
     @commands.command()
     async def kick(self, ctx, member : commands.MemberConverter):
             '''Kick someone from the server.'''
-            print(member.avatar_url)
+            avi = member.avatar_url
             emb = discord.Embed(title='Kick')
             emb.color = await ctx.get_dominant_color(member.avatar_url)
-            emb.set_thumbnail(member.avatar_url)
+            emb.set_thumbnail(avi)
             await self.bot.delete_message(ctx.message)
             try:
                 emb.description = "{} was just kicked.".format(member)
