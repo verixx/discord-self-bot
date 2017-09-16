@@ -285,6 +285,27 @@ class Misc():
         embed.set_image(url="https://i.ytimg.com/vi/7AXB8nGq5jc/maxresdefault.jpg")
         await self.bot.say(embed=embed)
         await self.bot.delete_message(ctx.message) 
+        
+        
+    @commands.command(pass_context = True)
+    async def shrug(self, ctx)
+        """Shrugs!"""
+        self.bot.say('¯\\_(ツ)\_/¯')
+
+    @commands.command(pass_context = True)
+    async def tableflip(self, ctx)
+        """Tableflip!"""
+        self.bot.say('(╯°□°）╯︵ ┻━┻')
+
+    @commands.command(pass_context = True)
+    async def unflip(self, ctx)
+        """Unfips!"""
+        self.bot.say('┬─┬﻿ ノ( ゜-゜ノ)')
+
+    @commands.command(pass_context = True)
+    async def lenny(self, ctx)
+        """Lenny Face!"""
+        self.bot.say('( ͡° ͜ʖ ͡°)')
 
 def setup(bot):
     bot.add_cog(Misc(bot))
