@@ -1,3 +1,29 @@
+'''
+MIT License
+
+Copyright (c) 2017 verixx
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+'''
+
+
+
 import discord
 from discord.ext import commands
 import asyncio
@@ -230,25 +256,25 @@ class Utility:
         except:
             await self.bot.say('Message too long.')
 
-    @commands.group(pass_context=True, aliases=['t'], invoke_without_command=True)		
+    @commands.group(pass_context=True, aliases=['t'], invoke_without_command=True)
     async def translate(self, ctx, lang, *, text):
         """Translate text! """
         if lang in codes:
             return await self.bot.say('```{}```'.format(translate(text, lang)))
         lang = dict(zip(codes.values(),codes.keys())).get(lang.lower().title())
-        if lang:  
+        if lang:
             await self.bot.say('```{}```'.format(translate(text, lang)))
         else:
             await self.bot.say('```That is not an available language.```')
-            
+
     @translate.command(pass_context=True, name='langs')
     async def _get(self, ctx):
-        em = discord.Embed(color=discord.Color.blue(), 
-                           title='Available Languages', 
+        em = discord.Embed(color=discord.Color.blue(),
+                           title='Available Languages',
                            description=', '.join(codes.values()))
         await self.bot.say(embed=em)
-        
-        
+
+
     @commands.command(pass_context=True)
     async def charinfo(self, ctx, *, characters: str):
         """Shows you information about a number of characters."""
@@ -683,15 +709,15 @@ class Utility:
         em.set_image(url=ctx.message.server.icon_url)
         em.set_author(name=ctx.message.server.name, url=ctx.message.server.icon_url)
         await self.bot.say(embed=em)
-        
-        
+
+
     @commands.command(pass_context = True)
     async def discrim(self, ctx):
         '''Find people with the same discrim as you'''
         author = ctx.message.author
         users = [str(m) for m in self.bot.get_all_members()
                     if m.discriminator == author.discriminator and m != author]
-        
+
         await self.bot.say("```bf\n{}\n```".format(", ".join(users)))
 
 
