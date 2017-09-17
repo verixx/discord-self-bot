@@ -686,20 +686,13 @@ class Utility:
         
         
     @commands.command(pass_context = True)
-    async def discrim(self,ctx):
+    async def discrim(self, ctx):
         '''Find people with the same discrim as you'''
-        users = []
+        author = ctx.message.author
+        users = [str(m) for m in self.bot.get_all_members()
+                    if m.discriminator == author.discriminator and m != author]
         
-        def all_mems():
-          for server in self.bot.servers:
-            for member in server.members:
-              yield member
-        
-        for m in all_mems():
-            if m.discriminator == self.bot.user.discriminator and m != self.bot.user:
-                users.append(m.name+'#'+m.discriminator)
-        
-        await self.bot.send_message(ctx.message.channel, ("```\n{}\n```".format("\n".join(users))))
+        await self.bot.say("```bf\n{}\n```".format(", ".join(users)))
 
 
 def setup(bot):
