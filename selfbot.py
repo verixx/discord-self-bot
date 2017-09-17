@@ -11,6 +11,11 @@ import io
 import textwrap
 import traceback
 
+default_data = {
+    "PREFIX": "r.",
+    "TOKEN": "your_token_here",
+    }
+
 def run_wizard():
     print('------------------------------------------')
     print('WELCOME TO THE VERIXX-SELFBOT SETUP WIZARD!')
@@ -19,11 +24,8 @@ def run_wizard():
     print('------------------------------------------')
     prefix = input('Enter a prefix for your selfbot:\n> ')
     data = {
-        "BOT": {
-            "TOKEN" : token,
-            "PREFIX" : prefix
-            },
-        "FIRST" : False
+        "PREFIX": prefix,
+        "TOKEN": token
         }
     with open('data/config.json','w') as f:
         f.write(json.dumps(data, indent=4))
@@ -37,19 +39,19 @@ if 'TOKEN' in os.environ:
 else:
     heroku = False
     with open('data/config.json') as f:
-        if json.load(f)['FIRST']:
+        if json.load(f)["TOKEN"] == default_data["TOKEN"]:
             run_wizard()
-    with open('data/config.json') as f:  
-        TOKEN = json.load(f)["BOT"]['TOKEN']
+    with open('data/config.json') as f:
+        TOKEN = json.load(f)['TOKEN']
 
 async def get_pre(bot, message):
     if 'PREFIX' in os.environ:
         return os.environ['PREFIX']
-        
+
     with open('data/config.json') as f:
         config = json.load(f)
     try:
-        return config["BOT"]['PREFIX']
+        return config['PREFIX']
     except:
         return 's.'
 
@@ -77,7 +79,7 @@ async def on_ready():
           '------------------------------------------'
     	  .format(bot.user, bot.user.id))
     await bot.change_presence(status=discord.Status.invisible, afk=True)
- 
+
 
 @bot.command(pass_context=True)
 async def ping(ctx):
@@ -97,7 +99,7 @@ async def shutdown(ctx):
     channel = ctx.message.channel
     await bot.say("Shutting down...")
     await bot.logout()
-    
+
 @bot.command(name='presence')
 async def _set(Type,*,message=None):
     """Change your discord game/stream!"""
@@ -252,10 +254,10 @@ async def _eval(ctx, *, body: str):
             pass
     else:
         value = stdout.getvalue()
-        
+
         if TOKEN in value:
             value = value.replace(TOKEN,"[EXPUNGED]")
-            
+
         if ret is None:
             if value:
                 try:
