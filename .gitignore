@@ -4,4 +4,4 @@ __pycache__/
 *.DS_Store
 *.json
 /data
-*.json
+
