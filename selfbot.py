@@ -70,14 +70,14 @@ _extensions = [
 @bot.event
 async def on_ready():
     bot.uptime = datetime.datetime.now()
-    print('------------------------------------------\n'
-    	  'Self-Bot Ready\n'
-    	  'Author: verix#7220\n'
-    	  '------------------------------------------\n'
-    	  'Username: {}\n'
-          'User ID: {}\n'
-          '------------------------------------------'
-    	  .format(bot.user, bot.user.id))
+    print(textwrap.dedent(f"""
+    ------------------------------------------
+    Self-Bot Ready
+    Author: verix#7220
+    ------------------------------------------
+    Username: {bot.user}
+    User ID: {bot.user.id}
+    ------------------------------------------"""))
     await bot.change_presence(status=discord.Status.invisible, afk=True)
 
 
@@ -104,11 +104,11 @@ async def shutdown(ctx):
 async def _set(Type,*,message=None):
     """Change your discord game/stream!"""
     if Type.lower() == 'stream':
-        await bot.change_presence(game=discord.Game(name=message,type=1,url='https://www.twitch.tv/{}'.format(message)),status='online')
-        await bot.say('Set presence to. `Streaming {}`'.format(message))
+        await bot.change_presence(game=discord.Game(name=message,type=1,url=f'https://www.twitch.tv/{message}'),status='online')
+        await bot.say(f'Set presence to. `Streaming {message}`')
     elif Type.lower() == 'game':
         await bot.change_presence(game=discord.Game(name=message))
-        await bot.say('Set presence to `Playing {}`'.format(message))
+        await bot.say(f'Set presence to `Playing {message}`')
     elif Type.lower() == 'clear':
         await bot.change_presence(game=None)
         await bot.say('Cleared Presence')
@@ -177,7 +177,7 @@ async def coglist(ctx):
         yield in_text
 
     def box(text, lang=""):
-        ret = "```{}\n{}\n```".format(lang, text)
+        ret = f"```{lang}\n{text}\n```"
         return ret
     loaded = [c.__module__.split(".")[1] for c in bot.cogs.values()]
     # What's in the folder but not loaded is unloaded
@@ -206,8 +206,8 @@ def cleanup_code( content):
 
 def get_syntax_error(e):
     if e.text is None:
-        return '```py\n{0.__class__.__name__}: {0}\n```'.format(e)
-    return '```py\n{0.text}{1:>{0.offset}}\n{2}: {0}```'.format(e, '^', type(e).__name__)
+        return f'```py\n{e.__class__.__name__}: {e}\n```'
+    return f'```py\n{e.text}'^':>{e.offset}\n{type(e).__name__}: {e}```'
 
 async def to_code_block(ctx, body):
     if body.startswith('```') and body.endswith('```'):
@@ -247,7 +247,7 @@ async def _eval(ctx, *, body: str):
             ret = await func()
     except Exception as e:
         value = stdout.getvalue()
-        x = await bot.say('```py\n{}{}\n```'.format(value, traceback.format_exc()))
+        x = await bot.say(f'```py\n{e}\n{traceback.format_exc()}\n{value}```')
         try:
             await bot.add_reaction(x, '\U0001f534')
         except:
@@ -286,7 +286,7 @@ async def _eval(ctx, *, body: str):
 @bot.command(pass_context=True)
 async def say(ctx, *, message: str):
     '''Say something as the bot.'''
-    if '{}say'.format(ctx.prefix) in message:
+    if f'{ctx.prefix}say' in message:
         await bot.say("Don't ya dare spam.")
     else:
         await bot.say(message)
@@ -303,7 +303,7 @@ async def _reload(ctx,*, module : str):
         x = await bot.edit_message(x,'Successfully Reloaded.')
     except Exception as e:
         x = await bot.edit_message(x,'\N{PISTOL}')
-        await bot.say('{}: {}'.format(type(e).__name__, e))
+        await bot.say(f'{type(e).__name__}: {e}')
     else:
         x = await bot.edit_message(x,'Done. \N{OK HAND SIGN}')
 
@@ -315,7 +315,7 @@ async def load(ctx, *, module):
         bot.load_extension(module)
         await bot.say('Successfully Loaded.')
     except Exception as e:
-        await bot.say('\N{PISTOL}\n{}: {}'.format(type(e).__name__, e))
+        await bot.say(f'\N{PISTOL}\n{type(e).__name__}: {e}')
 
 @bot.command(pass_context=True)
 async def unload(ctx, *, module):
@@ -323,19 +323,19 @@ async def unload(ctx, *, module):
     module = 'cogs.'+module
     try:
         bot.unload_extension(module)
-        await bot.say('Successfully Unloaded `{}`'.format(module))
+        await bot.say(f'Successfully Unloaded `{module}`')
     except:
         pass
 
 for extension in _extensions:
     try:
         bot.load_extension(extension)
-        print('Loaded: {}'.format(extension))
+        print(f'Loaded: {extension}')
     except Exception as e:
-        exc = '{}: {}'.format(type(e).__name__, e)
-        print('Error on load: {}\n{}'.format(extension, exc))
+        exc = f'{type(e).__name__}: {e}'
+        print(f'Error on load: {extension}\n{exc}')
 
 try:
     bot.run(TOKEN.strip('\"'), bot=False)
 except Exception as e:
-    print('\n[ERROR]: \n{}\n'.format(e))
+    print(f'\n[ERROR]: \n{e}\n')
