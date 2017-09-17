@@ -1,3 +1,27 @@
+'''
+MIT License
+
+Copyright (c) 2017 verixx
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+'''
+
 import discord
 from discord.ext import commands
 import datetime
@@ -49,7 +73,7 @@ class Moderation:
         	await self.bot.delete_message(ctx.message)
 
 
-    def find_user(self, bans, member): 
+    def find_user(self, bans, member):
             return [user for user in bans if user.id == member or user.name.lower() == member.lower()]
 
     async def _unban(self, ctx, server, user):
@@ -155,7 +179,7 @@ class Moderation:
         except:
             await self.bot.say("I dont have the perms to add that role.")
 
-      
+
     @commands.command(pass_context = True)
     async def warn(self, ctx, user: discord.Member=None, reason=None):
         '''Warn a member'''
@@ -164,7 +188,7 @@ class Moderation:
         author = ctx.message.author
         await self.bot.say('**{}** has been warned'.format(user))
         await self.bot.send_message(user, warning.format(server, author, reason))
-        await self.bot.delete_message(ctx.message)       
+        await self.bot.delete_message(ctx.message)
 
 
 def setup(bot):

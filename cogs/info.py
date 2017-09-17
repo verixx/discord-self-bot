@@ -1,3 +1,27 @@
+'''
+MIT License
+
+Copyright (c) 2017 verixx
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+'''
+
 import discord
 from discord.ext import commands
 import datetime
@@ -49,11 +73,11 @@ class Info():
 
         try:
             await self.bot.say(embed=data)
-            
+
         except discord.HTTPException:
             await self.bot.say("I need the `Embed links` permission "
                                "to send this")
-    
+
     @commands.command(pass_context=True,no_pm=True,aliases=["ri","role"])
     async def roleinfo(self, ctx, *, role: discord.Role=None):
         '''Shows information about a role'''
@@ -92,7 +116,7 @@ class Info():
             await self.bot.say("I need the `Embed links` permission "
                                "to send this")
 
-        
+
     @commands.command(pass_context=True,aliases=['ui','user'],description='See user-info of someone.')
     async def userinfo(self,ctx, user: discord.Member = None):
         '''See information about a user or yourself.'''
@@ -126,7 +150,7 @@ class Info():
         em.set_author(name=user, icon_url='http://site-449644.mozfiles.com/files/449644/logo-1.png')
         try:
             await self.bot.say(embed=em)
-            
+
         except discord.HTTPException:
             await self.bot.say("I need the `Embed links` permission "
                                "to send this")
@@ -189,6 +213,6 @@ class Info():
                 await self.bot.say(embed=page)
             except:
                 await self.bot.say('I need the embed links perm.')
-                
+
 def setup(bot):
     bot.add_cog(Info(bot))
