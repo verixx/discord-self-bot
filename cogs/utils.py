@@ -684,6 +684,16 @@ class Utility:
         em.set_author(name=ctx.message.server.name, url=ctx.message.server.icon_url)
         await self.bot.say(embed=em)
         
+        
+    @commands.command(pass_context = True)
+    async def discrim(self, ctx):
+        '''Find people with the same discrim as you'''
+        author = ctx.message.author
+        users = [str(m) for m in self.bot.get_all_members()
+                    if m.discriminator == author.discriminator and m != author]
+        
+        await self.bot.say("```bf\n{}\n```".format(", ".join(users)))
+
 
 def setup(bot):
     bot.add_cog(Utility(bot))
