@@ -38,12 +38,14 @@ from urllib.parse import parse_qs
 from urllib.request import Request, urlopen
 from lxml import etree
 from mtranslate import translate
+from ext.utility import load_json
 
 
 
 class Utility:
     def __init__(self, bot):
         self.bot = bot
+        self.lang_conv = load_json('data/langs.json')
         self.sessions = set()
 
     @commands.command(aliases=['nick'], pass_context=True, no_pm=True)
@@ -75,11 +77,12 @@ class Utility:
     @commands.group(pass_context=True, aliases=['t'], invoke_without_command=True)
     async def translate(self, ctx, lang, *, text):
         """Translate text! """
-        if lang in codes:
-            return await self.bot.say('```{}```'.format(translate(text, lang)))
-        lang = dict(zip(codes.values(),codes.keys())).get(lang.lower().title())
+        conv = self.lang_conv
+        if lang in conv:
+            return await self.bot.say(f'```{translate(text, lang)}```')
+        lang = dict(zip(self.lang_conv.values(),self.lang_conv.keys())).get(lang.lower().title())
         if lang:
-            await self.bot.say('```{}```'.format(translate(text, lang)))
+            await self.bot.say(f'```{translate(text, lang)}```')
         else:
             await self.bot.say('```That is not an available language.```')
 
@@ -87,7 +90,7 @@ class Utility:
     async def _get(self, ctx):
         em = discord.Embed(color=discord.Color.blue(),
                            title='Available Languages',
-                           description=', '.join(codes.values()))
+                           description=', '.join(self.lang_conv.values()))
         await self.bot.say(embed=em)
 
 
