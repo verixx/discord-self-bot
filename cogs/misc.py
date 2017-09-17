@@ -150,9 +150,9 @@ class Misc():
     @commands.command(pass_context=True, aliases=['emote','e'])
     async def emoji(self, ctx, *, msg):
         """
-        Embed or copy a custom emoji (from any server). 
-        Usage: 
-        `emoji :smug:` [Will display the smug emoji as an image] **or** 
+        Embed or copy a custom emoji (from any server).
+        Usage:
+        `emoji :smug:` [Will display the smug emoji as an image] **or**
         `emoji copy :smug:` [Will add the emoji as a custom emote for the server]
         """
         copy_emote_bool = False
@@ -276,7 +276,7 @@ class Misc():
             await self.bot.say(box(error))
         else:
             await self.bot.say(box(msg))
-            
+
     @commands.command(pass_context = True)
     async def slap(self,ctx, *, person: str):
         """Slaps another user."""
@@ -284,28 +284,28 @@ class Misc():
         embed=discord.Embed(color=0xed, title="{} has slapped {}".format(name.name, person))
         embed.set_image(url="https://i.ytimg.com/vi/7AXB8nGq5jc/maxresdefault.jpg")
         await self.bot.say(embed=embed)
-        await self.bot.delete_message(ctx.message) 
-        
-        
+        await self.bot.delete_message(ctx.message)
+
+
     @commands.command(pass_context = True)
-    async def shrug(self, ctx)
+    async def shrug(self, ctx):
         """Shrugs!"""
-        self.bot.say('¯\\_(ツ)\_/¯')
+        await self.bot.edit_message(ctx.message,'¯\\_(ツ)\_/¯')
 
     @commands.command(pass_context = True)
-    async def tableflip(self, ctx)
+    async def tableflip(self, ctx):
         """Tableflip!"""
-        self.bot.say('(╯°□°）╯︵ ┻━┻')
+        await self.bot.edit_message(ctx.message,'(╯°□°）╯︵ ┻━┻')
 
     @commands.command(pass_context = True)
-    async def unflip(self, ctx)
+    async def unflip(self, ctx):
         """Unfips!"""
-        self.bot.say('┬─┬﻿ ノ( ゜-゜ノ)')
+        await self.bot.edit_message(ctx.message,'┬─┬﻿ ノ( ゜-゜ノ)')
 
     @commands.command(pass_context = True)
-    async def lenny(self, ctx)
+    async def lenny(self, ctx):
         """Lenny Face!"""
-        self.bot.say('( ͡° ͜ʖ ͡°)')
+        await self.bot.edit_message(ctx.message,'( ͡° ͜ʖ ͡°)')
 
 def setup(bot):
     bot.add_cog(Misc(bot))
