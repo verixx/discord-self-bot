@@ -183,7 +183,7 @@ class Info():
         else:
             time_ = '%s hours, %s minutes, and %s seconds' % (hours, minutes, seconds)
         servers = len(self.bot.servers)
-        version = '0.1.1'
+        version = '1.2.1'
         library = 'discord.py'
         creator = 'verix#7220'
         discord_ = '[Support Server](https://discord.gg/pmQSbAd)'
