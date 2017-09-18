@@ -314,7 +314,7 @@ class Misc():
     @commands.command(pass_context = True)
     async def shrug(self, ctx):
         """Shrugs!"""
-        await self.bot.edit_message(ctx.message,'¯\\_(ツ)\_/¯')
+        await self.bot.edit_message(ctx.message,'¯\\\_(ツ)\_/¯')
 
     @commands.command(pass_context = True)
     async def tableflip(self, ctx):
