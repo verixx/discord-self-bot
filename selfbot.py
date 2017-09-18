@@ -257,6 +257,8 @@ async def _eval(ctx, *, body: str):
 
         if TOKEN in value:
             value = value.replace(TOKEN,"[EXPUNGED]")
+        if TOKEN in ret:
+            ret = ret.replace(TOKEN,"[EXPUNGED]")
 
         if ret is None:
             if value:
