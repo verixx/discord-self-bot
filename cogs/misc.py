@@ -321,5 +321,46 @@ class Misc:
         """Lenny Face!"""
         await ctx.message.edit(content='( ͡° ͜ʖ ͡°)')
 
+    @commands.command(aliases=['8ball'])
+    async def eightball(self, ctx, *, question = None):
+        """Ask questions to the 8ball"""
+        if question == None:
+            ask_first = f'You need to ask me a yes/no question.\nUsage: `{ctx.prefix}eightball [yes/no question]`'
+            emb = discord.Embed(colour=discord.Colour(0x2e1c1a), title='\N{BILLIARDS} Write question:')
+            emb.description = ask_first
+            await ctx.channel.send(embed=emb)
+            return
+
+        answerList = [  "It is certain, just relax and it will come/happen", 
+                        "I have determined that, yes!", 
+                        "Without a shred of doubt", 
+                        "Yes definitely, no need to ask anymore for today", 
+                        "You may rely on it", 
+                        "As I see it... yes, don't worry about it anymore", 
+                        "Most likely, but you have to take the first step", 
+                        "Outlook is good, do your best!", 
+                        "Yes", 
+                        "Signs point to yes, but with some difficulty", 
+                        "Hazy reply, try again after a cold shower", 
+                        "Ask again later, for now try to relax and think about something else", 
+                        "Better not tell you now, you'll me understand later", 
+                        "Cannot predict now, ask anything else", 
+                        "Concentrate, breathe, close your eyes and, ask again", 
+                        "Don't count on it, better do something else", 
+                        "My reply is no, have a nice day", 
+                        "My imaginary friends say no, brb", 
+                        "There might be problems, be ready", 
+                        "Very doubtful, better don't get attached", 
+                        "Never, just give up and be happy as you are", 
+                        "Forget about it, turn on airplane mode and relax offline for a while", 
+                        "乁( ⁰͡ Ĺ̯ ⁰͡ ) ㄏ who knows, who cares" ] 
+        alaberga = random.randint(0, len(answerList)-1)
+        ball_answer = f'{answerList[alaberga]}'
+        emb = discord.Embed(title='\N{BILLIARDS} Your answer:')
+        emb.colour = discord.Colour(0x2e1c1a)
+        emb.description = ball_answer
+        await ctx.channel.send(embed=emb)
+ 
+
 def setup(bot):
 	bot.add_cog(Misc(bot))
