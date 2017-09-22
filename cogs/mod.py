@@ -123,7 +123,7 @@ class Moderation:
     	else:
     		await self.bot.edit_message(ctx.message,'**List of banned users:**```bf\n{}\n```'.format(', '.join([str(u) for u in bans])))
 
-    @commands.command(aliases=['p'], pass_context=True)
+    @commands.command(aliases=['p', 'del', 'prune'], pass_context=True)
     async def purge(self, ctx, msgs: int, *, txt=None):
         '''Purge messages if you have the perms.'''
         await self.bot.delete_message(ctx.message)
