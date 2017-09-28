@@ -190,6 +190,67 @@ class Moderation:
         await self.bot.send_message(user, warning.format(server, author, reason))
         await self.bot.delete_message(ctx.message)
 
+        
+    @commands.command(pass_context = True)
+    @commands.has_permissions(manage_channels=True)
+    async def muteall(self, ctx):
+        '''Denies the @everyone role to send messages'''
+        everyone_perms = ctx.message.channel.overwrites_for(ctx.message.server.default_role)
+        everyone_perms.send_messages = False
+        await self.bot.edit_channel_permissions(ctx.message.channel, ctx.message.server.default_role, everyone_perms)
+        await self.answer_done(ctx.message)
+        
+
+    @commands.command(pass_context = True)
+    @commands.has_permissions(manage_channels=True)
+    async def unmuteall(self, ctx):
+        '''Allows the @everyone role to send messages'''
+        everyone_perms = ctx.message.channel.overwrites_for(ctx.message.server.default_role)
+        everyone_perms.send_messages = True
+        await self.bot.edit_channel_permissions(ctx.message.channel, ctx.message.server.default_role, everyone_perms)
+        await self.answer_done(ctx.message)
+
+    @commands.command(pass_context = True)
+    @commands.has_permissions(manage_channels=True)
+    async def mute(self, ctx, user: discord.Member):
+        '''Denies someone from sending messages'''
+        perms = ctx.message.channel.overwrites_for(user)
+        perms.send_messages = False
+        await self.bot.edit_channel_permissions(ctx.message.channel, user, perms)
+        await self.answer_done(ctx.message)
+
+    @commands.command(pass_context = True)
+    @commands.has_permissions(manage_channels=True)
+    async def unmute(self, ctx, user: discord.Member):
+        '''Allows someone to send messages'''
+        perms = ctx.message.channel.overwrites_for(user)
+        perms.send_messages = None
+        if not perms.is_empty():
+                await self.bot.edit_channel_permissions(ctx.message.channel, user, perms)
+        else:
+                await self.bot.delete_channel_permissions(ctx.message.channel, user)
+                await self.answer_done(ctx.message)
+
+    @commands.command(pass_context = True)
+    @commands.has_permissions(manage_channels=True)
+    async def unblock(self, ctx, user: discord.Member):
+        '''Allows someone to view a channel'''
+        perms = ctx.message.channel.overwrites_for(user)
+        perms.read_messages = None
+        if not perms.is_empty():
+                await self.bot.edit_channel_permissions(ctx.message.channel, user, perms)
+        else:
+                await self.bot.delete_channel_permissions(ctx.message.channel, user)
+                await self.answer_done(ctx.message)
+
+    @commands.command(pass_context = True)
+    @commands.has_permissions(manage_channels=True)
+    async def block(self, ctx, user: discord.Member):
+        """Denies someone from viewing the channel"""
+        perms = ctx.message.channel.overwrites_for(user)
+        perms.read_messages = False
+        await self.bot.edit_channel_permissions(ctx.message.channel, user, perms)
+        await self.answer_done(ctx.message)
 
 def setup(bot):
         bot.add_cog(Moderation(bot))
