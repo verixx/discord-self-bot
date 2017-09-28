@@ -249,8 +249,8 @@ class Misc:
             except Exception:
                 pass
 
-    @commands.command(name=['tinyurl'])
-    async def tiny_url(self, ctx, str=None):
+    @commands.command(aliases=['tiny_url'])
+    async def tinyurl(self, ctx, str=None):
         """Shrink URLs"""
         apiurl = "http://tinyurl.com/api-create.php?url="
         tinyurl = urlopen(apiurl + str).read().decode("utf-8")
@@ -279,7 +279,7 @@ class Misc:
         await ctx.channel.send(embed=e, delete_after=25)
 
     @calc.command(name='+')
-    async def _plus(self, ctx, *numbers: float):
+    async def plus(self, ctx, *numbers: float):
         """Adds two consecutive numbers separated by space"""
         result = sum(numbers)
         e = discord.Embed()
@@ -289,7 +289,7 @@ class Misc:
         await ctx.channel.send(embed=e)
 
     @calc.command(name='-')
-    async def _minus(self, ctx, left: float, right: float):
+    async def minus(self, ctx, left: float, right: float):
         """Substracts two consecutive numbers separated by space"""
         result = left - right
         e = discord.Embed()
@@ -299,7 +299,7 @@ class Misc:
         await ctx.channel.send(embed=e)
 
     @calc.command(name='x')
-    async def _multiply(self, ctx, left: float, right: float):
+    async def multiply(self, ctx, left: float, right: float):
         """Multiplies two consecutive numbers separated by space"""
         result = left * right
         e = discord.Embed()
@@ -309,7 +309,7 @@ class Misc:
         await ctx.channel.send(embed=e)
 
     @calc.command(name='/')
-    async def _divide(self, ctx, left: float, right: float):
+    async def divide(self, ctx, left: float, right: float):
         """Divides two consecutive numbers separated by space"""
         result = left / right
         e = discord.Embed()
@@ -444,8 +444,8 @@ class Misc:
         author = ctx.message.author
         emb = discord.Embed()
         emb.color = await ctx.get_dominant_color(url=author.avatar_url)
-        emb.set_author(name='\N{WHITE QUESTION MARK ORNAMENT} Your question:', icon_url=author.avatar_url)
-        emb.description = question
+        emb.set_author(name=ctx.message.author.display_name, icon_url=author.avatar_url)
+        emb.add_field(name='\N{WHITE QUESTION MARK ORNAMENT} Your question:', value=question)
         emb.add_field(name='\N{BILLIARDS} Your answer:', value=random.choice(choices), inline=True)
         await ctx.send(embed=emb)
 
