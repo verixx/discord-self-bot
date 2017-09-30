@@ -160,6 +160,33 @@ class Mod:
             await ctx.send(f'Removed: `{role.name}`')
         except:
             await ctx.send("I don't have the perms to add that role.")
+    @commands.command()
+    async def mute(self,ctx,member:discord.Member=None,*,reason=None):
+	if member==None:
+		return await ctx.send("Oh looks like I didn't specify a reason")
+	else:
+		for i in ctx.message.server.channels:
+			overwrite = discord.PermissionOverwrite()
+			overwrite.send_messages = False
+			await client.edit_channel_permissions(i, member, overwrite)
+		if reason==None:
+			return await ctx.send(f'Member {member} has been muted')
+		else:
+			return await ctx.send(f'Member {member} has been muted for {reason}')
+		
+    @commands.command()
+    async def unmute(self,ctx,member:discord.Member=None):
+	if member==None:
+		return await ctx.send("Oh looks like I didn't specify a reason")
+	else:
+		for i in ctx.message.server.channels:
+			overwrite = discord.PermissionOverwrite()
+			overwrite.send_messages = True
+			await client.edit_channel_permissions(i, member, overwrite)
+		return await ctx.send(f'Member {member} has been unmuted')
+
+			
+
 
 
 
