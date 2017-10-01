@@ -39,8 +39,6 @@ class Mod:
         self.bot = bot
 	self.perm_mute=discord.PermissionOverwrite()
 	self.perm_mute.send_messages=False
-	self.perm_unmute=discord.PermissionOverwrite()
-	self.perm_unmute.send_messages=True
 
     async def format_mod_embed(self, ctx, user, success, method):
         '''Helper func to format an embed to prevent extra code'''
@@ -164,26 +162,25 @@ class Mod:
             await ctx.send(f'Removed: `{role.name}`')
         except:
             await ctx.send("I don't have the perms to add that role.")
-    @commands.command()
-    async def mute(self,ctx,member:discord.Member=None,*,reason=None):
-	if member==None:
-		pass
-	else:
-		for i in ctx.message.server.channels:
-			await self.bot.edit_channel_permissions(i, member, self.perm_mute)
-		if reason==None:
-			return await ctx.send(f'Member {member} has been muted')
-		else:
-			return await ctx.send(f'Member {member} has been muted for {reason}')
-		
-    @commands.command()
-    async def unmute(self,ctx,member:discord.Member=None):
-	if member==None:
-		pass
-	else:
-		for i in ctx.message.server.channels:
-			await self.bot.edit_channel_permissions(i, member, self.perm_unmute)
-		return await ctx.send(f'Member {member} has been unmuted')
+@commands.command()
+async def mute(self,ctx,member:discord.Member=None,*,reason=None):
+    if member==None:
+        pass
+    else:
+        for i in ctx.message.guild.channels:
+            await i.set_permissions(member,overwrite=self.perm_mute)
+        if reason==None:
+            return await ctx.send(f'Member {member} has been muted')
+        else:
+            return await ctx.send(f'Member {member} has been muted for {reason}')		
+@commands.command()
+async def unmute(self,ctx,member:discord.Member=None):
+    if member==None:
+        pass
+    else:
+        for i in ctx.message.guild.channels:
+            await i.set_permissions(member,overwrite=None)
+        return await ctx.send(f'Member {member} has been unmuted')
 
 			
 
