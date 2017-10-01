@@ -37,10 +37,10 @@ class Mod:
 
     def __init__(self, bot):
         self.bot = bot
-	self.permMute=discord.PermissionOverwrite()
-	self.permMute.send_messages=False
-	self.permUnmute=discord.PermissionOverwrite()
-	self.permUnmute.send_messages=True
+	self.perm_mute=discord.PermissionOverwrite()
+	self.perm_mute.send_messages=False
+	self.perm_unmute=discord.PermissionOverwrite()
+	self.perm_unmute.send_messages=True
 
     async def format_mod_embed(self, ctx, user, success, method):
         '''Helper func to format an embed to prevent extra code'''
@@ -170,7 +170,7 @@ class Mod:
 		pass
 	else:
 		for i in ctx.message.server.channels:
-			await client.edit_channel_permissions(i, member, self.permMute)
+			await self.bot.edit_channel_permissions(i, member, self.perm_mute)
 		if reason==None:
 			return await ctx.send(f'Member {member} has been muted')
 		else:
@@ -182,7 +182,7 @@ class Mod:
 		pass
 	else:
 		for i in ctx.message.server.channels:
-			await client.edit_channel_permissions(i, member, self.permUnmute)
+			await self.bot.edit_channel_permissions(i, member, self.perm_unmute)
 		return await ctx.send(f'Member {member} has been unmuted')
 
 			
