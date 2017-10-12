@@ -290,7 +290,7 @@ class Misc:
         await ctx.channel.send(embed=e, delete_after=25)
 
     @calc.command(name='+')
-    async def _plus(self, ctx, *numbers: float):
+    async def plus(self, ctx, *numbers: float):
         """Adds two consecutive numbers separated by space"""
         result = sum(numbers)
         e = discord.Embed()
@@ -300,7 +300,7 @@ class Misc:
         await ctx.channel.send(embed=e)
 
     @calc.command(name='-')
-    async def _minus(self, ctx, left: float, right: float):
+    async def minus(self, ctx, left: float, right: float):
         """Substracts two consecutive numbers separated by space"""
         result = left - right
         e = discord.Embed()
@@ -310,7 +310,7 @@ class Misc:
         await ctx.channel.send(embed=e)
 
     @calc.command(name='x')
-    async def _multiply(self, ctx, left: float, right: float):
+    async def multiply(self, ctx, left: float, right: float):
         """Multiplies two consecutive numbers separated by space"""
         result = left * right
         e = discord.Embed()
@@ -320,7 +320,7 @@ class Misc:
         await ctx.channel.send(embed=e)
 
     @calc.command(name='/')
-    async def _divide(self, ctx, left: float, right: float):
+    async def divide(self, ctx, left: float, right: float):
         """Divides two consecutive numbers separated by space"""
         result = left / right
         e = discord.Embed()
