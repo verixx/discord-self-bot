@@ -37,6 +37,8 @@ class Mod:
 
     def __init__(self, bot):
         self.bot = bot
+	self.perm_mute=discord.PermissionOverwrite()
+	self.perm_mute.send_messages=False
 
     async def format_mod_embed(self, ctx, user, success, method, duration = None):
         '''Helper func to format an embed to prevent extra code'''
@@ -164,6 +166,28 @@ class Mod:
             await ctx.send(f'Removed: `{role.name}`')
         except:
             await ctx.send("I don't have the perms to add that role.")
+@commands.command()
+async def mute(self,ctx,member:discord.Member=None,*,reason=None):
+    if member==None:
+        pass
+    else:
+        for i in ctx.message.guild.channels:
+            await i.set_permissions(member,overwrite=self.perm_mute)
+        if reason==None:
+            return await ctx.send(f'Member {member} has been muted')
+        else:
+            return await ctx.send(f'Member {member} has been muted for {reason}')		
+@commands.command()
+async def unmute(self,ctx,member:discord.Member=None):
+    if member==None:
+        pass
+    else:
+        for i in ctx.message.guild.channels:
+            await i.set_permissions(member,overwrite=None)
+        return await ctx.send(f'Member {member} has been unmuted')
+
+			
+
 
     @commands.command()
     async def hackban(self, ctx, userid, *, reason=None):
