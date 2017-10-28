@@ -474,5 +474,20 @@ class Misc:
             return
         await ctx.send('```' + message + '```')
 
+    @commands.command()
+    async def textmojify(self, ctx, *, msg):
+        """Convert text into emojis"""
+        try:
+            await ctx.message.delete()
+        except discord.Forbidden:
+            pass
+
+        if msg == None:
+            await ctx.send('Write something, reee!', delete_after=3.0)
+        if msg != None:
+            msg = text.lower().replace(' ', '    ').replace('10', ':keycap_ten:').replace('ab', ':ab:').replace('cl', ':cl:').replace('0', ':zero:').replace('1', ':one:').replace('2', ':two:').replace('3', ':three:').replace('4', ':four:').replace('5', ':five:').replace('6', ':six:').replace('7', ':seven:').replace('8', ':eight:').replace('9', ':nine:').replace('!', ':exclamation:').replace('?', ':grey_question:').replace('vs', ':vs:').replace('.', ':small_orange_diamond:').replace(',', ':small_red_triangle_down:').replace('a', ':a:').replace('b', ':b:').replace('c', ':regional_indicator_c:').replace('d', ':regional_indicator_d:').replace('e', ':regional_indicator_e:').replace('f', ':regional_indicator_f:').replace('g', ':regional_indicator_g:').replace('h', ':regional_indicator_h:').replace('i', ':regional_indicator_i:').replace('j', ':regional_indicator_j:').replace('k', ':regional_indicator_k:').replace('l', ':regional_indicator_l:').replace('m', ':regional_indicator_m:').replace('n', ':regional_indicator_n:').replace('o', ':o2:').replace('p', ':parking:').replace('q', ':regional_indicator_q:').replace('r', ':regional_indicator_r:').replace('s', ':regional_indicator_s:').replace('t', ':regional_indicator_t:').replace('u', ':regional_indicator_u:').replace('v', ':regional_indicator_v:').replace('w', ':regional_indicator_w:').replace('x', ':regional_indicator_x:').replace('y', ':regional_indicator_y:').replace('z', ':regional_indicator_z:')
+            await ctx.send(text)
+
+
 def setup(bot):
     bot.add_cog(Misc(bot))
