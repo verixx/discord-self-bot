@@ -147,6 +147,7 @@ class Utility:
         if status == "online":
             await self.bot.change_presence(status=discord.Status.online, game=discord.Game(name=message), afk=True)
             color = discord.Color(value=0x43b581).to_rgb()
+            self.bot.setGame(name=message);
         elif status == "idle":
             await self.bot.change_presence(status=discord.Status.idle, game=discord.Game(name=message), afk=True)
             color = discord.Color(value=0xfaa61a).to_rgb()
