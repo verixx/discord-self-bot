@@ -415,7 +415,7 @@ class Misc:
         try:
             await ctx.send('\n'.join(['{1} `:{0}:`'.format(e.name, str(e)) for e in ctx.message.guild.emojis]))
         except:
-            string = '\n'.join(['{1} `:{0}:`'.format(e.name, str(e)) for e in ctx.message.guild.emojis])
+            string = ('\n'.join(['{1} `:{0}:`'.format(e.name, str(e)) for e in ctx.message.guild.emojis]))
             firstpart, secondpart = string[:len(string)/2], string[len(string)/2:]
             await ctx.send(firstpart)
             await ctx.send(secondpart)
