@@ -410,6 +410,8 @@ class Misc:
     @commands.command(aliases=['emotes'])
     async def emojis(self, ctx):
         '''Lists all emojis in a server'''
+        await ctx.message.delete()
+
         try:
             await ctx.send('\n'.join(['{1} `:{0}:`'.format(e.name, str(e)) for e in ctx.message.guild.emojis]))
         except:
