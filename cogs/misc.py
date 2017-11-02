@@ -585,6 +585,14 @@ class Misc:
         """Convert text into emojis"""
         await ctx.send(msg.lower().replace(' ', '    ').replace('10', '🔟').replace('ab', '🆎').replace('cl', '🆑').replace('0', '0⃣').replace('1', '1⃣').replace('2', '2⃣').replace('3', '3⃣').replace('4', '4⃣').replace('5', '5⃣').replace('6', '6⃣').replace('7', '7⃣').replace('8', '8⃣').replace('9', '9⃣').replace('!', '❗').replace('?', '❔').replace('vs', '🆚').replace('.', '🔸').replace(',', '🔻').replace('a', '🅰').replace('b', '🅱').replace('c', '🇨').replace('d', '🇩').replace('e', '🇪').replace('f', '🇫').replace('g', '🇬').replace('h', '🇭').replace('i', '🇮').replace('j', '🇯').replace('k', '🇰').replace('l', '🇱').replace('m', '🇲').replace('n', '🇳').replace('o', '🅾').replace('p', '🅿').replace('q', '🇶').replace('r', '🇷').replace('s', '🇸').replace('t', '🇹').replace('u', '🇺').replace('v', '🇻').replace('w', '🇼').replace('x', '🇽').replace('y', '🇾').replace('z', '🇿'))
 
-        
+    @commands.command()
+    async def statusswitch(self, ctx):
+      while not bot.is_closed():
+        await asyncio.sleep(1)
+        await self.bot.change_presence(status=discord.Status.idle)
+        await asyncio.sleep(1)
+        await self.bot.change_presence(status=discord.Status.dnd)
+        await asyncio.sleep(1)
+        await self.bot.change_presence(status=discord.Status.online)
 def setup(bot):
     bot.add_cog(Misc(bot))
