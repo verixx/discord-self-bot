@@ -411,10 +411,23 @@ class Misc:
     async def emojis(self, ctx):
         '''Lists all emojis in a server'''
         await ctx.message.delete()
-        try:
-            await ctx.send('\n'.join(['{1} `:{0}:`'.format(e.name, str(e)) for e in ctx.message.guild.emojis]))
-        except:
-            await ctx.send(type('\n'.join(['{1} `:{0}:`'.format(e.name, str(e)) for e in ctx.message.guild.emojis])))
+        emotes = '\n'.join(['{1} `:{0}:`'.format(e.name, str(e)) for e in ctx.message.guild.emojis])
+        if len(emotes) > 2000:
+            paginated_text = ctx.paginate(emotes)
+            for page in paginated_text:
+                if page == paginated_text[-1]:
+                    await ctx.send(f'{page}')
+                    break
+                await ctx.send(f'{page}')
+            # for page in pages:
+            #     await ctx.send(page)
+            # async with ctx.session.post("https://hastebin.com/documents", data=code) as resp:
+            #     data = await resp.json()
+            # await ctx.send(content=f"Here are all the emotes you have: <https://hastebin.com/{data['key']}.py>")
+
+            #await ctx.send()
+        else:
+            await ctx.send(emotes)
 
     @commands.command()
     async def urban(self, ctx, *, search_terms: str):
@@ -547,6 +560,31 @@ class Misc:
         await asyncio.sleep(.5)
         await msg.delete()
         await killmsg.delete()
+    
+    
+        @commands.command()
+    async def whoisplaying(self, ctx, *, game):
+        message = ''
+        for member in ctx.guild.members:
+            if member.game != None:
+                if member.game.name == game:
+                    message += str(member) + '\n'
+        await ctx.send(embed=discord.Embed(title=f'Who is playing {game}?', description = message, color=await ctx.get_dominant_color(url=ctx.message.author.avatar_url)))
 
+    @commands.command()
+    async def nickscan(self, ctx):
+        message = '**Server | Nick**\n'
+        for guild in self.bot.guilds:
+            if guild.me.nick != None:
+                message += f'{guild.name} | {guild.me.nick}\n'
+
+        await ctx.send(embed=discord.Embed(title=f'Servers I Have Nicknames In', description = message, color=await ctx.get_dominant_color(url=ctx.message.author.avatar_url)))
+
+    @commands.command()
+    async def textmojify(self, ctx, *, msg):
+        """Convert text into emojis"""
+        await ctx.send(msg.lower().replace(' ', '    ').replace('10', '🔟').replace('ab', '🆎').replace('cl', '🆑').replace('0', '0⃣').replace('1', '1⃣').replace('2', '2⃣').replace('3', '3⃣').replace('4', '4⃣').replace('5', '5⃣').replace('6', '6⃣').replace('7', '7⃣').replace('8', '8⃣').replace('9', '9⃣').replace('!', '❗').replace('?', '❔').replace('vs', '🆚').replace('.', '🔸').replace(',', '🔻').replace('a', '🅰').replace('b', '🅱').replace('c', '🇨').replace('d', '🇩').replace('e', '🇪').replace('f', '🇫').replace('g', '🇬').replace('h', '🇭').replace('i', '🇮').replace('j', '🇯').replace('k', '🇰').replace('l', '🇱').replace('m', '🇲').replace('n', '🇳').replace('o', '🅾').replace('p', '🅿').replace('q', '🇶').replace('r', '🇷').replace('s', '🇸').replace('t', '🇹').replace('u', '🇺').replace('v', '🇻').replace('w', '🇼').replace('x', '🇽').replace('y', '🇾').replace('z', '🇿'))
+
+        
 def setup(bot):
     bot.add_cog(Misc(bot))
