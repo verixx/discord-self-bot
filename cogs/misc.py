@@ -506,7 +506,7 @@ class Misc:
         timer = int(amount.strip())
         # Animated countdown because screw rate limit amirite
         destroy = ctx.message
-        await ctx.message.edit(content=self.bot.bot_prefix + 'The above message will self-destruct in:')
+        await ctx.message.edit(content=ctx.prefix + 'The above message will self-destruct in:')
         msg = await ctx.send('``%s  |``' % timer)
         for i in range(0, timer, 4):
             if timer - 1 - i == 0:
