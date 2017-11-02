@@ -494,5 +494,59 @@ class Misc:
             return
         await ctx.send('```' + message + '```')
 
+    @commands.command(aliases=['sd'],pass_context=True)
+    async def selfdestruct(self, ctx, *, amount: str = None):
+        """Builds a self-destructing message. Ex: >sd 5"""
+        async for message in ctx.message.channel.history():
+            if message.id == ctx.message.id:
+                continue
+            if message.author == ctx.message.author:
+                killmsg = message
+                break
+        timer = int(amount.strip())
+        # Animated countdown because screw rate limit amirite
+        destroy = ctx.message
+        await ctx.message.edit(content=self.bot.bot_prefix + 'The above message will self-destruct in:')
+        msg = await ctx.send('``%s  |``' % timer)
+        for i in range(0, timer, 4):
+            if timer - 1 - i == 0:
+                await destroy.delete()
+                await msg.edit(content='``0``')
+                break
+            else:
+                await msg.edit(content='``%s  |``' % int(timer - 1 - i))
+                await asyncio.sleep(1)
+            if timer - 1 - i != 0:
+                if timer - 2 - i == 0:
+                    await destroy.delete()
+                    await msg.edit(content='``0``')
+                    break
+                else:
+                    await msg.edit(content='``%s  /``' % int(timer - 2 - i))
+                    await asyncio.sleep(1)
+            if timer - 2 - i != 0:
+                if timer - 3 - i == 0:
+                    await destroy.delete()
+                    await msg.edit(content='``0``')
+                    break
+                else:
+                    await msg.edit(content='``%s  -``' % int(timer - 3 - i))
+                    await asyncio.sleep(1)
+            if timer - 3 - i != 0:
+                if timer - 4 - i == 0:
+                    await destroy.delete()
+                    await msg.edit(content='``0``')
+                    break
+                else:
+                    await msg.edit(content='``%s  \ ``' % int(timer - 4 - i))
+                    await asyncio.sleep(1)
+        await msg.edit(content=':bomb:')
+        await asyncio.sleep(.5)
+        await msg.edit(content=':fire:')
+        await killmsg.edit(content=':fire:')
+        await asyncio.sleep(.5)
+        await msg.delete()
+        await killmsg.delete()
+
 def setup(bot):
     bot.add_cog(Misc(bot))
