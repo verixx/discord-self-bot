@@ -411,9 +411,12 @@ class Misc:
     async def emojis(self, ctx):
         '''Lists all emojis in a server'''
         await ctx.message.delete()
-
+        string = ('\n'.join(['{1} `:{0}:`'.format(e.name, str(e)) for e in ctx.message.guild.emojis]))
         try:
-            await ctx.send('\n'.join(['{1} `:{0}:`'.format(e.name, str(e)) for e in ctx.message.guild.emojis]))
+            await ctx.send(string)
+        except:
+            await ctx.send(type(string))
+
         except:
             string = ('\n'.join(['{1} `:{0}:`'.format(e.name, str(e)) for e in ctx.message.guild.emojis]))
             await ctx.send(type(string)
