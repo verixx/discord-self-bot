@@ -416,9 +416,10 @@ class Misc:
             await ctx.send('\n'.join(['{1} `:{0}:`'.format(e.name, str(e)) for e in ctx.message.guild.emojis]))
         except:
             string = ('\n'.join(['{1} `:{0}:`'.format(e.name, str(e)) for e in ctx.message.guild.emojis]))
-            firstpart, secondpart = string[:len(string)/2], string[len(string)/2:]
-            await ctx.send(firstpart)
-            await ctx.send(secondpart)
+            await ctx.send(type(string)
+       #     firstpart, secondpart = string[:len(string)/2], string[len(string)/2:]
+        #    await ctx.send(firstpart)
+         #   await ctx.send(secondpart)
     @commands.command()
     async def urban(self, ctx, *, search_terms: str):
         '''Searches Up a Term in Urban Dictionary'''
