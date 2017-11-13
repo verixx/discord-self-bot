@@ -143,6 +143,7 @@ class Utility:
     async def _presence(self, ctx, status, *, message=None):
         '''Change your Discord status! (Stream, Online, Idle, DND, Invisible, or clear it)'''
         status = status.lower()
+        st = status.title()
         emb = discord.Embed(title="Presence")
         emb.color = await ctx.get_dominant_color(ctx.author.avatar_url)
         file = io.BytesIO()
@@ -177,9 +178,9 @@ class Utility:
 
         Image.new('RGB', (500, 500), color).save(file, format='PNG')
         if message:
-            emb.description = f"Your presence has been changed. 'Game': {message}"
+            emb.description = f"Your presence has been changed.\n**{st}** `{message}`"
         else:
-            emb.description = f"Your presence has been changed"
+            emb.description = f"Your presence has been changed."
         file.seek(0)
         emb.set_author(name=status.title(), icon_url="attachment://color.png")
         try:
