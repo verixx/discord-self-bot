@@ -1,6 +1,8 @@
 {
     "pycc": {
-        "sch": "{pycc} **Schedule**\n```py\nMonday (9-10:30, 11-12:30, 1pm-5pm)\nTuesday and Wednesday (9-10:30, 11-12:30)\nThursday (10:45-12:15, 1-2:30, 2:30-4, 4-4:45)\nFriday (Empty)```"
+        
     },
-    "textcc": {}
+    "textcc": {
+    
+    }
 }
