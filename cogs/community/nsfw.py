@@ -31,14 +31,18 @@ from urllib.request import Request, urlopen
 import json
 import io
 
-"""Nsfw commands."""
-
 class Nsfw:
+    """Nsfw commands."""
     def __init__(self, bot):
         self.bot = bot
-        self.session = bot.session
-        # self.session = discord.http.HTTPClient
-        self.color = bot.user_color
+
+    async def __local_check(self, ctx):
+        if not ctx.channel.is_nsfw():
+            return False
+        git = self.bot.get_cog('Git')
+        if not await git.starred('verixx/selfbot.py'):
+            return False
+        return True
 
     @commands.command()
     async def xbooru(self, ctx):
