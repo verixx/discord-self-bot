@@ -1,0 +1,31 @@
+import discord
+from discord.ext import commands
+import safygiphy
+
+nsfw = [
+'ass',
+'fuck',
+'sex',
+'tits',
+'vagina',
+'cock',
+'dildo',
+'penis',
+'danbooru',
+'yandere',
+'pussy',
+'boobs',
+'breasts',
+'orgasm',
+'butt',
+'genitals',
+'porn',
+'nsfw',
+'pornhub',
+'testicles',
+'clitoris',
+'g-spot',
+'gspot',
+'nude',
+'naked',
+]
