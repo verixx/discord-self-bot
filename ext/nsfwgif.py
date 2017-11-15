@@ -3,7 +3,7 @@ from discord.ext import commands
 import safygiphy
 
 nsfw = [
-  '4chan',
+	'4chan',
 	'a$$',
 	'a2m',
 	'air-lock',
