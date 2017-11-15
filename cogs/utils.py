@@ -971,7 +971,7 @@ class Utility:
         '''Auto Update command, checks if you have latest version
         Use tags github-token to find out how to set up this token'''
         git = self.bot.get_cog('Git')
-        if not await git.starred('verixx/selfbot.py'): return await ctx.send('This command is disabled as the user have not starred <https://github.com/verixx/selfbot.py>')
+        if not await git.starred('verixx/selfbot.py'): return await ctx.send('**This command is disabled as the user have not starred <https://github.com/verixx/selfbot.py>**')
         # get username
         username = await git.githubusername()
         async with ctx.session.get('https://api.github.com/repos/verixx/selfbot.py/git/refs/heads/rewrite') as resp:
@@ -1050,12 +1050,12 @@ class Utility:
     async def cc(self, ctx):
         '''Custom Commands!'''
         git = self.bot.get_cog('Git')
-        if not await git.starred('verixx/selfbot.py'): return await ctx.send('This command is disabled as the user have not starred <https://github.com/verixx/selfbot.py>')
+        if not await git.starred('verixx/selfbot.py'): return await ctx.send('**This command is disabled as the user have not starred <https://github.com/verixx/selfbot.py>**')
     @cc.command(aliases=['create', 'add'])
     async def make(self, ctx, name, *, content):
         '''Create a custom command! Include `{pycc}` in the content to specify a pycc!'''
         git = self.bot.get_cog('Git')
-        if not await git.starred('verixx/selfbot.py'): return await ctx.send('This command is disabled as the user have not starred <https://github.com/verixx/selfbot.py>')
+        if not await git.starred('verixx/selfbot.py'): return await ctx.send('**This command is disabled as the user have not starred <https://github.com/verixx/selfbot.py>**')
         with open('data/cc.json') as f:
             commands = json.load(f)
         try:
@@ -1082,7 +1082,7 @@ class Utility:
     async def edit(self, ctx, name, *, content):
         '''Edits a currently existing custom command'''
         git = self.bot.get_cog('Git')
-        if not await git.starred('verixx/selfbot.py'): return await ctx.send('This command is disabled as the user have not starred <https://github.com/verixx/selfbot.py>')
+        if not await git.starred('verixx/selfbot.py'): return await ctx.send('**This command is disabled as the user have not starred <https://github.com/verixx/selfbot.py>**')
         try:
             commands['textcc'][name]
         except KeyError:
@@ -1102,7 +1102,7 @@ class Utility:
     async def delete(self, ctx, *, name):
         '''Deletes a custom command'''
         git = self.bot.get_cog('Git')
-        if not await git.starred('verixx/selfbot.py'): return await ctx.send('This command is disabled as the user have not starred <https://github.com/verixx/selfbot.py>')
+        if not await git.starred('verixx/selfbot.py'): return await ctx.send('**This command is disabled as the user have not starred <https://github.com/verixx/selfbot.py>**')
         try:
             commands['textcc'][name]
         except KeyError:
@@ -1122,8 +1122,9 @@ class Utility:
 
     @cc.command()
     async def list(self, ctx, option:str = 'all'):
+        '''Displays a list of your current custom commands'''
         git = self.bot.get_cog('Git')
-        if not await git.starred('verixx/selfbot.py'): return await ctx.send('This command is disabled as the user have not starred <https://github.com/verixx/selfbot.py>')
+        if not await git.starred('verixx/selfbot.py'): return await ctx.send('**This command is disabled as the user have not starred <https://github.com/verixx/selfbot.py>**')
         with open('data/cc.json') as f:
             commands = json.load(f)
         pages = []
@@ -1132,16 +1133,16 @@ class Utility:
         if option == 'all':
             fmt += '**Text Custom Commands**'
             for commandtxt in commands['textcc']:
-                if len(fmt) + '\n' + commandtxt + ': ' + commands['textcc'][commandtxt] > 2000:
+                if len(fmt) + len(commandtxt) + 3 + len(commands['textcc'][commandtxt]) > 2000:
                     pages.append(fmt)
                     fmt = ''
                 fmt += '\n' + commandtxt + ': ' + commands['textcc'][commandtxt]
             fmt += '\n\n**Python Custom Commands'
-            for commandtxt in commands['pycc']:
-                if len(fmt) + '\n' + commandtxt + ': ' + commands['pycc'][commandtxt] > 2000:
+            for commandtxt2 in commands['pycc']:
+                if len(fmt) + len(commandtxt2) + 3 + len(commands['pycc'][commandtxt2]) > 2000:
                     pages.append(fmt)
                     fmt = ''
-            fmt += '\n' + commandtxt + ': ' + commands['pycc'][commandtxt]
+            fmt += '\n' + commandtxt2 + ': ' + commands['pycc'][commandtxt2]
             for page in pages:
                 await ctx.send(page)
             await ctx.send(fmt)
@@ -1149,7 +1150,7 @@ class Utility:
         elif option == 'text':
             fmt += '**Text Custom Commands**'
             for commandtxt in commands['textcc']:
-                if len(fmt) + '\n' + commandtxt + ': ' + commands['textcc'][commandtxt] > 2000:
+                if len(fmt) + len(commandtxt) + 3 + len(commands['textcc'][commandtxt]) > 2000:
                     pages.append(fmt)
                     fmt = ''
                 fmt += '\n' + commandtxt + ': ' + commands['textcc'][commandtxt]
@@ -1158,12 +1159,12 @@ class Utility:
             await ctx.send(fmt)
 
         elif option == 'pycc':
-            fmt += '\n\n**Python Custom Commands'
+            fmt += '\n\n**Python Custom Commands**'
             for commandtxt in commands['pycc']:
-                if len(fmt) + '\n' + commandtxt + ': ' + commands['pycc'][commandtxt] > 2000:
+                if len(fmt) + len(commandtxt) + 5 + len(commands['pycc'][commandtxt]) > 2000:
                     pages.append(fmt)
                     fmt = ''
-            fmt += '\n' + commandtxt + ': ' + commands['pycc'][commandtxt]
+            fmt += '\n' + commandtxt + ': `' + commands['pycc'][commandtxt] + '`'
             for page in pages:
                 await ctx.send(page)
             await ctx.send(fmt)
