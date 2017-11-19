@@ -71,7 +71,10 @@ class Nsfw:
             try:
                 await ctx.send(embed=em)
             except discord.HTTPException:
-                await ctx.send('Unable to send embeds here!')
+                em_list = await embedtobox.etb(em)
+                for page in em_list:
+                    await ctx.send(page)
+                # await ctx.send('Unable to send embeds here!')
                 try:
                     async with ctx.session.get(image) as resp:
                         image = await resp.read()
@@ -106,10 +109,10 @@ class Nsfw:
             try:
                 await ctx.send(embed=em)
             except discord.HTTPException:
-                # em_list = await embedtobox.etb(em)
-                # for page in em_list:
-                #    await ctx.send(page)
-                await ctx.send('Unable to send embeds here!')
+                em_list = await embedtobox.etb(em)
+                for page in em_list:
+                    await ctx.send(page)
+                # wait ctx.send('Unable to send embeds here!')
                 try:
                     async with ctx.session.get(image) as resp:
                         image = await resp.read()
@@ -123,7 +126,7 @@ class Nsfw:
 
     @nsfw.command()
     async def gif(self, ctx, *, tag):
-        """ Get a random lewd gif
+        """ Get a random lewd gif, or not
         Usage: gif <tag>
         Available tags: rule34, nsfw, hentai, tits... """
         try:
