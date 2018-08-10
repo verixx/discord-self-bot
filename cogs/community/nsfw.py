@@ -46,6 +46,18 @@ class Nsfw:
             return False
         return True
 
+class Dick:
+
+    def init(self, bot):
+        self.bot = bot
+
+    def dick_size(self, id):
+        s = 0
+        while id:
+            s += id % 10
+            id //= 10
+        return (s%10) * 2
+    
     @commands.group(invoke_without_command=True)
     async def nsfw(self, ctx):
         """ Get random lewds from the web """
@@ -121,6 +133,17 @@ class Nsfw:
         except Exception as e:
             await ctx.send(f'```{e}```')
 
+    @commands.command(pass_context=True)
+    async def dick(self, ctx, mention=""):
+        """How big are you?"""
+        id_regex = re.compile('<@!?(\d+)>')
+        ids = id_regex.findall(ctx.message.content)
+        if len(ids) > 0:
+            for member in ids:
+                await ctx.send(' <@{}> Size: 8{}D'.format(member, self.dick_size(int(member)) * '='))
+        else:
+            await ctx.send(' <@{}> Size: 8{}D'.format(str(ctx.message.author.id), self.dick_size(ctx.message.author.id) * '='))
+    
     @nsfw.command()
     async def gif(self, ctx, *, tag):
         """ Get a random lewd gif
