@@ -71,7 +71,10 @@ class Nsfw:
             try:
                 await ctx.send(embed=em)
             except discord.HTTPException:
-                await ctx.send('Unable to send embeds here!')
+                em_list = await embedtobox.etb(em)
+                for page in em_list:
+                    await ctx.send(page)
+                # await ctx.send('Unable to send embeds here!')
                 try:
                     async with ctx.session.get(image) as resp:
                         image = await resp.read()
@@ -79,6 +82,49 @@ class Nsfw:
                         await ctx.send(file=discord.File(file, 'xbooru.png'))
                 except discord.HTTPException:
                     await ctx.send(image)
+
+        except Exception as e:
+            await ctx.send(f'```{e}```')
+
+    @commands.command(aliases=['nhentai'])
+    async def nh(self, ctx):
+        """Sends a random nhentai doujin"""
+        try:
+            try:
+                await ctx.message.delete()
+            except discord.Forbidden:
+                pass
+
+            await ctx.channel.trigger_typing()
+            query = 'http://nhentai.net/random/'
+            hdr = {'User-Agent': 'Mozilla/5.0'}
+            req = Request(query, headers=hdr)
+            page = urlopen(req)
+            soup = bs.BeautifulSoup(page, 'html.parser')
+
+            text_description = soup.find('meta', itemprop="name")
+            img_cover = soup.find('meta', property="og:image")['content']
+            manga = soup.title.text.replace('» nhentai: hentai doujinshi and manga', '')
+
+            em = discord.Embed(colour=discord.Colour(0xed791d))
+            em.description = f'[Doujin Link*]({img_cover}\n\n{text_description})'
+            em.set_image(url=img_cover)
+            em.add_field(name='Title:', value=f'{manga}')
+            em.set_footer(text='* click link at your own risk!')
+            try:
+                await ctx.send(embed=em)
+            except discord.HTTPException:
+                em_list = await embedtobox.etb(em)
+                for page in em_list:
+                    await ctx.send(page)
+                await ctx.send('Unable to send embeds here!')
+                try:
+                    async with ctx.session.get(img_cover) as resp:
+                        image = await resp.read()
+                    with io.BytesIO(image) as file:
+                        await ctx.send(file=discord.File(file, 'nhentai.png'))
+                except discord.HTTPException:
+                    await ctx.send(img_cover)
 
         except Exception as e:
             await ctx.send(f'```{e}```')
@@ -106,10 +152,10 @@ class Nsfw:
             try:
                 await ctx.send(embed=em)
             except discord.HTTPException:
-                # em_list = await embedtobox.etb(em)
-                # for page in em_list:
-                #    await ctx.send(page)
-                await ctx.send('Unable to send embeds here!')
+                em_list = await embedtobox.etb(em)
+                for page in em_list:
+                    await ctx.send(page)
+                # wait ctx.send('Unable to send embeds here!')
                 try:
                     async with ctx.session.get(image) as resp:
                         image = await resp.read()
@@ -123,7 +169,7 @@ class Nsfw:
 
     @nsfw.command()
     async def gif(self, ctx, *, tag):
-        """ Get a random lewd gif
+        """ Get a random lewd gif, or not
         Usage: gif <tag>
         Available tags: rule34, nsfw, hentai, tits... """
         try:
