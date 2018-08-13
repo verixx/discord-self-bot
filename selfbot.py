@@ -233,6 +233,47 @@ class Selfbot(commands.Bot):
         except Exception as e:
             await ctx.send(f"```py\nError loading {cog}:\n\n{e}\n```", delete_after=5)
 
+    @commands.command(aliases=['coglist'])
+    async def cogs(self, ctx):
+        """ See loaded and unloaded cogs! """
+        def pagify(text, delims=['\n'], *, escape=True, shorten_by=8, page_length=2000):
+            """DOES NOT RESPECT MARKDOWN BOXES OR INLINE CODE"""
+            in_text = text
+            if escape:
+                num_mentions = text.count('@here') + text.count('@everyone')
+                shorten_by += num_mentions
+            page_length -= shorten_by
+            while len(in_text) > page_length:
+                closest_delim = max([in_text.rfind(d, 0, page_length)
+                                     for d in delims])
+                closest_delim = closest_delim if closest_delim != -1 else page_length
+                if escape:
+                    to_send = escape_mass_mentions(in_text[:closest_delim])
+                else:
+                    to_send = in_text[:closest_delim]
+                yield to_send
+                in_text = in_text[closest_delim:]
+            yield in_text
+
+        def box(text, lang=''):
+            ret = f'```{lang}\n{text}\n```'
+            return ret
+        loaded = [c.__module__.split('.')[1] for c in self.bot.cogs.values()]
+        # What's in the folder but not loaded is unloaded
+
+        def _list_cogs():
+              cogs = [os.path.basename(f) for f in 'cogs/*.py' or 'cogs/community/*.py']
+              return ['cogs.' + os.path.splitext(f)[0] for f in cogs]
+        unloaded = [c.split('.')[1] for c in _list_cogs() if c.split('.')[1] not in loaded]
+
+        if not unloaded:
+            unloaded = ['None']
+
+        em1 = discord.Embed(color=discord.Color.green(), title="+ Loaded", description=", ".join(sorted(loaded)))
+        em2 = discord.Embed(color=discord.Color.red(), title="- Unloaded", description=", ".join(sorted(unloaded)))
+        await ctx.send(embed=em1)
+        await ctx.send(embed=em2)
+
 
 if __name__ == '__main__':
     Selfbot.init()
